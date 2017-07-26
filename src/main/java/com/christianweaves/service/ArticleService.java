@@ -1,13 +1,10 @@
 package com.christianweaves.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.Stateful;
-import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,7 +23,7 @@ public class ArticleService {
 	private EntityManager entityManager;
     
 	/**
-	 * retrieve the latest articles
+	 * retrieve the latest count of articles from the database
 	 * 
 	 * @return
 	 */
@@ -37,9 +34,16 @@ public class ArticleService {
 		return query.getResultList();
 	}
 
+	/**
+	 * return the featured article from the database, featured article indicated by featured attribute
+	 * in the article attribute equalling true
+	 * @return
+	 */
 	public Article getFeaturedArticle() {
-		Query query = entityManager.createQuery("from Article article");
-		//here constructing query
+		Query query = entityManager.createQuery("from Article where featured = :boolType");
+		query.setParameter("boolType", Boolean.TRUE);
+		List<Article> list = query.getResultList();
+		return list.get(0);
 	}
 
 }
