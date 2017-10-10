@@ -19,6 +19,7 @@
             	<constraints nullable="true"/>
             </column>
             <column name="featured" type="TINYINT"/> 
+            <column name="archived" type="TINYINT"/> 
             
         </createTable>
         <!--  <addUniqueConstraint tableName="tb_map" columnNames="basemap"/> -->
@@ -26,7 +27,7 @@
     <changeSet author="csw" id="sample content">
     	<sql endDelimiter=";">
 		 	<![CDATA[
-				INSERT INTO tb_articles VALUES (null, 'First article title', 'Article subtitle', 'This is the main body, plenty of text and code examples here!', null, true);	 	
+				INSERT INTO tb_articles VALUES (null, 'First article title', 'Article subtitle', 'This is the main body, plenty of text and code examples here! <br/><strong>TEST</strong><br/><br/>Yeah', null, true, false);
 		 	]]>
 		 </sql>
 	</changeSet>

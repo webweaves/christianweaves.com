@@ -6,24 +6,27 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.christianweaves.entities.Article;
-import com.christianweaves.service.ArticleService;
+import com.christianweaves.service.AppService;
 
-@ManagedBean(name="articleView")
-@RequestScoped
+@Named
+@ViewScoped
 public class ArticleView {
 
 	private Article featuredArticle;
 	private Collection<Article> latestArticles;
 	
-    @ManagedProperty("#{articleService}")
-    private ArticleService articleService;
+    @Inject
+    private AppService service;
 
 	@PostConstruct
     public void init() {
-        setLatestArticles(articleService.getArticles(10));
-        setFeaturedArticle(articleService.getFeaturedArticle());
+        setLatestArticles(service.getArticles(10));
+        setFeaturedArticle(service.getFeaturedArticle());
     }
 
 	public void setLatestArticles(Collection<Article> latestArticles) {
@@ -33,13 +36,13 @@ public class ArticleView {
 	public Collection<Article> getLatestArticles() {
 		return latestArticles;
 	}
-	
-    public ArticleService getArticleService() {
-		return articleService;
+
+	public AppService getAppService() {
+		return service;
 	}
 
-	public void setArticleService(ArticleService articleService) {
-		this.articleService = articleService;
+	public void setService(AppService service) {
+		this.service = service;
 	}
 
 	public Article getFeaturedArticle() {

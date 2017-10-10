@@ -1,11 +1,8 @@
 package com.christianweaves.service;
 
-import java.util.Collection;
 import java.util.List;
 
-import javax.ejb.Stateful;
-import javax.enterprise.context.ConversationScoped;
-import javax.inject.Named;
+import javax.faces.bean.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -13,10 +10,8 @@ import javax.persistence.Query;
 
 import com.christianweaves.entities.Article;
 
-@Named
-@ConversationScoped
-@Stateful
-public class ArticleService {
+@ApplicationScoped
+public class AppService {
 	
     // Injected database connection:
 	@PersistenceContext(unitName = "christianweavesDS", type = PersistenceContextType.EXTENDED)
@@ -27,7 +22,7 @@ public class ArticleService {
 	 * 
 	 * @return
 	 */
-	public Collection<Article> getArticles(int count) {
+	public List<Article> getArticles(int count) {
 		Query query = entityManager.createQuery("from Article article");
 		query.setFirstResult(0);
 		query.setMaxResults(count);
@@ -45,5 +40,15 @@ public class ArticleService {
 		List<Article> list = query.getResultList();
 		return list.get(0);
 	}
-
+	
+	public void createArticle(String title, String subtitle, String body) {
+	
+		Article article = new Article();
+		article.setTitle(title);
+		article.setSubtitle(subtitle);
+		article.setBody(body);
+		
+		entityManager.persist(article);
+		
+	}
 }

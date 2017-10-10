@@ -30,14 +30,24 @@ public class Article implements Serializable {
 
 	@Column
 	private String body;
-	
+
 	@Column(name="date_added")
 	private Date dateAdded;
 	
 	@Column
 	private Boolean featured;
+
+	@Column
+	private Boolean archived;
 	
-	
+	public Boolean getArchived() {
+		return archived;
+	}
+
+	public void setArchived(Boolean archived) {
+		this.archived = archived;
+	}
+
 	public Long getId() {
 		return this.id;
 	}
@@ -111,5 +121,13 @@ public class Article implements Serializable {
 
 	public void setFeatured(Boolean featured) {
 		this.featured = featured;
+	}
+	
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
 	}
 }
