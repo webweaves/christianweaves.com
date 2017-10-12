@@ -12,17 +12,8 @@
 				<h1>#{articleView.featuredArticle.title}</h1>
 				<p>#{articleView.featuredArticle.subtitle}</p>
 				<p>
-					<a
-						href="https://github.com/TheCoder4eu/BootsFaces-examples/blob/master/src/main/webapp/jumbotron.xhtml"
-						class="btn btn-lg btn-info">View Page Source »</a>
+					<a href="showArticle.faces?article=#{articleView.featuredArticle.id}" class="btn btn-lg btn-info">Read more »</a>
 				</p>
-				<pre><code class="java">
-				public class Javaclass {
-					private int number;
-					public Javaclass() {
-					}
-				}
-				</code></pre>
 			</b:container>
 		</b:jumbotron>
 	</ui:composition>
