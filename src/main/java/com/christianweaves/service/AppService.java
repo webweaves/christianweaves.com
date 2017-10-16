@@ -46,6 +46,7 @@ public class AppService {
 	 * @return
 	 */
 	public Article getArticleById(Long id) {
+		if (id == null) return null;
 		Query query = entityManager.createQuery("from Article where id = :id");
 		query.setParameter("id", id);
 		return (Article)query.getSingleResult();

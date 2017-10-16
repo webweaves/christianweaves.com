@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
@@ -19,22 +20,25 @@
 			    margin-bottom: 15px;
 			}
 			</style>
-			
-			<b:jumbotron>
-				<b:container>
-					<h1>#{articleView.featuredArticle.title}</h1>
-					<p>#{articleView.featuredArticle.subtitle}</p>
-				</b:container>
-			</b:jumbotron>
+				<b:jumbotron>
+					<b:container>
+						<h1>#{articleView.featuredArticle.title}</h1>
+						<p>#{articleView.featuredArticle.subtitle}</p>
+					</b:container>
+				</b:jumbotron>
     	</ui:define>
 		<ui:define name="content">
+			
 			<b:container>
-    			<p><h:outputText value="#{articleView.showBody(param['article'])}" escape="false"/></p>
+				<h:form>
+					<h:inputHidden value="#{articleView.setCurrentArticle(param['article'])}" />
+					<p:textEditor widgetVar="editor1" height="300" style="margin-bottom:10px"
+						value="#{articleView.currentArticle.body}"/>
+							
+					<b:commandButton ajax="true" action="#{articleView.save}" value="Save"/>
+				</h:form>	
     		</b:container>
-    		<b:container>
-    		<br/><b:button outcome="editArticle.faces?article=#{param['article']}" value="Edit Article »"/>
-    		<br/><br/>
-    		</b:container>
+    		
     	</ui:define>
 	</ui:composition>
 </h:body>

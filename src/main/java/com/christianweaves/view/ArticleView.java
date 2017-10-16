@@ -3,7 +3,7 @@ package com.christianweaves.view;
 import java.util.Collection;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,9 +11,10 @@ import com.christianweaves.entities.Article;
 import com.christianweaves.service.AppService;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class ArticleView {
 
+	private Article currentArticle;
 	private Article featuredArticle;
 	private Collection<Article> latestArticles;
 	
@@ -26,13 +27,31 @@ public class ArticleView {
         setFeaturedArticle(service.getFeaturedArticle());
     }
 
+	public String save() {
+		int i = 0;
+		i++;
+		return null;
+	}
+	
 	/**
 	 * return the article body based on article id
 	 * @param id
 	 * @return
 	 */
 	public String showBody(Long id) {
-		return service.getArticleById(id).getBody();	
+		try {
+			return service.getArticleById(id).getBody();	
+		} catch (java.lang.NullPointerException e) {
+			return "";
+		}	
+	}
+	
+	/**
+	 * sets the current active article using passed in id
+	 * @param id
+	 */
+	public void setCurrentArticle(Long id) {
+		currentArticle = service.getArticleById(id);
 	}
 	
 	public void setLatestArticles(Collection<Article> latestArticles) {
@@ -57,5 +76,13 @@ public class ArticleView {
 
 	public void setFeaturedArticle(Article featuredArticle) {
 		this.featuredArticle = featuredArticle;
+	}
+
+	public Article getCurrentArticle() {
+		return currentArticle;
+	}
+
+	public void setCurrentArticle(Article currentArticle) {
+		this.currentArticle = currentArticle;
 	}
 }
