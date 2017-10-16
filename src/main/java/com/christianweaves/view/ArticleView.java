@@ -3,9 +3,6 @@ package com.christianweaves.view;
 import java.util.Collection;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -29,6 +26,15 @@ public class ArticleView {
         setFeaturedArticle(service.getFeaturedArticle());
     }
 
+	/**
+	 * return the article body based on article id
+	 * @param id
+	 * @return
+	 */
+	public String showBody(Long id) {
+		return service.getArticleById(id).getBody();	
+	}
+	
 	public void setLatestArticles(Collection<Article> latestArticles) {
 		this.latestArticles = latestArticles;
 	}
