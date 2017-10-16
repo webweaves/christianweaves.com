@@ -41,16 +41,6 @@ public class AppService {
 		return list.get(0);
 	}
 	
-	/**
-	 * return the article based on id
-	 * @return
-	 */
-	public Article getArticleById(Long id) {
-		Query query = entityManager.createQuery("from Article where id = :id");
-		query.setParameter("id", id);
-		return (Article)query.getSingleResult();
-	}
-	
 	public void createArticle(String title, String subtitle, String body) {
 	
 		Article article = new Article();

@@ -25,15 +25,10 @@ public class ArticleView {
 
 	@PostConstruct
     public void init() {
-        setFeaturedArticle(service.getFeaturedArticle());
         setLatestArticles(service.getArticles(10));
+        setFeaturedArticle(service.getFeaturedArticle());
     }
 
-	public String showBody(Long id) {
-		return service.getArticleById(id).getBody();
-		
-	}
-	
 	public void setLatestArticles(Collection<Article> latestArticles) {
 		this.latestArticles = latestArticles;
 	}
