@@ -1,8 +1,10 @@
 package com.christianweaves.service;
 
+import java.util.Collection;
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
+import javax.annotation.PostConstruct;
+import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -10,13 +12,22 @@ import javax.persistence.Query;
 
 import com.christianweaves.entities.Article;
 
-@ApplicationScoped
+@Singleton
 public class AppService {
 	
     // Injected database connection:
 	@PersistenceContext(unitName = "christianweavesDS", type = PersistenceContextType.EXTENDED)
 	private EntityManager entityManager;
-    
+
+	private Article featuredArticle;
+	private Collection<Article> latestArticles;
+
+	@PostConstruct
+    public void init() {
+        setLatestArticles(getArticles(10));
+        setFeaturedArticle(getTheFeaturedArticle());
+    }
+	
 	/**
 	 * retrieve the latest count of articles from the database
 	 * 
@@ -34,7 +45,7 @@ public class AppService {
 	 * in the article attribute equalling true
 	 * @return
 	 */
-	public Article getFeaturedArticle() {
+	public Article getTheFeaturedArticle() {
 		Query query = entityManager.createQuery("from Article where featured = :boolType");
 		query.setParameter("boolType", Boolean.TRUE);
 		List<Article> list = query.getResultList();
@@ -60,6 +71,21 @@ public class AppService {
 		article.setBody(body);
 		
 		entityManager.persist(article);
-		
+	}
+
+	public Collection<Article> getLatestArticles() {
+		return latestArticles;
+	}
+
+	public void setLatestArticles(Collection<Article> latestArticles) {
+		this.latestArticles = latestArticles;
+	}
+
+	public Article getFeaturedArticle() {
+		return featuredArticle;
+	}
+
+	public void setFeaturedArticle(Article featuredArticle) {
+		this.featuredArticle = featuredArticle;
 	}
 }
