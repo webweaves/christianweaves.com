@@ -14,12 +14,10 @@ import org.hibernate.annotations.NamedQuery;
 @Entity
 @Table(name = "tb_articles")
 @NamedQuery(name = "findAllArticles", query = "SELECT a FROM Article a")
-public class Article implements Serializable {
+public class Article {
 
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false, nullable = false)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
 
 	@Column

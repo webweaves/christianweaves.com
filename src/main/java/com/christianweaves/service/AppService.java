@@ -4,11 +4,18 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 import com.christianweaves.entities.Article;
 
@@ -16,9 +23,13 @@ import com.christianweaves.entities.Article;
 public class AppService {
 	
     // Injected database connection:
-	@PersistenceContext(unitName = "christianweavesDS", type = PersistenceContextType.EXTENDED)
+	@PersistenceContext(unitName="christianweavesDS", type=PersistenceContextType.EXTENDED)
 	private EntityManager entityManager;
 
+	@Resource
+    private UserTransaction userTransaction;
+
+	private Article currentArticle;
 	private Article featuredArticle;
 	private Collection<Article> latestArticles;
 
@@ -60,7 +71,8 @@ public class AppService {
 		if (id == null) return null;
 		Query query = entityManager.createQuery("from Article where id = :id");
 		query.setParameter("id", id);
-		return (Article)query.getSingleResult();
+		currentArticle = (Article)query.getSingleResult();
+		return currentArticle;
 	}
 	
 	public void createArticle(String title, String subtitle, String body) {
@@ -87,5 +99,26 @@ public class AppService {
 
 	public void setFeaturedArticle(Article featuredArticle) {
 		this.featuredArticle = featuredArticle;
+	}
+
+	public Article getCurrentArticle() {
+		return currentArticle;
+	}
+
+	public void setCurrentArticle(Article currentArticle) {
+		this.currentArticle = currentArticle;
+	}
+
+	
+	public void saveCurrentArticle() {
+		try {
+			userTransaction.begin();
+			entityManager.persist(currentArticle);
+			userTransaction.commit();
+		} catch (SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException
+				| HeuristicMixedException | HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

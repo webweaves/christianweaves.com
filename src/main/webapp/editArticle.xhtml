@@ -31,9 +31,9 @@
 			
 			<b:container>
 				<h:form>
-					<h:inputHidden value="#{articleView.setCurrentArticle(param['article'])}" />
+					<h:inputHidden rendered="#{param['article'] != null}" value="#{articleView.setCurrentArticle(param['article'])}" />
 					<p:textEditor widgetVar="editor1" height="300" style="margin-bottom:10px"
-						value="#{articleView.currentArticle.body}"/>
+						value="#{articleView.currentArticleBody}"/>
 							
 					<b:commandButton ajax="true" action="#{articleView.save}" value="Save"/>
 				</h:form>	

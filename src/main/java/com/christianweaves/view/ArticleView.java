@@ -2,7 +2,7 @@ package com.christianweaves.view;
 
 import java.util.Collection;
 
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,15 +13,11 @@ import com.christianweaves.service.AppService;
 @RequestScoped
 public class ArticleView {
 
-	private Article currentArticle;
-	
     @Inject
     private AppService service;
 
-	public String save() {
-		int i = 0;
-		i++;
-		return null;
+	public void save() {
+		service.saveCurrentArticle();
 	}
 	
 	/**
@@ -42,30 +38,22 @@ public class ArticleView {
 	 * @param id
 	 */
 	public void setCurrentArticle(Long id) {
-		currentArticle = service.getArticleById(id);
+		service.getArticleById(id);
 	}
 	
 	public Collection<Article> getLatestArticles() {
 		return service.getLatestArticles();
 	}
 
-	public AppService getAppService() {
-		return service;
-	}
-
-	public void setService(AppService service) {
-		this.service = service;
-	}
-
 	public Article getFeaturedArticle() {
 		return service.getFeaturedArticle();
 	}
 
-	public Article getCurrentArticle() {
-		return currentArticle;
+	public String getCurrentArticleBody() {
+		return service.getCurrentArticle().getBody();
 	}
-
-	public void setCurrentArticle(Article currentArticle) {
-		this.currentArticle = currentArticle;
+	
+	public void setCurrentArticleBody(String data) {
+		service.getCurrentArticle().setBody(data);
 	}
 }
