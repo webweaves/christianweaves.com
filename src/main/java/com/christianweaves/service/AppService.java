@@ -112,6 +112,7 @@ public class AppService {
 	
 	public void saveCurrentArticle() {
 		try {
+			//something not working here due to detached entity, see CWDOTCOM-20
 			userTransaction.begin();
 			entityManager.persist(currentArticle);
 			userTransaction.commit();
