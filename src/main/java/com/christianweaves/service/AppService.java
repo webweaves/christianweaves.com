@@ -118,7 +118,6 @@ public class AppService {
 			userTransaction.commit();
 		} catch (SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException
 				| HeuristicMixedException | HeuristicRollbackException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
