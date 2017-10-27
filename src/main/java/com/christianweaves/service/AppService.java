@@ -33,6 +33,9 @@ public class AppService {
 	private Article featuredArticle;
 	private Collection<Article> latestArticles;
 
+	/**
+	 * called only once to initialise latest and featured articles
+	 */
 	@PostConstruct
     public void init() {
         setLatestArticles(getArticles(10));
@@ -41,7 +44,6 @@ public class AppService {
 	
 	/**
 	 * retrieve the latest count of articles from the database
-	 * 
 	 * @return
 	 */
 	public List<Article> getArticles(int count) {
@@ -110,6 +112,9 @@ public class AppService {
 	}
 
 	
+	/**
+	 * used to save the currently active article
+	 */
 	public void saveCurrentArticle() {
 		try {
 			//something not working here due to detached entity, see CWDOTCOM-20
