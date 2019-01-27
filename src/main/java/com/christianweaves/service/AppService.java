@@ -2,14 +2,18 @@ package com.christianweaves.service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -62,7 +66,7 @@ public class AppService {
 		Query query = entityManager.createQuery("from Article where featured = :boolType");
 		query.setParameter("boolType", Boolean.TRUE);
 		List<Article> list = query.getResultList();
-		return list.get(0);
+		return list.get(0); 
 	}
 
 	/**
@@ -115,15 +119,38 @@ public class AppService {
 	/**
 	 * used to save the currently active article
 	 */
-	public void saveCurrentArticle() {
+	public Article saveCurrentArticle() {
+		Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		Article article = (Article)sessionMapObj.get("editArticleObject");
+		
+		
 		try {
-			//something not working here due to detached entity, see CWDOTCOM-20
 			userTransaction.begin();
-			entityManager.persist(currentArticle);
+			currentArticle = entityManager.merge(currentArticle);
 			userTransaction.commit();
 		} catch (SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException
 				| HeuristicMixedException | HeuristicRollbackException e) {
 			e.printStackTrace();
 		}
+	
+		return article;
+	}
+	
+	
+	/* Method Used To Edit Student Record In Database */
+	public String editArticle(Long articleId) {
+		
+		/* Setting The Particular Student Details In Session */
+		Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		//get the article if it existsL
+		Article article = getArticleById(articleId);
+		sessionMapObj.put("editArticleObject", article);
+	
+		return "/editArticle.xhtml?faces-redirect=true";
+	}
+	
+	public List<Article> getAll() {
+		CriteriaQuery<Article> criteria = this.entityManager.getCriteriaBuilder().createQuery(Article.class);
+		return this.entityManager.createQuery(criteria.select(criteria.from(Article.class))).getResultList();
 	}
 }

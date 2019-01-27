@@ -21,16 +21,12 @@ public class ArticleView {
 	}
 	
 	/**
-	 * return the article body based on article id
+	 * return the article based on article id
 	 * @param id
 	 * @return
 	 */
-	public String showBody(Long id) {
-		try {
-			return service.getArticleById(id).getBody();	
-		} catch (java.lang.NullPointerException e) {
-			return "";
-		}	
+	public Article showArticle(Long id) {
+		return service.getArticleById(id);	
 	}
 	
 	/**

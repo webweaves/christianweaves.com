@@ -8,7 +8,7 @@
     xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<title>Title</title>
 </head>
 <h:body>
 	<ui:composition template="templates/template.xhtml">
@@ -22,9 +22,8 @@
 			</style>
 				<b:jumbotron>
 					<b:container>
-						<!-- need to double check these lines are most efficient way of grabbing content -->
-						<h1>#{articleView.featuredArticle.title}</h1>
-						<p>#{articleView.featuredArticle.subtitle}</p>
+						<h1>#{editArticleObject.title}</h1>
+						<p>#{editArticleObject.subtitle}</p>
 					</b:container>
 				</b:jumbotron>
     	</ui:define>
@@ -32,9 +31,8 @@
 			
 			<b:container>
 				<h:form>
-					<h:inputHidden rendered="#{param['article'] != null}" value="#{articleView.setCurrentArticle(param['article'])}" />
-					<p:textEditor widgetVar="editor1" height="300" style="margin-bottom:10px"
-						value="#{articleView.currentArticleBody}"/>
+					<p:textEditor widgetVar="editor1" height="150" style="margin-bottom:10px"
+						value="#{editArticleObject.body}"/>
 							
 					<b:commandButton ajax="true" action="#{articleView.save}" value="Save"/>
 				</h:form>	

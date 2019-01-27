@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1
 /DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -22,19 +23,23 @@
 			
 			<b:jumbotron>
 				<b:container>
-					<h1>#{articleView.featuredArticle.title}</h1>
-					<p>#{articleView.featuredArticle.subtitle}</p>
+					<h1>#{articleView.showArticle(param['article']).title}</h1>
+					<p>#{articleView.showArticle(param['article']).subtitle}</p>
 				</b:container>
 			</b:jumbotron>
     	</ui:define>
 		<ui:define name="content">
-			<b:container>
-    			<p><h:outputText value="#{articleView.showBody(param['article'])}" escape="false"/></p>
-    		</b:container>
-    		<b:container>
-    		<br/><b:button outcome="editArticle.faces?article=#{param['article']}" value="Edit Article »"/>
-    		<br/><br/>
-    		</b:container>
+			<h:form>
+				<b:container>
+	    			<p><h:outputText value="#{articleView.showArticle(param['article']).body}" escape="false"/></p>
+	    		</b:container>
+	    		<b:container>
+	    		<br/><h:commandButton action="#{articleBean.editArticle}" value="Edit Article »" class="btn btn-primary" >
+	    			<f:param name="articleId" value="#{param['article']}" />
+	    		</h:commandButton>
+	    		<br/><br/>
+    			</b:container>
+    		</h:form>
     	</ui:define>
 	</ui:composition>
 </h:body>
