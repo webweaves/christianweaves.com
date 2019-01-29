@@ -2,7 +2,6 @@ package com.christianweaves.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Id;
@@ -13,7 +12,7 @@ import org.hibernate.annotations.NamedQuery;
 
 @Entity
 @Table(name = "tb_articles")
-@NamedQuery(name = "findAllArticles", query = "SELECT a FROM Article a")
+@NamedQuery(name = "allArticles", query = "SELECT a FROM Article a")
 public class Article {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
