@@ -33,8 +33,6 @@ public class AppService {
 	@Resource
     private UserTransaction userTransaction;
 
-	private Article currentArticle;
-	private Article featuredArticle;
 	private Collection<Article> latestArticles;
 
 	/**
@@ -43,7 +41,6 @@ public class AppService {
 	@PostConstruct
     public void init() {
         setLatestArticles(getArticles(10));
-        setFeaturedArticle(getTheFeaturedArticle());
     }
 	
 	/**
@@ -62,11 +59,11 @@ public class AppService {
 	 * in the article attribute equalling true
 	 * @return
 	 */
-	public Article getTheFeaturedArticle() {
+	public Article getFeaturedArticle() {
 		Query query = entityManager.createQuery("from Article where featured = :boolType");
 		query.setParameter("boolType", Boolean.TRUE);
 		List<Article> list = query.getResultList();
-		return list.get(0); 
+		return list.get(0);
 	}
 
 	/**
@@ -77,17 +74,14 @@ public class AppService {
 		if (id == null) return null;
 		Query query = entityManager.createQuery("from Article where id = :id");
 		query.setParameter("id", id);
-		currentArticle = (Article)query.getSingleResult();
-		return currentArticle;
+		return (Article)query.getSingleResult();
 	}
 	
 	public void createArticle(String title, String subtitle, String body) {
-	
 		Article article = new Article();
 		article.setTitle(title);
 		article.setSubtitle(subtitle);
 		article.setBody(body);
-		
 		entityManager.persist(article);
 	}
 
@@ -98,23 +92,6 @@ public class AppService {
 	public void setLatestArticles(Collection<Article> latestArticles) {
 		this.latestArticles = latestArticles;
 	}
-
-	public Article getFeaturedArticle() {
-		return featuredArticle;
-	}
-
-	public void setFeaturedArticle(Article featuredArticle) {
-		this.featuredArticle = featuredArticle;
-	}
-
-	public Article getCurrentArticle() {
-		return currentArticle;
-	}
-
-	public void setCurrentArticle(Article currentArticle) {
-		this.currentArticle = currentArticle;
-	}
-
 	
 	/**
 	 * used to save the currently active article
@@ -123,34 +100,45 @@ public class AppService {
 		Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = (Article)sessionMapObj.get("editArticleObject");
 		
+		Article dbArticle = getArticleById(article.getId());
+		dbArticle.setTitle(article.getTitle());
+		dbArticle.setBody(article.getBody());
+		dbArticle.setFeatured(article.getFeatured());
+		dbArticle.setArchived(article.getArchived());
+		dbArticle.setSubtitle(article.getSubtitle());
+		dbArticle.setDateAdded(article.getDateAdded());
 		
 		try {
 			userTransaction.begin();
-			currentArticle = entityManager.merge(currentArticle);
+			dbArticle = entityManager.merge(dbArticle);
 			userTransaction.commit();
 		} catch (SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException
 				| HeuristicMixedException | HeuristicRollbackException e) {
 			e.printStackTrace();
 		}
-	
-		return article;
+
+		return dbArticle;
 	}
 	
-	
-	/* Method Used To Edit Student Record In Database */
-	public String editArticle(Long articleId) {
+	/**
+	 * populates the session with the currently selected article
+	 * @param articleId
+	 * @return
+	 */
+	public void editArticle(Long articleId) {
 		
 		/* Setting The Particular Student Details In Session */
 		Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		//get the article if it existsL
 		Article article = getArticleById(articleId);
 		sessionMapObj.put("editArticleObject", article);
-	
-		return "/editArticle.xhtml?faces-redirect=true";
 	}
 	
+	/**
+	 * returns a list of all articles
+	 * @return
+	 */
 	public List<Article> getAll() {
-		CriteriaQuery<Article> criteria = this.entityManager.getCriteriaBuilder().createQuery(Article.class);
-		return this.entityManager.createQuery(criteria.select(criteria.from(Article.class))).getResultList();
+		return entityManager.createNamedQuery("allArticles", Article.class).getResultList();
 	}
 }
