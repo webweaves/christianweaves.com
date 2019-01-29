@@ -34,7 +34,7 @@
 	    			<p><h:outputText value="#{articleView.showArticle(param['article']).body}" escape="false"/></p>
 	    		</b:container>
 	    		<b:container>
-	    		<br/><h:commandButton action="#{articleBean.editArticle}" value="Edit Article »" class="btn btn-primary" >
+	    		<br/><h:commandButton action="#{articleView.editArticle}" value="Edit Article »" class="btn btn-primary" >
 	    			<f:param name="articleId" value="#{param['article']}" />
 	    		</h:commandButton>
 	    		<br/><br/>
