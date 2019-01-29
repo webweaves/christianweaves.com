@@ -1,8 +1,10 @@
 package com.christianweaves.view;
 
 import java.util.Collection;
+import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,8 +18,9 @@ public class ArticleView {
     @Inject
     private AppService service;
 
-	public void save() {
-		service.saveCurrentArticle();
+	public String save() {
+		Article article = service.saveCurrentArticle();
+		return "/showArticle.xhtml?article="+article.getId()+"&faces-redirect=true";
 	}
 	
 	/**
@@ -44,12 +47,11 @@ public class ArticleView {
 	public Article getFeaturedArticle() {
 		return service.getFeaturedArticle();
 	}
-
-	public String getCurrentArticleBody() {
-		return service.getCurrentArticle().getBody();
-	}
 	
-	public void setCurrentArticleBody(String data) {
-		service.getCurrentArticle().setBody(data);
+	public String editArticle() {
+		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String articleId = params.get("articleId");
+		service.editArticle(new Long(articleId));
+		return "/editArticle.xhtml?faces-redirect=true";
 	}
 }
