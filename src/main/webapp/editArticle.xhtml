@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets" 
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Title</title>
@@ -28,14 +29,15 @@
 				</b:jumbotron>
     	</ui:define>
 		<ui:define name="content">
-			
+						
 			<b:container>
 				<h:form>
-					<p:textEditor widgetVar="editor1" height="150" style="margin-bottom:10px"
-						value="#{editArticleObject.body}"/>
-							
-					<b:commandButton action="#{articleView.save}" value="Save"/>
-				</h:form>	
+			        
+			        <pe:ckEditor id="editor" value="#{editArticleObject.body}">  
+					    <p:ajax event="save" listener="#{articleView.save}"/>  
+					</pe:ckEditor>  
+                   
+                </h:form>	
     		</b:container>
     		
     	</ui:define>
