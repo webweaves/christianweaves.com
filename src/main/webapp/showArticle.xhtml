@@ -37,7 +37,13 @@
 	    		<br/><h:commandButton action="#{articleView.editArticle}" value="Edit Article »" class="btn btn-primary" >
 	    			<f:param name="articleId" value="#{param['article']}" />
 	    		</h:commandButton>
+	    		<h:commandButton action="#{articleView.deleteArticle}" value="Delete Article »" class="btn btn-primary" >
+	    			<f:param name="articleId" value="#{param['article']}" />
+	    		</h:commandButton>
 	    		<br/><br/>
+	    		
+
+	    		
     			</b:container>
     		</h:form>
     	</ui:define>
