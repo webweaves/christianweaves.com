@@ -9,7 +9,7 @@
     xmlns:pe="http://primefaces.org/ui/extensions">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Title</title>
+<title>Title</title> 	
 </head>
 <h:body>
 	<ui:composition template="templates/template.xhtml">
@@ -21,25 +21,25 @@
 			    margin-bottom: 15px;
 			}
 			</style>
-				<b:jumbotron>
-					<b:container>
-						<h1>#{editArticleObject.title}</h1>
-						<p>#{editArticleObject.subtitle}</p>
-					</b:container>
-				</b:jumbotron>
-    	</ui:define>
+			<b:jumbotron>
+				<b:container>
+					<h1>#{editArticleObject.title}</h1>
+					<p>#{editArticleObject.subtitle}</p>
+				</b:container>
+			</b:jumbotron>
+		</ui:define>
 		<ui:define name="content">
-						
 			<b:container>
-				<h:form>
-			        
-			        <pe:ckEditor id="editor" value="#{editArticleObject.body}">  
+				<h:form id="editform">
+			        <pe:ckEditor id="editor1" name="editform:editor1" value="#{editArticleObject.body}">  
 					    <p:ajax event="save" listener="#{articleView.save}"/>  
-					</pe:ckEditor>  
-                   
+					</pe:ckEditor>
+					<script>
+					CKEDITOR.config.filebrowserBrowseUrl = 'http://localhost:8080/ChristianWeaves.com/listFiles.xhtml';
+		    		CKEDITOR.config.filebrowserUploadUrl = 'http://localhost:8080/ChristianWeaves.com/fileUpload.xhtml';
+					</script>
                 </h:form>	
     		</b:container>
-    		
     	</ui:define>
 	</ui:composition>
 </h:body>

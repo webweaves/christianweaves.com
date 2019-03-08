@@ -100,6 +100,9 @@ public class AppService {
 		Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = (Article)sessionMapObj.get("editArticleObject");
 		
+		//do some formatting?
+		//article.getBody().replaceAll("\\r|\\n", ""); 
+		
 		Article dbArticle = getArticleById(article.getId());
 		dbArticle.setTitle(article.getTitle());
 		dbArticle.setBody(article.getBody());
