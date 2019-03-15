@@ -98,16 +98,6 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.primefaces.extensions</groupId>
-		    <artifactId>primefaces-extensions</artifactId>
-		    <version>6.1.1</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.primefaces.extensions</groupId>
-		    <artifactId>resources-ckeditor</artifactId>
-		    <version>6.2.10</version>
-		</dependency>
-		<dependency>
 			<groupId>net.bootsfaces</groupId>
 			<artifactId>bootsfaces</artifactId>
 			<version>1.4.1</version>
@@ -136,6 +126,7 @@
 		    <version>1.9.0</version>
 		    <scope>runtime</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/ckeditor -->
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

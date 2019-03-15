@@ -5,8 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets" 
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:pe="http://primefaces.org/ui/extensions">
+    xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Title</title> 	
@@ -31,13 +30,20 @@
 		<ui:define name="content">
 			<b:container>
 				<h:form id="editform">
-			        <pe:ckEditor id="editor1" name="editform:editor1" value="#{editArticleObject.body}">  
-					    <p:ajax event="save" listener="#{articleView.save}"/>  
-					</pe:ckEditor>
+			        
+			    	<textarea cols="80" id="editor1" name="editor1" rows="10">#{editArticleObject.body}</textarea>
 					<script>
-					CKEDITOR.config.filebrowserBrowseUrl = 'http://localhost:8080/ChristianWeaves.com/listFiles.xhtml';
-		    		CKEDITOR.config.filebrowserUploadUrl = 'http://localhost:8080/ChristianWeaves.com/fileUpload.xhtml';
+						CKEDITOR.replace('editor1', {
+						  extraPlugins: 'codesnippet',
+					      height: 260,
+					      width: 700,
+					    });
+					    
+						CKEDITOR.config.filebrowserBrowseUrl = 'http://localhost:8080/ChristianWeaves.com/listFiles.xhtml';
+		    			CKEDITOR.config.filebrowserUploadUrl = 'http://localhost:8080/ChristianWeaves.com/fileUpload.xhtml';
 					</script>
+					
+					<h:commandButton action="#{articleView.save}" value="Save it"/>
                 </h:form>	
     		</b:container>
     	</ui:define>
