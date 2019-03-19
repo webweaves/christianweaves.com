@@ -31,19 +31,21 @@
 			<b:container>
 				<h:form id="editform">
 			        
-			    	<textarea cols="80" id="editor1" name="editor1" rows="10">#{editArticleObject.body}</textarea>
+			    	<h:inputTextarea id="editor1" name="editor1" value="#{editArticleObject.body}">
+                    </h:inputTextarea>
+			    	
 					<script>
-						CKEDITOR.replace('editor1', {
+						CKEDITOR.replace('editform:editor1', {
 						  extraPlugins: 'codesnippet',
 					      height: 260,
 					      width: 700,
 					    });
-					    
+   
 						CKEDITOR.config.filebrowserBrowseUrl = 'http://localhost:8080/ChristianWeaves.com/listFiles.xhtml';
 		    			CKEDITOR.config.filebrowserUploadUrl = 'http://localhost:8080/ChristianWeaves.com/fileUpload.xhtml';
 					</script>
 					
-					<h:commandButton action="#{articleView.save}" value="Save it"/>
+					<h:commandButton type="submit" action="#{articleView.save}" value="Save it"/>
                 </h:form>	
     		</b:container>
     	</ui:define>
