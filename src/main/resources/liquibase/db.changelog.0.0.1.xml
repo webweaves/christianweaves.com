@@ -22,7 +22,6 @@
             <column name="archived" type="TINYINT"/> 
             
         </createTable>
-        <!--  <addUniqueConstraint tableName="tb_map" columnNames="basemap"/> -->
     </changeSet>
     <changeSet author="csw" id="sample content">
     	<sql endDelimiter=";">
@@ -31,6 +30,27 @@
 		 	]]>
 		 </sql>
 	</changeSet>
-    
+    <changeSet author="csw" id="create article archive table">
+        <createTable tableName="tb_articles_archive">
+            <column autoIncrement="true" name="id" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+            	<constraints nullable="true"/>
+            </column>
+            <column name="subtitle" type="VARCHAR(255)">
+            	<constraints nullable="true"/>
+            </column>
+            <column name="body" type="TEXT">
+            	<constraints nullable="true"/>
+            </column>
+            <column name="date_added" type="timestamp">
+            	<constraints nullable="true"/>
+            </column>
+            <column name="featured" type="TINYINT"/> 
+            <column name="archived" type="TINYINT"/> 
+            
+        </createTable>
+    </changeSet>    
 
 </databaseChangeLog>

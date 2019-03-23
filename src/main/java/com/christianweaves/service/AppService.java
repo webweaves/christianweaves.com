@@ -22,6 +22,7 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import com.christianweaves.entities.Article;
+import com.christianweaves.entities.ArticleArchive;
 
 @Singleton
 public class AppService {
@@ -100,6 +101,8 @@ public class AppService {
 		Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = (Article)sessionMapObj.get("editArticleObject");
 		
+		archiveExistingArticle(article);
+		
 		//do some formatting?
 		//article.getBody().replaceAll("\\r|\\n", ""); 
 		
@@ -123,6 +126,25 @@ public class AppService {
 		return dbArticle;
 	}
 	
+	private void archiveExistingArticle(Article article) {
+		try {
+			ArticleArchive dbArticleArchive = new ArticleArchive();
+			dbArticleArchive.setTitle(article.getTitle());
+			dbArticleArchive.setBody(article.getBody());
+			dbArticleArchive.setFeatured(article.getFeatured());
+			dbArticleArchive.setArchived(article.getArchived());
+			dbArticleArchive.setSubtitle(article.getSubtitle());
+			dbArticleArchive.setDateAdded(article.getDateAdded());
+			userTransaction.begin();
+			entityManager.persist(dbArticleArchive);
+			userTransaction.commit();
+		} catch (SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException
+				| HeuristicMixedException | HeuristicRollbackException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	/**
 	 * populates the session with the currently selected article
 	 * @param articleId
