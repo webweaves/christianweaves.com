@@ -158,6 +158,15 @@ public class AppService {
 		Article article = getArticleById(articleId);
 		sessionMapObj.put("editArticleObject", article);
 	}
+
+	/**
+	 * deletes the article based on articleId
+	 * @param articleId
+	 * @return
+	 */
+	public void deleteArticle(Long articleId) {
+		entityManager.remove(getArticleById(articleId));
+	}
 	
 	/**
 	 * returns a list of all articles

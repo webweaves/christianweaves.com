@@ -5,7 +5,8 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
@@ -34,18 +35,30 @@
 	    			<p><h:outputText value="#{articleView.showArticle(param['article']).body}" escape="false"/></p>
 	    		</b:container>
 	    		<b:container>
-	    		<br/><h:commandButton action="#{articleView.editArticle}" value="Edit Article »" class="btn btn-primary" >
+	    		<br/>
+	    		<p:commandButton action="#{articleView.editArticle}" value="Edit Article »" class="btn btn-primary" >
 	    			<f:param name="articleId" value="#{param['article']}" />
-	    		</h:commandButton>
-	    		<h:commandButton action="#{articleView.deleteArticle}" value="Delete Article »" class="btn btn-primary" >
-	    			<f:param name="articleId" value="#{param['article']}" />
-	    		</h:commandButton>
+	    		</p:commandButton>
+	    		<p:commandButton 
+	    			oncomplete="PF('dlg').show();"
+	    			value="Delete Article »" class="btn btn-primary" >
+	    		</p:commandButton>
 	    		<br/><br/>
-	    		
-
 	    		
     			</b:container>
     		</h:form>
+    		
+    		<p:dialog id="dlg" widgetVar="dlg" header="Delete the article" modal="true" resizable="false" minWidth="160">
+                <h:form id="formDelteteArticle">
+                    <h:outputText value="Sure? "/>
+                    <p:commandButton value="Yes" 
+                    	actionListener="#{articleView.deleteArticle}"
+                        oncomplete="dlg.hide()">
+                        <f:param name="articleId" value="#{param['article']}" />
+                    </p:commandButton>
+                    <p:commandButton value="No" onclick="dlg.hide();"/>
+                </h:form>
+            </p:dialog>
     	</ui:define>
 	</ui:composition>
 </h:body>
