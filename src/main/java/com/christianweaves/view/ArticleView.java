@@ -55,10 +55,10 @@ public class ArticleView {
 		return "/editArticle.xhtml?faces-redirect=true";
 	}
 	
-	public void deleteArticle() {
+	public void archiveArticle() {
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String articleId = params.get("articleId");
-		service.deleteArticle(new Long(articleId));
+		service.archiveArticle(new Long(articleId));
 		//return "/editArticle.xhtml?faces-redirect=true";
 	}
 }

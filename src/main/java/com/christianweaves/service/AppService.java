@@ -49,7 +49,7 @@ public class AppService {
 	 * @return
 	 */
 	public List<Article> getArticles(int count) {
-		Query query = entityManager.createQuery("from Article article");
+		Query query = entityManager.createQuery("from Article article where article.archive is not null");
 		query.setFirstResult(0);
 		query.setMaxResults(count);
 		return query.getResultList();
@@ -142,7 +142,6 @@ public class AppService {
 				| HeuristicMixedException | HeuristicRollbackException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -166,6 +165,23 @@ public class AppService {
 	 */
 	public void deleteArticle(Long articleId) {
 		entityManager.remove(getArticleById(articleId));
+	}
+
+	/**
+	 * deletes the article based on articleId
+	 * @param articleId
+	 * @return
+	 */
+	public void archiveArticle(Long articleId) {
+		Article article = entityManager.find(Article.class, articleId);
+		try {
+			userTransaction.begin();
+			article.setArchived(true);
+			userTransaction.commit();
+		} catch (SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException
+				| HeuristicMixedException | HeuristicRollbackException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

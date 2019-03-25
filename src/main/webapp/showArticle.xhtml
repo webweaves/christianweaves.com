@@ -41,7 +41,7 @@
 	    		</p:commandButton>
 	    		<p:commandButton 
 	    			oncomplete="PF('dlg').show();"
-	    			value="Delete Article »" class="btn btn-primary" >
+	    			value="Archive Article »" class="btn btn-primary" >
 	    		</p:commandButton>
 	    		<br/><br/>
 	    		
@@ -52,7 +52,7 @@
                 <h:form id="formDelteteArticle">
                     <h:outputText value="Sure? "/>
                     <p:commandButton value="Yes" 
-                    	actionListener="#{articleView.deleteArticle}"
+                    	actionListener="#{articleView.archiveArticle}"
                         oncomplete="dlg.hide()">
                         <f:param name="articleId" value="#{param['article']}" />
                     </p:commandButton>
