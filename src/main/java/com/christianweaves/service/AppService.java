@@ -24,7 +24,7 @@ import javax.transaction.UserTransaction;
 import com.christianweaves.entities.Article;
 import com.christianweaves.entities.ArticleArchive;
 
-@Singleton
+
 public class AppService {
 	
     // Injected database connection:
@@ -49,7 +49,8 @@ public class AppService {
 	 * @return
 	 */
 	public List<Article> getArticles(int count) {
-		Query query = entityManager.createQuery("from Article article where article.archive is not null");
+		Query query = entityManager.createQuery("from Article article where article.archived = :boolType");
+		query.setParameter("boolType", Boolean.FALSE);
 		query.setFirstResult(0);
 		query.setMaxResults(count);
 		return query.getResultList();
@@ -149,8 +150,7 @@ public class AppService {
 	 * @param articleId
 	 * @return
 	 */
-	public void editArticle(Long articleId) {
-		
+	public void editArticle(Long articleId) {		
 		/* Setting The Particular Student Details In Session */
 		Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		//get the article if it existsL
@@ -177,6 +177,7 @@ public class AppService {
 		try {
 			userTransaction.begin();
 			article.setArchived(true);
+			
 			userTransaction.commit();
 		} catch (SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException
 				| HeuristicMixedException | HeuristicRollbackException e) {

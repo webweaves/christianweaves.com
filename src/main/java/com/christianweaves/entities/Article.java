@@ -2,18 +2,33 @@ package com.christianweaves.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import org.hibernate.annotations.NamedQuery;
+import javax.persistence.NamedQuery;
 
 @Entity
 @Table(name = "tb_articles")
-@NamedQuery(name = "allArticles", query = "SELECT a FROM Article a")
-public class Article {
+@NamedQueries({
+	@NamedQuery(name = "allArticles", query = "SELECT a FROM Article a"),
+	@NamedQuery(name = "findById", query = "SELECT a FROM Article a where a.id = :id")
+})
+
+public class Article implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3352009585501912050L;
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -35,6 +50,7 @@ public class Article {
 	private Boolean featured;
 
 	@Column
+	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean archived;
 	
 	public Boolean getArchived() {

@@ -15,7 +15,7 @@ import com.christianweaves.service.AppService;
 @RequestScoped
 public class ArticleView {
 
-    @Inject
+ 
     private AppService service;
 
 	public String save() {
