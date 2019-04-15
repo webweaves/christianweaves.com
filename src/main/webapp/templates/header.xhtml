@@ -9,8 +9,8 @@
 	<ui:composition>
 		<b:jumbotron>
 			<b:container>
-				<h1>#{articleView.featuredArticle.title}</h1>
-				<p>#{articleView.featuredArticle.subtitle}</p>
+				<h1>#{articleController.featuredArticle.title}</h1>
+				<p>#{articleController.featuredArticle.subtitle}</p>
 				<p>
 					<a href="showArticle.faces?article=#{articleView.featuredArticle.id}" class="btn btn-lg btn-info">Read more »</a>
 				</p>
