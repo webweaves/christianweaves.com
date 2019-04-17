@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
-@Default
 public interface GenericDao extends Serializable {
     <T> T find(Object id, Class<T> clazz);
     <T> T merge(T entity);
