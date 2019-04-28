@@ -8,7 +8,6 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import java.util.List;
 
-
 @Stateless
 public class GenericDaoImpl implements GenericDao{
     private static final long serialVersionUID = -1519856312403016459L;

@@ -1,6 +1,5 @@
 package com.christianweaves.entities;
 
-import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 
 import java.io.Serializable;
