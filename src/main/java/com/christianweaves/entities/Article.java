@@ -20,7 +20,7 @@ import javax.persistence.NamedQuery;
 @Table(name = "tb_articles")
 @NamedQueries({
 	@NamedQuery(name = "allArticles", query = "SELECT a FROM Article a"),
-	@NamedQuery(name = "findById", query = "SELECT a FROM Article a where a.id = :id")
+	@NamedQuery(name = "Article.findById", query = "SELECT a FROM Article a where a.id = :id")
 })
 
 public class Article implements Serializable {
