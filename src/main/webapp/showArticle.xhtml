@@ -24,19 +24,19 @@
 			
 			<b:jumbotron>
 				<b:container>
-					<h1>#{articleView.showArticle(param['article']).title}</h1>
-					<p>#{articleView.showArticle(param['article']).subtitle}</p>
+					<h1>#{articleController.showArticle(param['article']).title}</h1>
+					<p>#{articleController.showArticle(param['article']).subtitle}</p>
 				</b:container>
 			</b:jumbotron>
     	</ui:define>
 		<ui:define name="content">
 			<h:form>
 				<b:container>
-	    			<p><h:outputText value="#{articleView.showArticle(param['article']).body}" escape="false"/></p>
+	    			<p><h:outputText value="#{articleController.showArticle(param['article']).body}" escape="false"/></p>
 	    		</b:container>
 	    		<b:container>
 	    		<br/>
-	    		<p:commandButton action="#{articleView.editArticle}" value="Edit Article »" class="btn btn-primary" >
+	    		<p:commandButton action="#{articleController.editArticle}" value="Edit Article »" class="btn btn-primary" >
 	    			<f:param name="articleId" value="#{param['article']}" />
 	    		</p:commandButton>
 	    		<p:commandButton 

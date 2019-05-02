@@ -31,7 +31,7 @@ public class ArticleDao extends AbstractDao<Article> {
 
 	public Article getArticleById(Long id) {
 		TypedQuery<Article> query = getEm().createNamedQuery("Article.findById", Article.class);
-		query.setParameter("Id", id);	
+		query.setParameter("id", id);	
 		try {
 			return query.getSingleResult();
 		} catch (NoResultException e) {
