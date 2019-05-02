@@ -1,58 +1,106 @@
 package com.christianweaves.controllers;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;                           
+import javax.inject.Named;
+import javax.transaction.UserTransaction;
 
 import com.christianweaves.entities.Article;
+import com.christianweaves.entities.ArticleArchive;
 import com.christianweaves.entities.ArticleDao;
+import com.christianweaves.entities.GenericDao;
+import com.christianweaves.entities.GenericDaoImpl;
 import com.christianweaves.service.ApplicationState;
 
 @Named
 @RequestScoped
 public class ArticleController {
 
-	@Inject ApplicationState appState;
+	@Inject
+	ApplicationState appState;
+
+	@Inject
+	ArticleDao articleDao;
 	
-	@Inject ArticleDao articleDao;
-		
+	@Inject
+	GenericDao genericDao;
+	
+	@Resource 
+	private UserTransaction userTransaction; 
+
 	/**
 	 * return the article based on id
+	 * 
 	 * @return
 	 */
 	public Article getArticleById(Long id) {
 		return articleDao.getArticleById(id);
 	}
-	
+
 	public Article showArticle(Long id) {
 		return getArticleById(id);
 	}
-	
+
 	public List<Article> getLatestArticles() {
 		return articleDao.getLatestArticles();
 	}
-	
 
 	public Article getFeaturedArticle() {
 		return appState.getFeaturedArticle();
 	}
 
-	public String editArticle() { 
-		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap(); 
-		String articleId = params.get("articleId"); 
-		editArticle(new Long(articleId)); 
-		return "/editArticle.xhtml?faces-redirect=true"; 
+	public String editArticle() {
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String articleId = params.get("articleId");
+		editArticle(new Long(articleId));
+		return "/editArticle.xhtml?faces-redirect=true";
 	}
-	
-	public void editArticle(Long articleId) { 
-		Map<String,Object> sessionMapObj =
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+
+	public void editArticle(Long articleId) {
+		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = getArticleById(articleId);
-		sessionMapObj.put("editArticleObject", article); 
-	 }
+		sessionMapObj.put("editArticleObject", article);
+	}
+
+	public String save() {
+		Article article = saveCurrentArticle();
+		return "/showArticle.xhtml?article=" + article.getId() + "&faces-redirect=true";
+	}
+
+	public Article saveCurrentArticle() {
+		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		Article article = (Article) sessionMapObj.get("editArticleObject");
+
+		archiveExistingArticle(article);
+
+		// do some formatting? //article.getBody().replaceAll("\\r|\\n", "");
+
+		Article dbArticle = getArticleById(article.getId());
+		dbArticle.setTitle(article.getTitle());
+		dbArticle.setBody(article.getBody());
+		dbArticle.setFeatured(article.getFeatured());
+		dbArticle.setArchived(article.getArchived());
+		dbArticle.setSubtitle(article.getSubtitle());
+		dbArticle.setDateAdded(article.getDateAdded());
+
+		dbArticle = articleDao.merge(dbArticle);
+		
+		return dbArticle;
+	}
+
+	private void archiveExistingArticle(Article article) {
+		ArticleArchive dbArticleArchive = new ArticleArchive();
+		dbArticleArchive.setTitle(article.getTitle());
+		dbArticleArchive.setBody(article.getBody());
+		dbArticleArchive.setFeatured(article.getFeatured());
+		dbArticleArchive.setArchived(article.getArchived());
+		dbArticleArchive.setSubtitle(article.getSubtitle());
+		dbArticleArchive.setDateAdded(article.getDateAdded());
+		genericDao.persist(dbArticleArchive);
+	}
 }

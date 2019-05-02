@@ -23,10 +23,6 @@ public class ArticleDao extends AbstractDao<Article> {
 	public ArticleDao() {
 		super(Article.class);
 	}
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7542128296933934495L;
 
 	public Article getArticleById(Long id) {
