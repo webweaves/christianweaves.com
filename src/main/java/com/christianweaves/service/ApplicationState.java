@@ -26,9 +26,7 @@ public class ApplicationState implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		System.out.println("Im alive");
 		latestArticles = articleDao.getLatestArticles();
-		
 		featuredArticle = articleDao.getFeaturedArticle();
 	}
 

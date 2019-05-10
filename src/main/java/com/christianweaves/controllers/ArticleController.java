@@ -14,7 +14,6 @@ import com.christianweaves.entities.Article;
 import com.christianweaves.entities.ArticleArchive;
 import com.christianweaves.entities.ArticleDao;
 import com.christianweaves.entities.GenericDao;
-import com.christianweaves.entities.GenericDaoImpl;
 import com.christianweaves.service.ApplicationState;
 
 @Named
@@ -68,11 +67,6 @@ public class ArticleController {
 	}
 
 	public String save() {
-		Article article = saveCurrentArticle();
-		return "/showArticle.xhtml?article=" + article.getId() + "&faces-redirect=true";
-	}
-
-	public Article saveCurrentArticle() {
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = (Article) sessionMapObj.get("editArticleObject");
 
@@ -87,12 +81,11 @@ public class ArticleController {
 		dbArticle.setArchived(article.getArchived());
 		dbArticle.setSubtitle(article.getSubtitle());
 		dbArticle.setDateAdded(article.getDateAdded());
-
 		dbArticle = articleDao.merge(dbArticle);
 		
-		return dbArticle;
+		return "/showArticle.xhtml?article=" + dbArticle.getId() + "&faces-redirect=true";
 	}
-
+	
 	private void archiveExistingArticle(Article article) {
 		ArticleArchive dbArticleArchive = new ArticleArchive();
 		dbArticleArchive.setTitle(article.getTitle());
@@ -103,4 +96,11 @@ public class ArticleController {
 		dbArticleArchive.setDateAdded(article.getDateAdded());
 		genericDao.persist(dbArticleArchive);
 	}
+	
+	public void archiveArticle() { 
+		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap(); 
+		String articleId = params.get("articleId"); 
+		archiveExistingArticle(getArticleById(new Long(articleId))); 
+		//return "/editArticle.xhtml?faces-redirect=true"; 
+	}			 
 }
