@@ -19,6 +19,11 @@
 			    padding-bottom: 0px;
 			    margin-bottom: 15px;
 			}
+			
+			.articleContent.ui-panelgrid>*>tr,
+			.articleContent.ui-panelgrid .ui-panelgrid-cell {
+			    border: none;
+			}
 			</style>
 			<b:jumbotron>
 				<b:container>
@@ -30,16 +35,18 @@
 		<ui:define name="content">
 			<b:container>
 				<h:form id="editform">
-			        
-			        Title: <h:inputText id="title" value="#{editArticleObject.title}"/>
-			        
-			        <br/>
-			        
-			        Subtitle: <h:inputText id="subTitle" value="#{editArticleObject.subtitle}"/>
-			        
-			        
-			    	<h:inputTextarea id="editor1" name="editor1" value="#{editArticleObject.body}">
-                    </h:inputTextarea>
+			        <p:panelGrid columns="2" styleClass="articleContent">
+				        <h:outputText value="Title"/>
+				        <h:inputText id="title" value="#{editArticleObject.title}"/>
+
+				        <h:outputText value="Subtitle"/>
+				        <h:inputText id="subTitle" value="#{editArticleObject.subtitle}"/>
+
+				        <h:outputText value="Body"/>
+				    	<h:inputTextarea id="editor1" name="editor1" value="#{editArticleObject.body}">
+	                    </h:inputTextarea>
+				    	
+			    	</p:panelGrid>
 			    	
 					<script>
 						CKEDITOR.replace('editform:editor1', {
@@ -52,7 +59,7 @@
 		    			CKEDITOR.config.filebrowserUploadUrl = 'http://localhost:8080/ChristianWeaves.com/fileUpload.xhtml';
 					</script>
 					
-					<p:commandButton type="submit" action="#{articleController.save}" value="Save it"/>
+					<h:commandButton type="submit" action="#{articleController.save}" value="Save it"/>
                 </h:form>	
                 
                 <br/>
