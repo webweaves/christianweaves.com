@@ -1,5 +1,6 @@
 package com.christianweaves.controllers;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ public class ArticleController {
 	@Resource 
 	private UserTransaction userTransaction; 
 
+	private Article newArticle = new Article();
 	/**
 	 * return the article based on id
 	 * 
@@ -50,14 +52,14 @@ public class ArticleController {
 	}
 
 	public Article getFeaturedArticle() {
-		return appState.getFeaturedArticle();
+		return articleDao.getFeaturedArticle();
 	}
 
 	public String editArticle() {
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String articleId = params.get("articleId");
 		editArticle(new Long(articleId));
-		return "/editArticle.xhtml?faces-redirect=true";
+		return "admin/editArticle.xhtml?faces-redirect=true";
 	}
 
 	public void editArticle(Long articleId) {
@@ -102,5 +104,20 @@ public class ArticleController {
 		String articleId = params.get("articleId"); 
 		archiveExistingArticle(getArticleById(new Long(articleId))); 
 		//return "/editArticle.xhtml?faces-redirect=true"; 
+	}
+
+	public void addNewArticle() {
+		newArticle.setArchived(false);
+		newArticle.setDateAdded(new Date());
+		articleDao.persist(newArticle);
+		newArticle = new Article();
+	}
+	
+	public Article getNewArticle() {
+		return newArticle;
+	}
+
+	public void setNewArticle(Article newArticle) {
+		this.newArticle = newArticle;
 	}			 
 }

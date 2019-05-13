@@ -11,7 +11,7 @@
 <title>Title</title> 	
 </head>
 <h:body>
-	<ui:composition template="templates/template.xhtml">
+	<ui:composition template="/templates/template.xhtml">
 		<ui:define name="header">
 			<style>
 			.jumbotron {
@@ -25,12 +25,6 @@
 			    border: none;
 			}
 			</style>
-			<b:jumbotron>
-				<b:container>
-					<h1>#{editArticleObject.title}</h1>
-					<p>#{editArticleObject.subtitle}</p>
-				</b:container>
-			</b:jumbotron>
 		</ui:define>
 		<ui:define name="content">
 			<b:container>
