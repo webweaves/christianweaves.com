@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1
+/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Title</title> 	
+</head>
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="header">
+			<style>
+			.jumbotron {
+			    padding-top: 0px;
+			    padding-bottom: 0px;
+			    margin-bottom: 15px;
+			}
+			
+			.articleContent.ui-panelgrid>*>tr,
+			.articleContent.ui-panelgrid .ui-panelgrid-cell {
+			    border: none;
+			}
+			</style>
+		</ui:define>
+		<ui:define name="content">
+			<b:container>
+	            <h:form enctype="multipart/form-data">
+					<p:growl id="messages" showDetail="true" />
+					
+					<p:panelGrid columns="3" styleClass="articleContent">
+				        <h:outputText value="File upload"/>
+				    	<p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" />
+						<p:commandButton value="Submit" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
+					</p:panelGrid>
+				</h:form>
+			
+				<h:form id="addform">
+			        <p:panelGrid columns="2" styleClass="articleContent">
+				        <h:outputText value="Title"/>
+				        <h:inputText id="title" value="#{articleController.newArticle.title}"/>
+
+				        <h:outputText value="Subtitle"/>
+				        <h:inputText id="subTitle" value="#{articleController.newArticle.subtitle}"/>
+
+				        <h:outputText value="Body"/>
+				    	<h:inputTextarea id="editor1" name="editor1" value="#{articleController.newArticle.body}">
+	                    </h:inputTextarea>
+				    	
+			    	</p:panelGrid>
+			    	
+					<script>
+						CKEDITOR.replace('addform:editor1', {
+						  extraPlugins: 'codesnippet',
+					      height: 260,
+					      width: 700,
+					    });
+   
+						CKEDITOR.config.filebrowserBrowseUrl = 'http://localhost:8080/ChristianWeaves.com/listFiles.xhtml';
+		    			CKEDITOR.config.filebrowserUploadUrl = 'http://localhost:8080/ChristianWeaves.com/fileUpload.xhtml';
+					</script>
+					
+					<h:commandButton type="submit" action="#{articleController.addNewArticle}" value="Add it"/>
+                </h:form>	                
+    		</b:container>
+    	</ui:define>
+	</ui:composition>
+</h:body>
+</html>

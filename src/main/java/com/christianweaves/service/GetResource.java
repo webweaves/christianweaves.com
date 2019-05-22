@@ -30,7 +30,7 @@ public class GetResource extends HttpServlet {
 			return;
 		}
 		
-		File file = new File(fileLocation + File.pathSeparator + filename);
+		File file = new File(fileLocation + File.separator + filename);
 		if (!file.exists()) {
 			return;
 		}

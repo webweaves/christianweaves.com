@@ -35,16 +35,15 @@
 	    			<p><h:outputText value="#{articleController.showArticle(param['article']).body}" escape="false"/></p>
 	    		</b:container>
 	    		<b:container>
-	    		<br/>
-	    		<p:commandButton action="#{articleController.editArticle}" value="Edit Article »" class="btn btn-primary" >
-	    			<f:param name="articleId" value="#{param['article']}" />
-	    		</p:commandButton>
-	    		<p:commandButton 
-	    			oncomplete="PF('dlg').show();"
-	    			value="Archive Article »" class="btn btn-primary" >
-	    		</p:commandButton>
-	    		<br/><br/>
-	    		
+		    		<br/>
+		    		<p:commandButton action="#{articleController.editArticle}" value="Edit Article »" class="btn btn-primary" >
+		    			<f:param name="articleId" value="#{param['article']}" />
+		    		</p:commandButton>
+		    		<p:commandButton 
+		    			oncomplete="PF('dlg').show();"
+		    			value="Archive Article »" class="btn btn-primary" >
+		    		</p:commandButton>
+		    		<br/><br/>	    		
     			</b:container>
     		</h:form>
     		
@@ -52,7 +51,7 @@
                 <h:form id="formDelteteArticle">
                     <h:outputText value="Sure? "/>
                     <p:commandButton value="Yes" 
-                    	actionListener="#{articleView.archiveArticle}"
+                    	actionListener="#{articleController.archiveArticle}"
                         oncomplete="dlg.hide()">
                         <f:param name="articleId" value="#{param['article']}" />
                     </p:commandButton>
