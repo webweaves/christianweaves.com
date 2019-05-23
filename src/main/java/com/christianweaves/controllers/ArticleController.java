@@ -59,7 +59,7 @@ public class ArticleController {
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String articleId = params.get("articleId");
 		editArticle(new Long(articleId));
-		return "admin/editArticle.xhtml?faces-redirect=true";
+		return "editArticle.xhtml?faces-redirect=true";
 	}
 
 	public void editArticle(Long articleId) {
