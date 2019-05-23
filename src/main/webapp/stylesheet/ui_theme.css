@@ -25,7 +25,7 @@
     transition: 0.4s;
 }
 .card.active .blob {
-    fill: rgb(19, 89, 79);
+    fill: rgb(192, 192, 192, 111);
     transform: translate(23%,3%) scale(3.75);
 }
 .card.active .bg-overlay {
@@ -51,7 +51,7 @@ a {
     color: inherit;
     text-decoration: none;
 }
-p {
+.card > p {
     opacity: 0;
     transition: 0.4s;
 }
