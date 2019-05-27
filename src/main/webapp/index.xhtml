@@ -13,64 +13,35 @@
 <h:body>
 	<ui:composition template="templates/template.xhtml">
 		<ui:define name="content">
-			<b:container>
-				<b:row>
+			<div class="container" style="text-align: center">
+				<div
+					style="width: 1170px; vertical-align: top; display: inline-block;">
 					<ui:repeat id="showArticles" var="article"
 						value="#{articleController.latestArticles}">
-						<b:column col-md="4">
+						<div class="card" style="vertical-align: top;">
+							<div class="top-section">
+								<div class="circular-border">
+									<img src="images/java.png"
+										style="margin-left: 20px; margin-: 20px; width: 50px; height: 50px;" />
+								</div>
+							</div>
+							<svg class="svg-background" viewBox="0 0 600 600"> 
+								<path class="blob" d="M192.1,-148.2C230,-105.8,228.6,-27,204.4,33.7C180.2,94.3,133.3,136.8,77.7,165C22.1,193.1,-42.1,206.9,-94.5,185.7C-146.9,164.5,-187.5,108.3,-201.7,46C-215.9,-16.2,-203.7,-84.5,-165.7,-127C-127.7,-169.5,-63.8,-186.3,6.6,-191.6C77.1,-196.9,154.3,-190.7,192.1,-148.2Z"/>
+							</svg>
 							<h2>#{article.title}</h2>
 							<p>#{article.subtitle}</p>
 							<p>
 								<b:button outcome="showArticle.faces?article=#{article.id}"
 									value="View details &gt;" />
 							</p>
-						</b:column>
+						</div>
 					</ui:repeat>
-				</b:row>
-				<hr />
-
-				<br />
-
-<div style="display:flex">
+				</div>
+			</div>
+				
 				<div class="card active" style="valign:top">
-					<svg class="svg-background" viewBox="0 0 600 600"> <path
-						class="blob"
-						d="M192.1,-148.2C230,-105.8,228.6,-27,204.4,33.7C180.2,94.3,133.3,136.8,77.7,165C22.1,193.1,-42.1,206.9,-94.5,185.7C-146.9,164.5,-187.5,108.3,-201.7,46C-215.9,-16.2,-203.7,-84.5,-165.7,-127C-127.7,-169.5,-63.8,-186.3,6.6,-191.6C77.1,-196.9,154.3,-190.7,192.1,-148.2Z"></path>
-					</svg>
-
-					<h2>Energy destabilization</h2>
-					<p>An innovative approach to energy production, storage, and
-						distribution adapted for each community An innovative approach to energy production, storage, and
-						distribution adapted for each community An innovative approach to energy production, storage, and
-						distribution adapted for each community needs.</p>
-					<p><a href="#learn-more">Learn more</a></p>
 				</div>
 
-				<div class="card">
-					<svg class="svg-background" viewBox="0 0 600 600"> <path
-						class="blob"
-						d="M194.1,-154.4C241.7,-95.1,263.7,-14.9,242.8,47C222,108.9,158.3,152.7,93.7,177.1C29.1,201.5,-36.4,206.6,-87.6,182C-138.8,157.3,-175.7,102.9,-189.7,42.9C-203.7,-17.1,-194.9,-82.8,-159.5,-139.3C-124.1,-195.9,-62,-243.5,5.6,-247.9C73.2,-252.4,146.5,-213.8,194.1,-154.4Z" />
-					</svg>
-
-					<h2>Eco-Friendly Sustainablility</h2>
-					<p>Maximized efficiency of fossil fuels and renewable energy
-						sources for the minimal impact on the environment.</p>
-					<p><a href="#learn-more">Learn more</a></p>
-				</div>
-
-				<div class="card">
-					<svg class="svg-background" viewBox="0 0 600 600"> <path
-						class="blob"
-						d="M186.5,-139.7C230.7,-93.3,247.9,-16.4,233.4,55.7C218.9,127.7,172.6,195,112.8,217.3C52.9,239.7,-20.4,217.1,-84.7,183.3C-148.9,149.5,-204.1,104.3,-219.6,47.1C-235.2,-10.2,-211,-79.6,-167.8,-125.8C-124.6,-172,-62.3,-195,4.4,-198.5C71.1,-202.1,142.3,-186.1,186.5,-139.7Z"
-						fill="#FE840E" /> </svg>
-
-					
-					<h2>Power Exchange</h2>
-					<p>Balanced schemes connecting energy producers and consumers
-						to reach effective power exchange and make smart contracts.</p>
-					<p><a href="#learn-more">Learn more</a></p>
-				</div>
-</div>
 				<script>
 				function handleMouseover(e) {
 				    document.querySelector(".active").classList.remove("active");
@@ -79,7 +50,6 @@
 
 				document.querySelectorAll(".card").forEach(card => card.addEventListener("mouseover", handleMouseover) );
 				</script>
-			</b:container>
 		</ui:define>
 	</ui:composition>
 </h:body>
