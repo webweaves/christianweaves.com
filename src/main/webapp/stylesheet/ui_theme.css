@@ -28,6 +28,17 @@ a.navbarText:hover {
 	text-decoration: none;	
 }
 
+.navbarText {
+	color:#fff;
+	padding:20px;
+	padding-top:20px;
+}
+
+a.navbarText:hover {
+	color:yellow;
+	text-decoration: none;	
+}
+
 .customNavbar {
 	#background-image: radial-gradient(ellipse at bottom, #73aad6, #003962, #000);
 	background-color:#20507E;	
@@ -35,8 +46,12 @@ a.navbarText:hover {
 	height:50px;
 	width:100%;
 	border:0px;
+<<<<<<< HEAD
 	position:fixed;
 	z-index:1000;
+=======
+	position:fixed;		
+>>>>>>> branch 'master' of https://github.com/webweaves/ChristianWeaves.com.git
 }
 
 .footerBg {
