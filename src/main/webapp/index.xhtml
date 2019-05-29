@@ -14,15 +14,17 @@
 	<ui:composition template="templates/template.xhtml">
 		<ui:define name="content">
 			<div class="container" style="text-align: center">
-				<div
-					style="width: 1170px; vertical-align: top; display: inline-block;">
+				<div style="width: 1170px; vertical-align: top; display: inline-block;">
 					<ui:repeat id="showArticles" var="article"
 						value="#{articleController.latestArticles}">
+
+						<a href="showArticle.faces?article=#{article.id}">
 						<div class="card" style="vertical-align: top;">
 							<div class="top-section">
 								<div class="circular-border">
-									<img src="images/java.png"
-										style="margin-left: 20px; margin-: 20px; width: 50px; height: 50px;" />
+									<h:graphicImage value="/images/java.png"
+										width="75"
+										style="margin-left: 10px; margin-top: 10px;" />
 								</div>
 							</div>
 							<svg class="svg-background" viewBox="0 0 600 600"> 
@@ -30,11 +32,8 @@
 							</svg>
 							<h2>#{article.title}</h2>
 							<p>#{article.subtitle}</p>
-							<p>
-								<b:button outcome="showArticle.faces?article=#{article.id}"
-									value="View details &gt;" />
-							</p>
 						</div>
+						</a>
 					</ui:repeat>
 				</div>
 			</div>

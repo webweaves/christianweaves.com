@@ -2,12 +2,46 @@ body {
 	margin: 0;
 	#background-image: radial-gradient(circle, #73aad6, #003962, #000);
 	font-size: 14pt;
+	font-family: 'Roboto', sans-serif;
+}
+
+@media (min-width: 768px)
+.container {
+    width: 750px;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbarText {
+	color:#fff;
+	padding:20px;
+	padding-top:20px;
+}
+
+a.navbarText:hover {
+	color:yellow;
+	text-decoration: none;	
 }
 
 .customNavbar {
-	background-color:#3b7fc4;
+	#background-image: radial-gradient(ellipse at bottom, #73aad6, #003962, #000);
+	background-color:#20507E;	
+	box-shadow: 0 10px 10px -5px;
+	height:50px;
+	width:100%;
 	border:0px;
-	box-shadow: 0 10px 10px -5px;	
+	position:fixed;
+	z-index:1000;
+}
+
+.footerBg {
+	background-color:#20507E;
+	#background-image: radial-gradient(ellipse at bottom, #73aad6, #003962, #000);	
 }
 
 * { box-sizing: border-box;}
@@ -37,7 +71,7 @@ body {
 }
 .card.active .blob {
     fill: rgb(70,150,230);
-    transform: translate(23%,3%) scale(3.75);
+    transform: translate(23%,3%) scale(10);
 }
 .card.active .bg-overlay {
     opacity: 0;
@@ -50,6 +84,7 @@ body {
     background-color: rgb(255, 255, 255);
     position: relative;
 }
+
 i {
     font-style: normal;
     font-size: 35px;
@@ -58,14 +93,17 @@ i {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 a {
-    color: inherit;
+    color: #20507E;
     text-decoration: none;
 }
+
 .card > p {
     opacity: 0.5;
     transition: 0.4s;
 }
+
 .card.active p {
     opacity: 1;
 }
