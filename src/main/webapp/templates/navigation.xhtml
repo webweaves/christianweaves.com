@@ -7,13 +7,13 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<body>
 		<ui:composition>
-			<b:navBar brand="Home" brandHref="/" class="customNavbar" static="true" fixed="top">
-	            <b:navbarLinks>
-	                <b:navLink value="Link" href="#"></b:navLink>
-					<b:navLink value="Link" href="#"></b:navLink>
-					<b:navLink value="New Article" href="admin/newArticle.xhtml"></b:navLink>
-				</b:navbarLinks>
-			</b:navBar>
+			<div class="customNavbar">
+	           	<h:form>
+	            	<h:commandLink class="navbarText" action="/" value="Home" />
+	            	<h:commandLink class="navbarText" action="/" value="Home2" />
+					<h:commandLink class="navbarText" value="New Article" action="admin/newArticle.xhtml"/>
+				</h:form>
+			</div>
 		</ui:composition>
 	</body>
 </html>
