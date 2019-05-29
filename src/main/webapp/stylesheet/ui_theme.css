@@ -61,11 +61,12 @@ a.navbarText:hover {
     position: relative;
     display: inline-block;
     border-radius: 10px;
-    width: 250px;
+    width: 285px;
     padding: 20px;
     overflow: hidden;
     cursor: pointer;
     text-align: left;
+    margin-bottom:5px;
 }
 .svg-background {
     position: absolute;
@@ -80,10 +81,12 @@ a.navbarText:hover {
     fill: rgb(225,225,225);
     transition: 0.4s;
 }
+
 .card.active .blob {
     fill: rgb(70,150,230);
     transform: translate(23%,3%) scale(10);
 }
+
 .card.active .bg-overlay {
     opacity: 0;
 }

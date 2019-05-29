@@ -8,18 +8,17 @@
 	xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>ChristianWeaves.com</title>
+<title>ScotFreeIT</title>
 </head>
 <h:body>
-	<ui:composition template="templates/template.xhtml">
+	<ui:composition template="/templates/template.xhtml">
 		<ui:define name="content">
 			<div class="container" style="text-align: center">
 				<div style="width: 1170px; vertical-align: top; display: inline-block;">
 					<ui:repeat id="showArticles" var="article"
 						value="#{articleController.latestArticles}">
-
-						<a href="showArticle.faces?article=#{article.id}">
-						<div class="card" style="vertical-align: top;">
+						<div class="card" style="vertical-align: top;" 
+							onclick="location.href='showArticle.faces?article=#{article.id}'">
 							<div class="top-section">
 								<div class="circular-border">
 									<h:graphicImage value="/images/java.png"
@@ -33,7 +32,6 @@
 							<h2>#{article.title}</h2>
 							<p>#{article.subtitle}</p>
 						</div>
-						</a>
 					</ui:repeat>
 				</div>
 			</div>

@@ -14,20 +14,10 @@
 <h:body>
 	<ui:composition template="templates/template.xhtml">
 		<ui:define name="header">
-			<style>
-			.jumbotron {
-			    padding-top: 0px;
-			    padding-bottom: 0px;
-			    margin-bottom: 15px;
-			}
-			</style>
-			
-			<b:jumbotron>
-				<b:container>
-					<h1>#{articleController.showArticle(param['article']).title}</h1>
-					<p>#{articleController.showArticle(param['article']).subtitle}</p>
-				</b:container>
-			</b:jumbotron>
+			<div class="container">
+				<h1>#{articleController.showArticle(param['article']).title}</h1>
+				<p>#{articleController.showArticle(param['article']).subtitle}</p>
+			</div>
     	</ui:define>
 		<ui:define name="content">
 			<h:form>
