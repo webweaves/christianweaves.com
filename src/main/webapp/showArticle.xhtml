@@ -6,48 +6,29 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
-</head>
-<h:body>
+    xmlns:p="http://primefaces.org/ui">
+<h:body>	
 	<ui:composition template="templates/template.xhtml">
+		<ui:define name="head">
+	        <style>
+	        body {
+	        	background: #dcdcdb;
+	        }
+	        </style>
+	    </ui:define>
 		<ui:define name="header">
-			<div class="container">
+			<div style="width:100%;height:40px;background-color:#4796e6;margin-bottom:30px"></div>
+			<div class="section-container">
 				<h1>#{articleController.showArticle(param['article']).title}</h1>
 				<p>#{articleController.showArticle(param['article']).subtitle}</p>
 			</div>
     	</ui:define>
 		<ui:define name="content">
 			<h:form>
-				<b:container>
-	    			<p><h:outputText value="#{articleController.showArticle(param['article']).body}" escape="false"/></p>
-	    		</b:container>
-	    		<b:container>
-		    		<br/>
-		    		<p:commandButton action="#{articleController.editArticle}" value="Edit Article »" class="btn btn-primary" >
-		    			<f:param name="articleId" value="#{param['article']}" />
-		    		</p:commandButton>
-		    		<p:commandButton 
-		    			oncomplete="PF('dlg').show();"
-		    			value="Archive Article »" class="btn btn-primary" >
-		    		</p:commandButton>
-		    		<br/><br/>	    		
-    			</b:container>
+				<div class="section-container" style="box-shadow: 0 10px 10px -5px;margin-bottom:30px;">
+					<p><h:outputText value="#{articleController.showArticle(param['article']).body}" escape="false"/></p>
+	    		</div>
     		</h:form>
-    		
-    		<p:dialog id="dlg" widgetVar="dlg" header="Delete the article" modal="true" resizable="false" minWidth="160">
-                <h:form id="formDelteteArticle">
-                    <h:outputText value="Sure? "/>
-                    <p:commandButton value="Yes" 
-                    	actionListener="#{articleController.archiveArticle}"
-                        oncomplete="dlg.hide()">
-                        <f:param name="articleId" value="#{param['article']}" />
-                    </p:commandButton>
-                    <p:commandButton value="No" onclick="dlg.hide();"/>
-                </h:form>
-            </p:dialog>
     	</ui:define>
 	</ui:composition>
 </h:body>
