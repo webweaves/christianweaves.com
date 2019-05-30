@@ -7,8 +7,8 @@
 
 <body>
 	<ui:composition>
-		<div style="height:150px;width100%;background-color:#4796e6;">
-			<b:container style="background-image: url(images/banner.jpg);box-shadow: 0 10px 10px -10px">
+		<div style="background-image: url(images/banner.jpg);height:200px;width:100%;background-color:#4796e6;box-shadow: 0 10px 10px -10px;">
+			<b:container>
 				<h1>#{articleController.featuredArticle.title}</h1>
 				<p>#{articleController.featuredArticle.subtitle}</p>
 				<p><a href="showArticle.faces?article=#{articleController.featuredArticle.id}" class="btn btn-lg btn-info">Read more »</a></p>

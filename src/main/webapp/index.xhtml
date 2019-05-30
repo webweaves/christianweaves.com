@@ -14,7 +14,8 @@
 	<ui:composition template="/templates/template.xhtml">
 		<ui:define name="content">
 			<div class="container" style="text-align: center">
-				<div style="width: 1170px; vertical-align: top; display: inline-block;">
+				<div style="width: 1170px; vertical-align: top; display: inline-block;margin-bottom:20px;">
+					<br/>
 					<ui:repeat id="showArticles" var="article"
 						value="#{articleController.latestArticles}">
 						<div class="card" style="vertical-align: top;" 
