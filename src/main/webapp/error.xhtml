@@ -3,7 +3,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/resources/scaffold/pageTemplate.xhtml">
+	template="/templates/template.xhtml">
+		
 
 	<ui:param name="pageTitle" value="Server error" />
 
@@ -11,8 +12,11 @@
 		Oops
 	</ui:define>
 
-	<ui:define name="main">
-		ERROR
+	<ui:define name="content">
+		<div class="section-container" style="margin-top:100px;box-shadow: 0 10px 10px -5px;margin-bottom:30px;">
+			<h2>Oops something's gone wrong!</h2>
+			<p>Try again</p>
+	   	</div>
 	</ui:define>
 
 </ui:composition>
