@@ -55,13 +55,13 @@ public class ArticleDao extends AbstractDao<Article> {
 	/**
 	 * return the featured article from the database, featured article indicated by featured attribute
 	 * in the article attribute equalling true
-	 * @return
+	 * @return top article or null if no articles
 	 */
 	public Article getFeaturedArticle() {
 		Query query = getEm().createQuery("from Article where featured = :boolType");
 		query.setParameter("boolType", Boolean.TRUE);
 		List<Article> list = query.getResultList();
-		return list.get(0);
+		return list.size() == 0 ? null : list.get(0);
 	}
 
 }
