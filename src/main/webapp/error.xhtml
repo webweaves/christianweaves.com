@@ -15,7 +15,9 @@
 	<ui:define name="content">
 		<div class="section-container" style="margin-top:100px;box-shadow: 0 10px 10px -5px;margin-bottom:30px;">
 			<h2>Oops something's gone wrong!</h2>
-			<p>Try again</p>
+			<h:form>
+				<p><h:link value="Return home" outcome="index?redirect=true"/></p>
+			</h:form>
 	   	</div>
 	</ui:define>
 
