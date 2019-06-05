@@ -67,6 +67,9 @@ h2,.h2 {
 
 .footerBg {
 	background-color:#20507E;
+	width:100%;
+	height:180px;
+	color:#fff;
 	#background-image: radial-gradient(ellipse at bottom, #73aad6, #003962, #000);	
 }
 
