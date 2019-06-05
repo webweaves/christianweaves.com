@@ -32,6 +32,20 @@
   <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
     <param-value>true</param-value>
   </context-param>
+<<<<<<< CWDOTCOM-52_admin_functionality
+=======
+	<welcome-file-list>
+		<welcome-file>index.faces</welcome-file>
+	</welcome-file-list>
+<!-- 	<security-constraint>
+		<display-name>Restrict raw XHTML Documents</display-name>
+		<web-resource-collection>
+			<web-resource-name>XHTML</web-resource-name>
+			<url-pattern>*.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint />
+	</security-constraint> -->  
+>>>>>>> 7ee7fa3 Removed xhtml restriction
   <error-page>
     <error-code>404</error-code>
     <location>/faces/error.xhtml</location>
