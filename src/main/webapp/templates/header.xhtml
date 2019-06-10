@@ -8,11 +8,13 @@
 <body>
 	<ui:composition>
 		<div style="width:100%;height:20px;background-color:#4796e6;margin-bottom:30px"></div>
-		<div style="background-image: url(images/banner.jpg);height:200px;width:100%;background-color:#4796e6;box-shadow: 0 10px 10px -10px;">
+		<div class="bannerImage">
 			<b:container>
+			  <div class="featuredArticleBackground">
 				<h1>#{articleController.featuredArticle.title}</h1>
 				<p>#{articleController.featuredArticle.subtitle}</p>
 				<p><a href="showArticle.faces?article=#{articleController.featuredArticle.id}" class="btn btn-lg btn-info">Read more »</a></p>
+			  </div>
 			</b:container>
 		</div>
 	</ui:composition>

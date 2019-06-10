@@ -17,15 +17,15 @@
 	        </style>
 	    </ui:define>
 		<ui:define name="header">
-			<div style="width:100%;height:40px;background-color:#4796e6;margin-bottom:30px"></div>
-			<div class="section-container">
+			<div style="width:100%;height:40px;background-color:#4796e6;margin-bottom:30px;"></div>
+			<div class="section-container" style="box-shadow: 0 5px 5px -5px;">
 				<h1>#{articleController.showArticle(param['article']).title}</h1>
 				<p>#{articleController.showArticle(param['article']).subtitle}</p>
 			</div>
     	</ui:define>
 		<ui:define name="content">
 			<h:form>
-				<div class="section-container" style="box-shadow: 0 10px 10px -5px;margin-bottom:30px;">
+				<div class="section-container" style="box-shadow: 0 10px 10px -5px;margin-top:10px;margin-bottom:30px;">
 					<p><h:outputText value="#{articleController.showArticle(param['article']).body}" escape="false"/></p>
 	    		</div>
     		</h:form>
