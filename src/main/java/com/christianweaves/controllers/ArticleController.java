@@ -1,5 +1,7 @@
 package com.christianweaves.controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,8 @@ public class ArticleController {
 	private UserTransaction userTransaction; 
 
 	private Article newArticle = new Article();
+	
+	private List<String> filters = Arrays.asList(new String[] {"^<p>&nbsp;</p>", "\\r\\n\\r\\n"});
 	/**
 	 * return the article based on id
 	 * 
@@ -45,6 +49,17 @@ public class ArticleController {
 
 	public Article showArticle(Long id) {
 		return getArticleById(id);
+	}
+
+	/*
+	 * ckeditor add all sorts of unwanted markup, remove all unwanted markup in this filter
+	 */
+	public Article showFilteredArticle(Long id) {
+		Article article = showArticle(id);
+		for (String filter: filters) {
+			article.setBody(article.getBody().replaceAll(filter, ""));	
+		}
+		return article;
 	}
 
 	public List<Article> getLatestArticles() {

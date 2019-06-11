@@ -30,7 +30,7 @@
 		<ui:define name="content">
 			<h:form>
 				<div class="section-container" style="box-shadow: 0 10px 10px -5px;margin-top:10px;margin-bottom:30px;">
-					<h:outputText value="#{articleController.showArticle(param['article']).body}" escape="false"/>
+					<h:outputText value="#{articleController.showFilteredArticle(param['article']).body}" escape="false"/>
 	    		</div>
     		</h:form>
     	</ui:define>
