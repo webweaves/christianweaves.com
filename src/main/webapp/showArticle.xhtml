@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 <h:body>	
@@ -17,16 +16,21 @@
 	        </style>
 	    </ui:define>
 		<ui:define name="header">
-			<div style="width:100%;height:40px;background-color:#4796e6;margin-bottom:30px;"></div>
+			<div style="width:100%;height:20px;background-color:#4796e6;margin-bottom:30px"></div>
+			<div class="bannerImageSlice">
+				<div class="container"/>
+			</div>
+
+			<div style="width:100%;height:10px;margin-bottom:30px;"></div>
 			<div class="section-container" style="box-shadow: 0 5px 5px -5px;">
-				<h1>#{articleController.showArticle(param['article']).title}</h1>
+				<h2>#{articleController.showArticle(param['article']).title}</h2>
 				<p>#{articleController.showArticle(param['article']).subtitle}</p>
 			</div>
     	</ui:define>
 		<ui:define name="content">
 			<h:form>
 				<div class="section-container" style="box-shadow: 0 10px 10px -5px;margin-top:10px;margin-bottom:30px;">
-					<p><h:outputText value="#{articleController.showArticle(param['article']).body}" escape="false"/></p>
+					<h:outputText value="#{articleController.showArticle(param['article']).body}" escape="false"/>
 	    		</div>
     		</h:form>
     	</ui:define>

@@ -1,7 +1,7 @@
 body {
 	margin: 0;
 	#background-image: radial-gradient(circle, #73aad6, #003962, #000);
-	font-size: 14pt;
+	font-size: 12pt;
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -12,9 +12,18 @@ body {
 
 .bannerImage {
 	background-image: url(../images/banner3.jpg);
+	background-repeat: no-repeat;
 	height:250px;
 	width:100%;
 	background-color:#4796e6;
+	box-shadow: 0 10px 10px -10px;
+}
+
+.bannerImageSlice {
+	background-image: url(../images/banner3_slice.jpg);
+	background-repeat: no-repeat;
+	height:65px;
+	width:100%;
 	box-shadow: 0 10px 10px -10px;
 }
 
