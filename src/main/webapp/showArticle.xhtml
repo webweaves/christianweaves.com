@@ -21,10 +21,14 @@
 				<div class="container"/>
 			</div>
 
-			<div style="width:100%;height:10px;margin-bottom:30px;"></div>
-			<div class="section-container" style="box-shadow: 0 5px 5px -5px;">
-				<h2>#{articleController.showArticle(param['article']).title}</h2>
-				<p>#{articleController.showArticle(param['article']).subtitle}</p>
+			<div style="width:100%;height:10px;margin-bottom:30px;"/>
+			<div style="margin:10px;width:1170px;margin-right: auto;margin-left: auto;box-shadow: 0 5px 5px -5px;">
+				<div style="border-bottom-width:2px;border-bottom-color:black;border-bottom-style: solid;background-image: url(images/section_banner_1.jpg);width:100%;height:65px">
+					<h2 style="padding-top:10px;padding-left:10px">#{articleController.showArticle(param['article']).title}</h2>				
+				</div>
+				<div style="background: white;width:100%;height:65px">
+					<p style="padding-top:10px;padding-left:10px">#{articleController.showArticle(param['article']).subtitle}</p>
+				</div>
 			</div>
     	</ui:define>
 		<ui:define name="content">
