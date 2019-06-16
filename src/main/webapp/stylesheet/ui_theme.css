@@ -27,8 +27,8 @@ body {
 }
 
 .article-header-box-container {
+    width:90%;	
 	margin:10px;
-	width:1170px;
 	margin-right: auto;
 	margin-left: auto;
 	box-shadow: 0 5px 5px -5px;
@@ -52,7 +52,6 @@ body {
 }
 
 .article-container {
-	width: 1170px; 
 	vertical-align: top; 
 	display: inline-block;
 	margin-bottom:20px;
@@ -93,7 +92,7 @@ body {
 	margin-right: auto;
     margin-left: auto;
     padding:5px 15px 5px;
-    width: 1170px;
+    width:90%;
 }
 
 .container {
