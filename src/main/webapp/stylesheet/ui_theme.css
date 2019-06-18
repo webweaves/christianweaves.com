@@ -42,7 +42,8 @@ body {
 	border-bottom-width:2px;
 	border-bottom-color:black;
 	border-bottom-style: solid;
-	background-image: url(images/section_banner_1.jpg);
+	background: white;
+	/* background-image: url(images/section_banner_1.jpg); */
 }
 
 .article-header-box-subtitle {
