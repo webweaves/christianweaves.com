@@ -15,6 +15,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;*/
 
+//initial testing
 public class GetResourceTest {
 	/*
 	 * @Mock private HttpServletResponse response;
