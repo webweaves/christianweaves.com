@@ -1,6 +1,10 @@
 package com.christianweaves.controllers;
 
-import java.util.ArrayList;
+import com.christianweaves.entities.Article;
+import com.christianweaves.entities.ArticleArchive;
+import com.christianweaves.entities.ArticleDao;
+import com.christianweaves.entities.GenericDao;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -13,18 +17,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.UserTransaction;
 
-import com.christianweaves.entities.Article;
-import com.christianweaves.entities.ArticleArchive;
-import com.christianweaves.entities.ArticleDao;
-import com.christianweaves.entities.GenericDao;
-import com.christianweaves.service.ApplicationState;
-
 @Named
 @RequestScoped
 public class ArticleController {
-
-	@Inject
-	ApplicationState appState;
 
 	@Inject
 	ArticleDao articleDao;
