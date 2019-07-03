@@ -47,7 +47,7 @@ public class ArticleController {
 	}
 
 	/*
-	 * ckeditor adds all sorts of unwanted markup, remove all unwanted markup in this filter
+	 * ckeditor adds (ignore) all sorts of unwanted markup, remove all unwanted markup in this filter
 	 */
 	public Article showFilteredArticle(Long id) {
 		Article article = showArticle(id);
