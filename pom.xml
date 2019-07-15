@@ -125,7 +125,6 @@
 		    <version>2.10.0</version>
 		    <scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.webjars/ckeditor -->
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
