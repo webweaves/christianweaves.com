@@ -40,17 +40,17 @@
 				</div>
 			</div>
 				
-				<div class="card active" style="valign:top">
-				</div>
+			<div class="card active" style="valign:top">
+			</div>
 
-				<script>
-				function handleMouseover(e) {
-				    document.querySelector(".active").classList.remove("active");
-				    e.target.closest(".card").classList.add("active");
-				}
+			<script>
+			function handleMouseover(e) {
+			    document.querySelector(".active").classList.remove("active");
+			    e.target.closest(".card").classList.add("active");
+			}
 
-				document.querySelectorAll(".card").forEach(card => card.addEventListener("mouseover", handleMouseover) );
-				</script>
+			document.querySelectorAll(".card").forEach(card => card.addEventListener("mouseover", handleMouseover) );
+			</script>
 		</ui:define>
 	</ui:composition>
 </h:body>
