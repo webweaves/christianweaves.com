@@ -53,6 +53,9 @@ public class Article implements Serializable {
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean archived;
 	
+	@Column
+	private String icon;
+	
 	public Boolean getArchived() {
 		return archived;
 	}
@@ -142,5 +145,13 @@ public class Article implements Serializable {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 }
