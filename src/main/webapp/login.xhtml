@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1
+/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>ScotFreeIT</title>
+</head>
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="head">
+	        <link href="stylesheet/ui_theme.css" rel="stylesheet"/>
+	    </ui:define>
+		
+		<ui:define name="content">
+		
+			<h:form>
+				<h:commandButton action="#{auth.logout}" value="Logout"></h:commandButton>
+			</h:form>
+		
+			<h:form>
+			    <h:outputLabel for="username" value="Username" />
+			    <h:inputText id="username" value="#{auth.username}" required="true" />
+			    <h:message for="username" />
+			    <br />
+			    <h:outputLabel for="password" value="Password" />
+			    <h:inputSecret id="password" value="#{auth.password}" required="true" />
+			    <h:message for="password" />
+			    <br />
+			    <h:commandButton value="Login" action="#{auth.login}" />
+			    <h:messages globalOnly="true" />
+			</h:form>
+		
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
