@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 /bin/
 /target/
 .settings
-=======
 /target/
 /bin/
 .settings
 .tern-project
->>>>>>> branch 'master' of https://github.com/webweaves/ChristianWeaves.com.git
+.classpath
+

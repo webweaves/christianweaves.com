@@ -39,7 +39,7 @@ public class ArticleControllerTest {
 	@Before
 	public void initMocks() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		facesContext = ContextMocker.mockFacesContext();		
+		//facesContext = ContextMocker.mockFacesContext();		
 		dummyArticle.setBody("<p>&nbsp;</p>This is a test");
 
 		articleDao = Mockito.mock(ArticleDao.class);
