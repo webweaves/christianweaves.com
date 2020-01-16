@@ -63,6 +63,12 @@ public class Auth {
         externalContext.redirect(externalContext.getRequestContextPath() + "/login.xhtml");
     }
 
+    public boolean isLoggedIn() {
+    	ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        return (User)externalContext.getSessionMap().get("user") != null;
+	
+    }
+    
 	public String getPassword() {
 		return password;
 	}
@@ -80,8 +86,7 @@ public class Auth {
 	}
 
 	public User getUser() {
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        return (User)externalContext.getSessionMap().get("user");
+		return user;
 	}
 
 	public void setUser(User user) {
