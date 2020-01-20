@@ -11,13 +11,16 @@
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 		<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-		<link href="stylesheet/bootfaces.css" rel="stylesheet"/>
-		<link href="stylesheet/ui_theme.css" rel="stylesheet"/>
-		<link href="stylesheet/googlefont.css" rel="stylesheet"/>
+		<h:outputStylesheet name="stylesheet/bootfaces.css" />
+		<h:outputStylesheet name="stylesheet/ui_theme.css" />
+		<h:outputStylesheet name="stylesheet/googlefont.css" />
+	
+		<h:outputScript name="ckeditor/ckeditor.js" />
+    
 		<link rel="icon" type="image/png" href="images/fav.ico"/>
 		<link href="ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" rel="stylesheet"/>
-		<script src="javascript/highlight/linenumbers.js"></script>
-		<script>hljs.initHighlightingOnLoad();
+		<h:outputScript name="javascript/highlight/linenumbers.js" />
+   		<script>hljs.initHighlightingOnLoad();
 		hljs.initLineNumbersOnLoad({
 		    singleLine: true
 		});
