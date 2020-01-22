@@ -34,25 +34,35 @@ public class FileUploadView {
      
     public void upload() {
         if(file != null) {
-            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            
+    		File folder = new File(uploadFileLocation);
+    		if (!folder.exists()) {
+    			folder.mkdirs();
+    		}
+    		
             InputStream initialStream;
+            OutputStream outStream = null;
 			try {
 				initialStream = file.getInputstream();
 				byte[] buffer = new byte[initialStream.available()];
             	initialStream.read(buffer);
             	
 				File targetFile = new File(uploadFileLocation +"/"+ file.getFileName());
-            	OutputStream outStream = new FileOutputStream(targetFile);
+            	outStream = new FileOutputStream(targetFile);
             	outStream.write(buffer);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally {
+				try {
+					outStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
+			
+            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
      
