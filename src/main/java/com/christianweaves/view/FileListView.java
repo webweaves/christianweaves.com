@@ -23,8 +23,13 @@ public class FileListView {
 
 	public FileListView() {
 		File folder = new File(fileLocation);
+		
 		File[] listOfFiles = folder.listFiles();
 
+		if (listOfFiles == null) {
+			return;
+		}
+		
 		Arrays.sort(listOfFiles, new Comparator<File>() {
 		    public int compare(File f1, File f2) {
 		        return Long.compare(f1.lastModified(), f2.lastModified());
