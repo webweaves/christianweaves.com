@@ -38,6 +38,10 @@
 				<div class="section-container article-content-box">
 					<h:outputText value="#{articleController.showFilteredArticle(param['article']).body}" escape="false"/>
 	    		</div>
+	    		
+	    		<p:commandButton action="#{articleController.editArticle}" value="Edit Article »" class="btn btn-primary" >
+	    			<f:param name="articleId" value="#{param['article']}" />
+	    		</p:commandButton>
     		</h:form>
     	</ui:define>
 	</ui:composition>

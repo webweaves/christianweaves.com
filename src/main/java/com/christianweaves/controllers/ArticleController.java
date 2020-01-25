@@ -68,17 +68,18 @@ public class ArticleController {
 	public String editArticle() {
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String articleId = params.get("articleId");
-		editArticle(new Long(articleId));
-		return "editArticle.xhtml?faces-redirect=true";
-	}
-
-	public void editArticle(Long articleId) {
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		Article article = getArticleById(articleId);
+		Article article = getArticleById(new Long(articleId));
 		sessionMapObj.put("editArticleObject", article);
+		return "/admin/editArticle.xhtml?faces-redirect=true";
 	}
-
+	
 	public String save() {
+		Article article = saveCurrentArticle();
+		return "/showArticle.xhtml?article=" + article.getId() + "&faces-redirect=true";
+	}
+	
+	public Article saveCurrentArticle() {
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = (Article) sessionMapObj.get("editArticleObject");
 
@@ -93,9 +94,10 @@ public class ArticleController {
 		dbArticle.setArchived(article.getArchived());
 		dbArticle.setSubtitle(article.getSubtitle());
 		dbArticle.setDateAdded(article.getDateAdded());
+
 		dbArticle = articleDao.merge(dbArticle);
 		
-		return "/showArticle.xhtml?article=" + dbArticle.getId() + "&faces-redirect=true";
+		return dbArticle;
 	}
 	
 	private void archiveExistingArticle(Article article) {
