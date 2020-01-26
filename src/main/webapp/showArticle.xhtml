@@ -13,6 +13,9 @@
 	        body {
 	        	background: #dcdcdb;
 	        }
+	        td.hljs-ln-numbers {
+			    padding-right: 20px;
+			}
 	        </style>
 	    </ui:define>
 		<ui:define name="header">
@@ -39,7 +42,9 @@
 					<h:outputText value="#{articleController.showFilteredArticle(param['article']).body}" escape="false"/>
 	    		</div>
 	    		
-	    		<p:commandButton action="#{articleController.editArticle}" value="Edit Article »" class="btn btn-primary" >
+	    		<p:commandButton action="#{articleController.editArticle}" 
+	    			rendered="#{auth.loggedIn}"
+	    			value="Edit Article »" class="btn btn-primary" >
 	    			<f:param name="articleId" value="#{param['article']}" />
 	    		</p:commandButton>
     		</h:form>
