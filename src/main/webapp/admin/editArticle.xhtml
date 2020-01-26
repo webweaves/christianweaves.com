@@ -19,28 +19,31 @@
 			<b:container>
 				<h:form id="editform">
 			        
-			        Title: <h:inputText id="title" value="#{editArticleObject.title}"/>
+			        <p:panelGrid columns="2">
+			        	<h:outputText value="Title"/>
+			       		<h:inputText id="title" value="#{editArticleObject.title}"/>
 			        
-			        <br/>
+
+			        	<h:outputText value="Subtitle"/>
+			        	<h:inputText id="subTitle" value="#{editArticleObject.subtitle}"/>
 			        
-			        Subtitle: <h:inputText id="subTitle" value="#{editArticleObject.subtitle}"/>
-			        
-			        
-			    	<h:inputTextarea id="editor1" name="editor1" value="#{editArticleObject.body}">
-                    </h:inputTextarea>
-			    	
-					<script>
-						CKEDITOR.replace('editform:editor1', {
-						  extraPlugins: 'codesnippet',
-					      height: 260,
-					      width: 700,
-					    });
-   
-						CKEDITOR.config.filebrowserBrowseUrl = '#{request.contextPath}/listFiles.xhtml';
-		    			CKEDITOR.config.filebrowserUploadUrl = '#{request.contextPath}/fileUpload.xhtml';
-					</script>
+			        	<h:outputText value=""/>
+				    	<h:inputTextarea id="editor1" name="editor1" value="#{editArticleObject.body}">
+	                    </h:inputTextarea>
+				    </p:panelGrid>
+						
+						<script>
+							CKEDITOR.replace('editform:editor1', {
+							  extraPlugins: 'codesnippet',
+						      height: 260,
+						      width: 700,
+						    });
+	   
+							CKEDITOR.config.filebrowserBrowseUrl = '#{request.contextPath}/listFiles.xhtml';
+			    			CKEDITOR.config.filebrowserUploadUrl = '#{request.contextPath}/fileUpload.xhtml';
+						</script>
 					
-					<h:commandButton type="submit" action="#{articleController.save}" value="Save it"/>
+					<p:commandButton type="submit" ajax="false" action="#{articleController.save}" value="Save it"/>
                 </h:form>	
                 
                 <br/>
