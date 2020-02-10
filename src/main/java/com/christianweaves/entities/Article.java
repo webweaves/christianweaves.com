@@ -19,7 +19,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @Table(name = "tb_articles")
 @NamedQueries({
-	@NamedQuery(name = "allArticles", query = "SELECT a FROM Article a"),
+	@NamedQuery(name = "allArticles", query = "SELECT a FROM Article a ORDER BY a.id DESC"),
 	@NamedQuery(name = "Article.findById", query = "SELECT a FROM Article a where a.id = :id")
 })
 
