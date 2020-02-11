@@ -91,6 +91,7 @@ public class ArticleController {
 		dbArticle.setTitle(article.getTitle());
 		dbArticle.setBody(article.getBody());
 		dbArticle.setFeatured(article.getFeatured());
+		dbArticle.setDeleted(article.getDeleted());
 		dbArticle.setArchived(article.getArchived());
 		dbArticle.setSubtitle(article.getSubtitle());
 		dbArticle.setDateAdded(article.getDateAdded());
@@ -105,6 +106,7 @@ public class ArticleController {
 		dbArticleArchive.setTitle(article.getTitle());
 		dbArticleArchive.setBody(article.getBody());
 		dbArticleArchive.setFeatured(article.getFeatured());
+		dbArticleArchive.setDeleted(article.getDeleted());
 		dbArticleArchive.setArchived(article.getArchived());
 		dbArticleArchive.setSubtitle(article.getSubtitle());
 		dbArticleArchive.setDateAdded(article.getDateAdded());

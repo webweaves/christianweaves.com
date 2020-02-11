@@ -34,6 +34,9 @@ public class ArticleArchive {
 	private Boolean featured;
 
 	@Column
+	private Boolean deleted;
+
+	@Column
 	private Boolean archived;
 	
 	public Boolean getArchived() {
@@ -125,5 +128,13 @@ public class ArticleArchive {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 }

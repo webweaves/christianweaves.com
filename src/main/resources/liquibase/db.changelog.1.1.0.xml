@@ -8,5 +8,26 @@
 		 	]]>
 		 </sql>
 	</changeSet>
-  
+      <changeSet author="csw" id="add column to store deleted status">
+    	<sql endDelimiter=";">
+		 	<![CDATA[
+				ALTER TABLE tb_articles ADD COLUMN deleted TINYINT;
+		 	]]>
+		 </sql>
+	</changeSet>  
+    <changeSet author="csw" id="add column to store deleted status in archived table">
+    	<sql endDelimiter=";">
+		 	<![CDATA[
+				ALTER TABLE tb_articles_archive ADD COLUMN deleted TINYINT;
+		 	]]>
+		 </sql>
+	</changeSet> 
+    <changeSet author="csw" id="add defaults to new deleted columns">
+    	<sql endDelimiter=";">
+		 	<![CDATA[
+				ALTER TABLE tb_articles ALTER deleted SET DEFAULT false;
+				ALTER TABLE tb_articles_archive ALTER deleted SET DEFAULT false;
+		 	]]>
+		 </sql>
+	</changeSet>  
 </databaseChangeLog>

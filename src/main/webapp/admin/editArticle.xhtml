@@ -30,6 +30,16 @@
 			        	<h:outputText value=""/>
 				    	<h:inputTextarea id="editor1" name="editor1" value="#{editArticleObject.body}">
 	                    </h:inputTextarea>
+	                    
+	                    <h:outputText value=""/>
+				    	<p:selectBooleanCheckbox value="#{editArticleObject.featured}" itemLabel="Featured"/>
+ 	                    
+	                    <h:outputText value=""/>
+				    	<p:selectBooleanCheckbox value="#{editArticleObject.archived}" itemLabel="Archived"/>
+ 	                    
+	                    <h:outputText value=""/>
+				    	<p:selectBooleanCheckbox value="#{editArticleObject.deleted}" itemLabel="Deleted"/>
+ 
 				    </p:panelGrid>
 						
 						<script>

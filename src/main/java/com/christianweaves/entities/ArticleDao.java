@@ -34,7 +34,7 @@ public class ArticleDao extends AbstractDao<Article> {
 	 * @return
 	 */
 	public List<Article> getArticles(int count) {
-		Query query = getEm().createQuery("from Article article where article.archived = :boolType ORDER BY article.id DESC");
+		Query query = getEm().createQuery("from Article article where article.archived = :boolType and article.deleted = :boolType ORDER BY article.id DESC");
 		query.setParameter("boolType", Boolean.FALSE);
 		query.setFirstResult(0);
 		query.setMaxResults(count);

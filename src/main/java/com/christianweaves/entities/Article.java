@@ -52,6 +52,9 @@ public class Article implements Serializable {
 	private Boolean featured;
 
 	@Column
+	private Boolean deleted;
+
+	@Column
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean archived;
 	
@@ -159,5 +162,13 @@ public class Article implements Serializable {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 }
