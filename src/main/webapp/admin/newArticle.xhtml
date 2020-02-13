@@ -23,13 +23,14 @@
 				        <h:outputText value="File upload: All text will vanish when you click submit!!"/>
 				    	<p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" />
 						<p:commandButton value="Submit" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
-						
 					</p:panelGrid>
 				</h:form>
 			
 				<h:form id="addform">
 			        <p:panelGrid columns="2" styleClass="articleContent">
-				        <h:outputText value="Title"/>
+				        <h:outputText value="Icon"/>
+
+						<h:outputText value="Title"/>
 				        <h:inputText id="title" value="#{articleController.newArticle.title}"/>
 
 				        <h:outputText value="Subtitle"/>
