@@ -20,12 +20,16 @@
 				<h:form id="editform">
 			        
 			        <p:panelGrid columns="2">
-			        	<h:outputText value="Title"/>
-			       		<h:inputText id="title" value="#{editArticleObject.title}"/>
+			        	<h:outputText value="Icon"/>
+				        <h:graphicImage value="data:image/jpg;base64,#{editArticleObject.icon}"
+										width="75"
+										style="margin-left: 10px; margin-top: 10px;" />
 			        
-
+			        	<h:outputText value="Title"/>
+			       		<h:inputText id="title" value="#{editArticleObject.title}" style="width:700px"/>
+			        
 			        	<h:outputText value="Subtitle"/>
-			        	<h:inputText id="subTitle" value="#{editArticleObject.subtitle}"/>
+			        	<h:inputText id="subTitle" value="#{editArticleObject.subtitle}" style="width:700px"/>
 			        
 			        	<h:outputText value=""/>
 				    	<h:inputTextarea id="editor1" name="editor1" value="#{editArticleObject.body}">

@@ -1,7 +1,11 @@
 body {
 	margin: 0;
-	font-size: 12pt;
-	font-family: 'Roboto', sans-serif;
+	font-family: "Work Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    color: #1F2667;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
 }
 
 @media (min-width: 768px)
@@ -9,9 +13,13 @@ body {
     width: 750px;
 }
 
+<!--https://cssgradient.io/gradient-backgrounds/-->
+.btn-grad {background-image: linear-gradient(to right, #1e3c72 0%, #2a5298 51%, #1e3c72 100%)}
+.btn-grad:hover { background-position: right center; }
+
 .bannerImage {
-	background-image: url("#{resource['images/banner3.jpg']}");
-	background-repeat: no-repeat;
+	background-color: #3b99ff;
+	background-image: linear-gradient(147deg, #3b99ff 0%, #1f3079 74%);
 	height:250px;
 	width:100%;
 	background-color:#4796e6;
@@ -42,8 +50,7 @@ body {
 	border-bottom-width:2px;
 	border-bottom-color:black;
 	border-bottom-style: solid;
-	background: white;
-	background-image: url("#{resource['stylesheet/images/section_banner_4.jpg']}");
+	background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
 }
 
 .article-header-box-subtitle {
@@ -67,7 +74,7 @@ body {
 }
 
 .h2-padding {
-	padding-top:10px;
+	padding-top:15px;
 	padding-left:10px	
 }
 

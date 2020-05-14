@@ -19,7 +19,7 @@
 					<ui:repeat id="showArticles" var="article"
 						value="#{articleController.latestArticles}">
 						<div class="card" style="vertical-align: top;" 
-							onclick="location.href='showArticle.faces?article=#{article.id}'">
+							onclick="location.href='#{request.contextPath}/showArticle.faces?article=#{article.id}'">
 							<div class="top-section">
 								<div class="circular-border">
 									<h:graphicImage value="data:image/jpg;base64,#{article.icon}"
