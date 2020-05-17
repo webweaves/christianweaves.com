@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	font-family: "Work Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
     font-weight: 400;
-    color: #1F2667;
+    color: #000;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
@@ -18,17 +18,15 @@ body {
 .btn-grad:hover { background-position: right center; }
 
 .bannerImage {
-	background-color: #3b99ff;
-	background-image: linear-gradient(147deg, #3b99ff 0%, #1f3079 74%);
+	background-image: url("#{resource['images/scotfree_background.png']}");
 	height:250px;
 	width:100%;
-	background-color:#4796e6;
 	box-shadow: 0 10px 10px -10px;
 }
 
 .bannerImageSlice {
-	background-image: url("#{resource['images/banner3_slice.jpg']}");
-	background-repeat: no-repeat;
+	background-color: #3b99ff;
+	background-image: linear-gradient(147deg, #3b99ff 0%, #1f3079 74%);
 	height:65px;
 	width:100%;
 	box-shadow: 0 10px 10px -10px;
@@ -88,8 +86,9 @@ body {
 .featuredArticleBackground {
 	background-image: url("#{resource['images/bgtrans.png']}");
 	border-radius: 40px;
-	padding:20px;
-	margin-top:20px;	
+	padding:15px;
+	margin-top:30px;
+	opacity: 1.6;	
 }
 
 .section-container {
@@ -178,7 +177,7 @@ h2,.h2 {
 }
 .blob {
     transform: translate(23%,3%) scale(0.65);
-    fill: rgb(225,225,225);
+    fill: #eee;
     transition: 0.4s;
 }
 
