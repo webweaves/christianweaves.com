@@ -18,16 +18,15 @@ body {
 .btn-grad:hover { background-position: right center; }
 
 .bannerImage {
-	background-image: url("#{resource['images/scotfree_background.png']}");
-	height:250px;
+	background-image: url("#{resource['images/background3.png']}");
+	height:247px;
 	width:100%;
 	box-shadow: 0 10px 10px -10px;
 }
 
 .bannerImageSlice {
-	background-color: #3b99ff;
-	background-image: linear-gradient(147deg, #3b99ff 0%, #1f3079 74%);
-	height:65px;
+	background-image: url("#{resource['images/background_strip.png']}");
+	height:62px;
 	width:100%;
 	box-shadow: 0 10px 10px -10px;
 }
@@ -48,7 +47,7 @@ body {
 	border-bottom-width:2px;
 	border-bottom-color:black;
 	border-bottom-style: solid;
-	background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
+	background: linear-gradient(90deg, #06527b 40%, #2599e1 100%);
 }
 
 .article-header-box-subtitle {
@@ -149,9 +148,9 @@ h2,.h2 {
 .footerBg {
 	background-color:#20507E;
 	width:100%;
-	height:180px;
+	height:125px;
 	color:#fff;
-	#background-image: radial-gradient(ellipse at bottom, #73aad6, #003962, #000);	
+	background-image: url("#{resource['images/background_small.png']}");
 }
 
 * { box-sizing: border-box;}
