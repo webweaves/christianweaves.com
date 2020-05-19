@@ -13,26 +13,32 @@
 	<ui:composition template="/templates/template.xhtml">
 		<ui:define name="head">
 	        <link href="stylesheet/ui_theme.css" rel="stylesheet"/>
+	        <style>
+		        .ui-panelgrid>*>tr,
+				.ui-panelgrid .ui-panelgrid-cell {
+				    border: none;
+				}			
+			</style>
 	    </ui:define>
 		
 		<ui:define name="content">
-		
-			<h:form>
-				<h:commandButton action="#{auth.logout}" value="Logout"></h:commandButton>
-			</h:form>
-		
-			<h:form>
-			    <h:outputLabel for="username" value="Username" />
-			    <h:inputText id="username" value="#{auth.username}" required="true" />
-			    <h:message for="username" />
-			    <br />
-			    <h:outputLabel for="password" value="Password" />
-			    <h:inputSecret id="password" value="#{auth.password}" required="true" />
-			    <h:message for="password" />
-			    <br />
-			    <h:commandButton value="Login" action="#{auth.login}" />
-			    <h:messages globalOnly="true" />
-			</h:form>
+
+			<div class="container" style="margin-left:auto;margin-right:auto;margin-top:100px; margin-bottom:200px;">		
+				<h:form>
+					<p:panelGrid columns="2">
+					    <h:outputLabel for="username" value="Username" />
+					    <h:inputText id="username" value="#{auth.username}" required="true" />
+					    
+					    <h:outputLabel for="password" value="Password" />
+					    <h:inputSecret id="password" value="#{auth.password}" required="true" />
+					    
+					    <h:outputText value=""/>
+					    <h:commandButton style="float:right;" value="Login" action="#{auth.login}" />
+						<!-- <h:commandButton action="#{auth.logout}" value="Logout"></h:commandButton> -->
+					</p:panelGrid>
+				    <h:messages globalOnly="true" />
+				</h:form>
+			</div>
 		
 		</ui:define>
 	</ui:composition>

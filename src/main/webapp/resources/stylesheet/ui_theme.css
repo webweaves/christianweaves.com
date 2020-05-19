@@ -13,10 +13,6 @@ body {
     width: 750px;
 }
 
-<!--https://cssgradient.io/gradient-backgrounds/-->
-.btn-grad {background-image: linear-gradient(to right, #1e3c72 0%, #2a5298 51%, #1e3c72 100%)}
-.btn-grad:hover { background-position: right center; }
-
 .bannerImage {
 	background-image: url("#{resource['images/background3.png']}");
 	height:247px;
@@ -218,4 +214,32 @@ a {
 
 .card.active p {
     opacity: 1;
+}
+
+			
+.btn-grad {
+    margin: 10px;
+    padding: 8px;
+    text-align: center;
+    /*text-transform: uppercase;*/
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    /*text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.btn-style {
+	width:180px;
+	height:35px;
+	margin-top:10px;
+	background-image: linear-gradient(to right, #08527b 0%, #2597de  51%, #08527b  100%);
+}
+
+.btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
 }

@@ -10,7 +10,7 @@
 		<div class="header-spacer"></div>
 		<div class="bannerImage">
 			<div class="container">
-				  <div class="featuredArticleBackground">
+				<div class="featuredArticleBackground">
 				  	<div style="width:100px; float:right;">
 				  		<h:graphicImage value="data:image/jpg;base64,#{articleController.featuredArticle.icon}"
 										width="75"
@@ -18,8 +18,9 @@
 				  	</div>
 					<h1>#{articleController.featuredArticle.title}</h1>
 					<p>#{articleController.featuredArticle.subtitle}</p>
-					<p><a href="showArticle.faces?article=#{articleController.featuredArticle.id}" class="btn btn-lg btn-info">Read more »</a></p>
-				  </div>
+					<a href="showArticle.faces?article=#{articleController.featuredArticle.id}" 
+						class="btn-grad btn-style">Read more »</a>
+				</div>
 			</div>	
 		</div>
 	</ui:composition>
