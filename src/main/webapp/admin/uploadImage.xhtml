@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1
+/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Title</title> 	
+</head>
+<h:body>
+	<ui:composition template="../templates/template.xhtml">
+		<ui:define name="navigation">
+		</ui:define>
+		<ui:define name="header">
+		</ui:define>
+		<ui:define name="content">
+			<b:container>
+	            <h:form enctype="multipart/form-data">
+					<p:growl id="messages" showDetail="true" />					
+					<p:panelGrid columns="2" styleClass="articleContent" style="margin:50px;">
+				        <h:outputText value="File upload: Upload images here and close once finished!"/>
+				        <h:outputText/>
+				    	<p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" />
+						<p:commandButton value="Submit" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
+					</p:panelGrid>
+				</h:form>
+			</b:container>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

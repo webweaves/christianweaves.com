@@ -14,7 +14,7 @@ body {
 }
 
 .bannerImage {
-	background-image: url("#{resource['images/background3.png']}");
+	background-image: url("#{resource['images/background4.png']}");
 	height:247px;
 	width:100%;
 	box-shadow: 0 10px 10px -10px;
