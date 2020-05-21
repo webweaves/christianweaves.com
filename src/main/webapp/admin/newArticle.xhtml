@@ -17,15 +17,10 @@
 		</ui:define>
 		<ui:define name="content">
 			<b:container>
-	            <h:form enctype="multipart/form-data">
-					<p:growl id="messages" showDetail="true" />					
-					<p:panelGrid columns="3" styleClass="articleContent">
-				        <h:outputText value="File upload: All text will vanish when you click submit!!"/>
-				    	<p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" />
-						<p:commandButton value="Submit" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
-					</p:panelGrid>
+				
+				<h:form>
+					<h:commandLink action="uploadImage" target="_blank">Upload Image</h:commandLink>
 				</h:form>
-			
 				<h:form id="addform">
 			        <p:panelGrid columns="2" styleClass="articleContent">
 				        <h:outputText value="Icon"/>
@@ -33,10 +28,10 @@
                   			sizeLimit="1000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
 						<h:outputText value="Title"/>
-				        <h:inputText id="title" value="#{articleController.newArticle.title}"/>
+				        <h:inputText id="title" style="width:600px" value="#{articleController.newArticle.title}"/>
 
 				        <h:outputText value="Subtitle"/>
-				        <h:inputText id="subTitle" value="#{articleController.newArticle.subtitle}"/>
+				        <h:inputText id="subTitle" style="width:600px" value="#{articleController.newArticle.subtitle}"/>
 
 				        <h:outputText value="Body"/>
 				    	<h:inputTextarea id="editor1" name="editor1" value="#{articleController.newArticle.body}">
@@ -48,7 +43,7 @@
 						CKEDITOR.replace('addform:editor1', {
 						  extraPlugins: 'codesnippet',
 					      height: 260,
-					      width: 700,
+					      width: 1000,
 					    });
    
 						CKEDITOR.config.filebrowserBrowseUrl = '#{request.contextPath}/listFiles.xhtml';
