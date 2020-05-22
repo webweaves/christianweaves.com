@@ -17,15 +17,11 @@
 		</ui:define>
 		<ui:define name="content">
 			<b:container>
-				
-				<h:form>
-					<br/><h:commandLink action="uploadImage" target="_blank" ajax="false" value="Upload Image"/>
-				</h:form>
-				
+
 				<h:form id="addform">
 			        <p:panelGrid columns="2" styleClass="articleContent">
 				        <h:outputText value="Icon"/>
-				         <p:fileUpload listener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false"
+				         <p:fileUpload listener="#{fileUploadController.handleFileUpload}" mode="advanced" dragDropSupport="false"
                   			sizeLimit="1000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
 						<h:outputText value="Title"/>
@@ -35,8 +31,12 @@
 				        <h:inputText id="subTitle" style="width:600px" value="#{articleController.newArticle.subtitle}"/>
 
 				        <h:outputText value="Body"/>
-				    	<h:inputTextarea id="editor1" name="editor1" value="#{articleController.newArticle.body}">
-	                    </h:inputTextarea>
+				        
+				        <p:panelGrid columns="1" styleClass="articleContent">
+					        <h:commandLink action="uploadImage" target="_blank" ajax="false" value="Upload Image"/>
+					    	<h:inputTextarea id="editor1" name="editor1" value="#{articleController.newArticle.body}">
+		                    </h:inputTextarea>
+		                </p:panelGrid>
 				    	
 			    	</p:panelGrid>
 			    	

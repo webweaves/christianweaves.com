@@ -23,8 +23,8 @@
 					<p:panelGrid columns="2" styleClass="articleContent" style="margin:50px;">
 				        <h:outputText value="File upload: Upload images here and close once finished!"/>
 				        <h:outputText/>
-				    	<p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" />
-						<p:commandButton value="Submit" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
+				    	<p:fileUpload value="#{fileUploadController.file}" mode="simple" skinSimple="true" />
+						<p:commandButton value="Submit" ajax="false" action="#{fileUploadController.upload}" disabled="false" />
 					</p:panelGrid>
 				</h:form>
 			</b:container>

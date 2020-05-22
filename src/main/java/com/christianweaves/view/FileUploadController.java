@@ -18,7 +18,7 @@ import org.primefaces.model.UploadedFile;
 
 @Named
 @RequestScoped
-public class FileUploadView {
+public class FileUploadController {
     
     private UploadedFile file;
  
