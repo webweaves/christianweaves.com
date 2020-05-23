@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,10 +23,14 @@ import javax.transaction.UserTransaction;
 public class ArticleController {
 
 	@Inject
-	ArticleDao articleDao;
+	private ArticleDao articleDao;
 	
 	@Inject
-	GenericDao genericDao;
+	private GenericDao genericDao;
+	
+	@Inject
+	private	FileUploadController fileUploadController;
+	
 	
 	@Resource 
 	private UserTransaction userTransaction; 
@@ -125,6 +130,9 @@ public class ArticleController {
 		newArticle.setDateAdded(new Date());
 		articleDao.persist(newArticle);
 		newArticle = new Article();
+		
+        FacesMessage message = new FacesMessage("Succesful", "New article created!");
+        FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 	
 	public Article getNewArticle() {
@@ -133,5 +141,13 @@ public class ArticleController {
 
 	public void setNewArticle(Article newArticle) {
 		this.newArticle = newArticle;
+	}
+
+	public FileUploadController getFileUploadController() {
+		return fileUploadController;
+	}
+
+	public void setFileUploadController(FileUploadController fileUploadController) {
+		this.fileUploadController = fileUploadController;
 	}			 
 }

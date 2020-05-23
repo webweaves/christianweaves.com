@@ -49,14 +49,14 @@ public class Article implements Serializable {
 	private Date dateAdded;
 	
 	@Column
-	private Boolean featured;
+	private Boolean featured = false;
 
 	@Column
-	private Boolean deleted;
+	private Boolean deleted = false;
 
 	@Column
 	@Type(type = "org.hibernate.type.NumericBooleanType")
-	private Boolean archived;
+	private Boolean archived = false;
 	
 	@Column
 	private String icon;

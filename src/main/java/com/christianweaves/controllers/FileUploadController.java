@@ -1,4 +1,4 @@
-package com.christianweaves.view;
+package com.christianweaves.controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.FileUploadEvent;
@@ -21,9 +22,13 @@ import org.primefaces.model.UploadedFile;
 public class FileUploadController {
     
     private UploadedFile file;
+    private UploadedFile icon;
  
 	private String uploadFileLocation = "/home/blog/uploads";
     
+	@Inject
+	private ArticleController articleController;
+	
     public UploadedFile getFile() {
         return file;
     }
@@ -67,7 +72,30 @@ public class FileUploadController {
     }
      
     public void handleFileUpload(FileUploadEvent event) {
-        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        UploadedFile uploadedFile = event.getFile();
+        String fileName = uploadedFile.getFileName();
+        String contentType = uploadedFile.getContentType();
+        byte[] contents = uploadedFile.getContents();
+        
+        articleController.getNewArticle().setIcon(contents.toString());
+        /*
+        FacesMessage msg = new FacesMessage("Succesful", icon.getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);*/
     }
+
+	public UploadedFile getIcon() {
+		return icon;
+	}
+
+	public void setIcon(UploadedFile icon) {
+		this.icon = icon;
+	}
+
+	public ArticleController getArticleController() {
+		return articleController;
+	}
+
+	public void setArticleController(ArticleController articleController) {
+		this.articleController = articleController;
+	}
 }

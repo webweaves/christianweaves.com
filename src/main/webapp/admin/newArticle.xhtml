@@ -18,12 +18,17 @@
 		<ui:define name="content">
 			<b:container>
 
+				<h:form enctype="multipart/form-data">
+   					<p:panelGrid columns="3" styleClass="articleContent">
+				        <h:outputText value="Icon"/>
+				        <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}" auto="true" />
+					</p:panelGrid>
+				</h:form>	
+
+
 				<h:form id="addform">
 			        <p:panelGrid columns="2" styleClass="articleContent">
-				        <h:outputText value="Icon"/>
-				         <p:fileUpload listener="#{fileUploadController.handleFileUpload}" mode="advanced" dragDropSupport="false"
-                  			sizeLimit="1000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-
+			        
 						<h:outputText value="Title"/>
 				        <h:inputText id="title" style="width:600px" value="#{articleController.newArticle.title}"/>
 
@@ -51,7 +56,7 @@
 		    			CKEDITOR.config.filebrowserUploadUrl = '#{request.contextPath}/fileUpload.xhtml';
 					</script>
 					
-					<h:commandButton type="submit" action="#{articleController.addNewArticle}" value="Add it"/>
+					<h:commandButton style="margin:10px;" type="submit" action="#{articleController.addNewArticle}" value="Add new article"/>
                 </h:form>	                
     		</b:container>
     	</ui:define>
