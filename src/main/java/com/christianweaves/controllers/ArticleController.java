@@ -18,6 +18,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.UserTransaction;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
+
 @Named
 @RequestScoped
 public class ArticleController {
@@ -28,9 +31,8 @@ public class ArticleController {
 	@Inject
 	private GenericDao genericDao;
 	
-	@Inject
-	private	FileUploadController fileUploadController;
-	
+	@Inject 
+	private ApplicationController applicationController;
 	
 	@Resource 
 	private UserTransaction userTransaction; 
@@ -126,28 +128,39 @@ public class ArticleController {
 	}
 
 	public void addNewArticle() {
-		newArticle.setArchived(false);
-		newArticle.setDateAdded(new Date());
-		articleDao.persist(newArticle);
-		newArticle = new Article();
+		applicationController.getNewArticle().setArchived(false);
+		applicationController.getNewArticle().setDateAdded(new Date());
+		articleDao.persist(applicationController.getNewArticle());
 		
         FacesMessage message = new FacesMessage("Succesful", "New article created!");
         FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 	
+    public void handleFileUpload(FileUploadEvent event) {
+        UploadedFile uploadedFile = event.getFile();
+        String fileName = uploadedFile.getFileName();
+        String contentType = uploadedFile.getContentType();
+        byte[] contents = uploadedFile.getContents();
+        
+        applicationController.getNewArticle().setIcon(contents.toString());
+        
+        FacesMessage msg = new FacesMessage("Succesful", fileName + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
 	public Article getNewArticle() {
-		return newArticle;
+		return applicationController.getNewArticle();
 	}
 
 	public void setNewArticle(Article newArticle) {
-		this.newArticle = newArticle;
+		this.applicationController.setNewArticle(newArticle);
 	}
 
-	public FileUploadController getFileUploadController() {
-		return fileUploadController;
+	public ApplicationController getApplicationController() {
+		return applicationController;
 	}
 
-	public void setFileUploadController(FileUploadController fileUploadController) {
-		this.fileUploadController = fileUploadController;
-	}			 
+	public void setApplicationController(ApplicationController applicationController) {
+		this.applicationController = applicationController;
+	}
 }
