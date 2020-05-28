@@ -12,11 +12,7 @@ import com.christianweaves.entities.Article;
 public class ApplicationController implements Serializable {
 
 	private static final long serialVersionUID = -5349887495234389626L;
-	private Article newArticle;
-
-	public void initNewArticle() {
-		newArticle = new Article();
-	}
+	private Article newArticle = new Article();
 	
 	public Article getNewArticle() {
 		return newArticle;

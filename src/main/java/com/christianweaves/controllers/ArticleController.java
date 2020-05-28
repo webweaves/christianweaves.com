@@ -5,7 +5,15 @@ import com.christianweaves.entities.ArticleArchive;
 import com.christianweaves.entities.ArticleDao;
 import com.christianweaves.entities.GenericDao;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -131,7 +139,7 @@ public class ArticleController {
 		applicationController.getNewArticle().setArchived(false);
 		applicationController.getNewArticle().setDateAdded(new Date());
 		articleDao.persist(applicationController.getNewArticle());
-		
+		applicationController.setNewArticle(new Article());
         FacesMessage message = new FacesMessage("Succesful", "New article created!");
         FacesContext.getCurrentInstance().addMessage(null, message);
 	}
@@ -139,11 +147,8 @@ public class ArticleController {
     public void handleFileUpload(FileUploadEvent event) {
         UploadedFile uploadedFile = event.getFile();
         String fileName = uploadedFile.getFileName();
-        String contentType = uploadedFile.getContentType();
         byte[] contents = uploadedFile.getContents();
-        
-        applicationController.getNewArticle().setIcon(contents.toString());
-        
+        applicationController.getNewArticle().setIcon(Base64.getEncoder().encodeToString(contents));
         FacesMessage msg = new FacesMessage("Succesful", fileName + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }

@@ -18,19 +18,17 @@
 		</ui:define>
 		<ui:define name="content">
 			<b:container>
-
-				<h:form>
-					<f:metadata>
-					    <f:event type="preRenderView" listener="#{applicationController.initNewArticle}" />
-					</f:metadata>
-				</h:form>
+			
+				<p:growl id="messages" showDetail="true" />
 				
 				<h:form enctype="multipart/form-data">
-   					<p:panelGrid columns="3" styleClass="articleContent">
+   					<p:panelGrid columns="3" styleClass="articleContent" style="margin-top:20px">
 				        <h:outputText value="Icon"/>
-				        <p:fileUpload fileUploadListener="#{articleController.handleFileUpload}" auto="true" />
+				        <h:graphicImage id="theicon" value="data:image/png;base64,#{articleController.newArticle.icon}" width="75"/>
+				        <p:fileUpload update="theicon" label="Replace current icon" fileUploadListener="#{articleController.handleFileUpload}" auto="true" />
 					</p:panelGrid>
 				</h:form>	
+
 
 				<h:form id="addform">
 			        <p:panelGrid columns="2" styleClass="articleContent">
