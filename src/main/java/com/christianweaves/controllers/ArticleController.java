@@ -99,6 +99,9 @@ public class ArticleController {
 		Article article = (Article) sessionMapObj.get("editArticleObject");
 
 		archiveExistingArticle(article);
+		if (article.getFeatured()) {
+			articleDao.resetFeatured();
+		}
 
 		// do some formatting? //article.getBody().replaceAll("\\r|\\n", "");
 
@@ -136,6 +139,9 @@ public class ArticleController {
 	}
 
 	public void addNewArticle() {
+		if (applicationController.getNewArticle().getFeatured()) {
+			articleDao.resetFeatured();
+		}
 		applicationController.getNewArticle().setArchived(false);
 		applicationController.getNewArticle().setDateAdded(new Date());
 		articleDao.persist(applicationController.getNewArticle());

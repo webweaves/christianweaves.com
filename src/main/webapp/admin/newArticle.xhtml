@@ -22,17 +22,19 @@
 				<p:growl id="messages" showDetail="true" />
 				
 				<h:form enctype="multipart/form-data">
-   					<p:panelGrid columns="3" styleClass="articleContent" style="margin-top:20px">
+   					<p:panelGrid columns="3" styleClass="articleContent" style="margin-top:40px;margin-left:15px">
 				        <h:outputText value="Icon"/>
 				        <h:graphicImage id="theicon" value="data:image/png;base64,#{articleController.newArticle.icon}" width="75"/>
 				        <p:fileUpload update="theicon" label="Replace current icon" fileUploadListener="#{articleController.handleFileUpload}" auto="true" />
 					</p:panelGrid>
 				</h:form>	
 
-
 				<h:form id="addform">
-			        <p:panelGrid columns="2" styleClass="articleContent">
+			        <p:panelGrid columns="2" styleClass="articleContent" style="margin:15px">
 			        
+	                    <h:outputText value="Featured"/>
+				    	<p:selectBooleanCheckbox value="#{articleController.newArticle.featured}"/>
+ 	        
 						<h:outputText value="Title"/>
 				        <h:inputText id="title" style="width:600px" value="#{articleController.newArticle.title}"/>
 

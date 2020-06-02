@@ -58,4 +58,12 @@ public class ArticleDao extends AbstractDao<Article> {
 		return list.size() == 0 ? null : list.get(0);
 	}
 
+	public void resetFeatured() {
+		Query query = getEm().createQuery("from Article where featured = :boolType");
+		query.setParameter("boolType", Boolean.TRUE);
+		List<Article> list = query.getResultList();
+		for (Article a: list) {
+			a.setFeatured(false);
+		}
+	}
 }
