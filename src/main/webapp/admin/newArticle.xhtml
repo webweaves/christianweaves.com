@@ -36,10 +36,14 @@
 				    	<p:selectBooleanCheckbox value="#{articleController.newArticle.featured}"/>
  	        
 						<h:outputText value="Title"/>
-				        <h:inputText id="title" style="width:600px" value="#{articleController.newArticle.title}"/>
+				        <h:inputText id="title" style="width:600px" 
+				        	required="true" requiredMessage="Supply a title"
+				        	value="#{articleController.newArticle.title}"/>
 
 				        <h:outputText value="Subtitle"/>
-				        <h:inputText id="subTitle" style="width:600px" value="#{articleController.newArticle.subtitle}"/>
+				        <h:inputText id="subTitle" style="width:600px" 
+				        	required="true" requiredMessage="Supply a subtitle"
+				        	value="#{articleController.newArticle.subtitle}"/>
 
 				        <h:outputText value="Body"/>
 				        
