@@ -45,6 +45,9 @@
 				        	required="true" requiredMessage="Supply a subtitle"
 				        	value="#{articleController.newArticle.subtitle}"/>
 
+						<h:outputText value="Tags"/>
+				        <p:chips value="#{articleController.tags}" />
+
 				        <h:outputText value="Body"/>
 				        
 				        <p:panelGrid columns="1" styleClass="articleContent">

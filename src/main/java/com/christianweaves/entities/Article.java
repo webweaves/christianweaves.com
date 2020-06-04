@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 
@@ -27,7 +26,6 @@ import javax.persistence.NamedQuery;
 	@NamedQuery(name = "allArticles", query = "SELECT a FROM Article a ORDER BY a.id DESC"),
 	@NamedQuery(name = "Article.findById", query = "SELECT a FROM Article a where a.id = :id")
 })
-
 public class Article implements Serializable {
 
 	/**
@@ -68,7 +66,7 @@ public class Article implements Serializable {
 	
 	@ManyToMany
 	@JoinTable(
-		name = "uses_tag", 
+		name = "tb_article_tags", 
 		joinColumns = @JoinColumn(name = "article_id"), 
 		inverseJoinColumns = @JoinColumn(name = "tag_id"))
 	private List<Tag> tags;

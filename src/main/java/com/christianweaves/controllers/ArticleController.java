@@ -4,6 +4,7 @@ import com.christianweaves.entities.Article;
 import com.christianweaves.entities.ArticleArchive;
 import com.christianweaves.entities.ArticleDao;
 import com.christianweaves.entities.GenericDao;
+import com.christianweaves.entities.Tag;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
@@ -24,6 +26,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.Transient;
 import javax.transaction.UserTransaction;
 
 import org.primefaces.event.FileUploadEvent;
@@ -45,6 +48,8 @@ public class ArticleController {
 	@Resource 
 	private UserTransaction userTransaction; 
 
+	private List<String> formTags;
+	
 	private Article newArticle = new Article();
 	
 	private List<String> filters = Arrays.asList(new String[] {"^<p>&nbsp;</p>", "\\r\\n\\r\\n"});
@@ -142,15 +147,33 @@ public class ArticleController {
 		if (applicationController.getNewArticle().getFeatured()) {
 			articleDao.resetFeatured();
 		}
+		
+		applicationController.getNewArticle().setTags(new ArrayList<>());
+		persistTags();
+		
 		applicationController.getNewArticle().setArchived(false);
 		applicationController.getNewArticle().setDateAdded(new Date());
 		articleDao.persist(applicationController.getNewArticle());
 		applicationController.setNewArticle(new Article());
+		
+		formTags = new ArrayList<>();
+		
         FacesMessage message = new FacesMessage("Succesful", "New article created!");
         FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 	
-    public void handleFileUpload(FileUploadEvent event) {
+    private void persistTags() {
+		for (String tag: formTags) {
+			Tag t = new Tag(tag);
+			genericDao.persist(t);
+			if (applicationController.getNewArticle().getTags() == null) {
+				applicationController.getNewArticle().setTags(new ArrayList<>());
+			}
+			applicationController.getNewArticle().getTags().add(t);
+		}
+	}
+
+	public void handleFileUpload(FileUploadEvent event) {
         UploadedFile uploadedFile = event.getFile();
         String fileName = uploadedFile.getFileName();
         byte[] contents = uploadedFile.getContents();
@@ -173,5 +196,13 @@ public class ArticleController {
 
 	public void setApplicationController(ApplicationController applicationController) {
 		this.applicationController = applicationController;
+	}
+
+	public List<String> getFormTags() {
+		return formTags;
+	}
+
+	public void setFormTags(List<String> formTags) {
+		this.formTags = formTags;
 	}
 }

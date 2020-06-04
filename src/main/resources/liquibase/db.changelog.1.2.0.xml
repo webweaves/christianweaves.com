@@ -14,4 +14,14 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet author="csw" id="create article to tag table">
+        <createTable tableName="tb_article_tags">
+            <column name="article_id" type="BIGINT(19)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="tag_id" type="BIGINT(19)">
+            	<constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
