@@ -5,10 +5,15 @@ import javax.persistence.Entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 
@@ -60,6 +65,13 @@ public class Article implements Serializable {
 	
 	@Column
 	private String icon;
+	
+	@ManyToMany
+	@JoinTable(
+		name = "uses_tag", 
+		joinColumns = @JoinColumn(name = "article_id"), 
+		inverseJoinColumns = @JoinColumn(name = "tag_id"))
+	private List<Tag> tags;
 	
 	public Boolean getArchived() {
 		return archived;
@@ -171,4 +183,13 @@ public class Article implements Serializable {
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
+
 }

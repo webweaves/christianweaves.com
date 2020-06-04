@@ -7,6 +7,8 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/christianweavesDS</jta-data-source>
 		<class>com.christianweaves.entities.Article</class>
+		<class>com.christianweaves.entities.ArticleArchive</class>
+		<class>com.christianweaves.entities.Tag</class>
 
 		<properties>
 			<!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" />  -->
