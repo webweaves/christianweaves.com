@@ -45,6 +45,8 @@ public class ArticleController {
 	@Inject 
 	private ApplicationController applicationController;
 	
+	@Inject TagController tagController;
+	
 	@Resource 
 	private UserTransaction userTransaction; 
 
@@ -148,8 +150,10 @@ public class ArticleController {
 			articleDao.resetFeatured();
 		}
 		
+		//reset the associated tags
 		applicationController.getNewArticle().setTags(new ArrayList<>());
-		persistTags();
+		List<Tag> tags = tagController.persistTags(formTags);
+		applicationController.getNewArticle().setTags(tags);
 		
 		applicationController.getNewArticle().setArchived(false);
 		applicationController.getNewArticle().setDateAdded(new Date());
@@ -162,17 +166,6 @@ public class ArticleController {
         FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 	
-    private void persistTags() {
-		for (String tag: formTags) {
-			Tag t = new Tag(tag);
-			genericDao.persist(t);
-			if (applicationController.getNewArticle().getTags() == null) {
-				applicationController.getNewArticle().setTags(new ArrayList<>());
-			}
-			applicationController.getNewArticle().getTags().add(t);
-		}
-	}
-
 	public void handleFileUpload(FileUploadEvent event) {
         UploadedFile uploadedFile = event.getFile();
         String fileName = uploadedFile.getFileName();

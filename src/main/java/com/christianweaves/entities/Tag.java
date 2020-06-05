@@ -1,5 +1,6 @@
 package com.christianweaves.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,12 +9,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_tags")
-public class Tag {
- 
+@NamedQueries({
+	@NamedQuery(name = "tag", query = "SELECT t FROM Tag t WHERE t.tag = :tag")
+})
+public class Tag implements Serializable {
+
+	private static final long serialVersionUID = 635222246890372552L;
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
