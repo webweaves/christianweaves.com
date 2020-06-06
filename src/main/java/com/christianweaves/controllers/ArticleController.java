@@ -6,13 +6,6 @@ import com.christianweaves.entities.ArticleDao;
 import com.christianweaves.entities.GenericDao;
 import com.christianweaves.entities.Tag;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
@@ -26,7 +19,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.Transient;
 import javax.transaction.UserTransaction;
 
 import org.primefaces.event.FileUploadEvent;
@@ -52,6 +44,7 @@ public class ArticleController {
 
 	private List<String> formTags;
 	
+	@SuppressWarnings("unused")
 	private Article newArticle = new Article();
 	
 	private List<String> filters = Arrays.asList(new String[] {"^<p>&nbsp;</p>", "\\r\\n\\r\\n"});

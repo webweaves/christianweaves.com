@@ -63,7 +63,7 @@ body {
 	border-bottom-right-radius: 20px;
 	box-shadow: 0 10px 10px -5px;
 	margin-top:10px;
-	margin-bottom:30px;	
+	margin-bottom:10px;	
 }
 
 .h2-padding {
@@ -131,7 +131,7 @@ h2,.h2 {
 }
 		
 .customNavbar {
-	#background-image: radial-gradient(ellipse at bottom, #73aad6, #003962, #000);
+	background-image: radial-gradient(ellipse at bottom, #73aad6, #003962, #000);
 	background-color:#20507E;	
 	box-shadow: 0 10px 10px -5px;
 	height:50px;
@@ -242,4 +242,23 @@ a {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
+}
+
+.tags-container {
+	margin-right: auto;
+    margin-left: auto;
+    padding:5px 15px 5px;
+    width:90%;
+}
+
+.tag {
+	background-color: #73aad6;
+	display: inline-block;
+	padding-left:20px;
+	padding-right:20px;
+	margin-right:10px;
+	float:left;
+	border-radius: 20px;
+	box-shadow: 0 10px 10px -5px;
+	margin-top:10px;
 }

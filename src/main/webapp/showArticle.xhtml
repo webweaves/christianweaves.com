@@ -56,6 +56,22 @@
 		    		</div>
 	    		</p:panelGrid>
     		</h:form>
+    		
+    		<h:form>
+	    		<p:panelGrid rendered="#{not empty articleController.showArticle(param['article']).tags}" >
+	    			<div class="tags-container">
+	    				<h:outputText value="Tags:" style="float:left;margin-top:10px;"/>
+						<ui:repeat id="tags" var="tag"
+							value="#{articleController.showArticle(param['article']).tags}">
+							<div class="tag" onclick="location.href='#{request.contextPath}/showTag.faces'">#{tag.tag}</div>
+						</ui:repeat>
+						<div style="clear:both;margin-bottom:20px;"/>
+					</div>
+				</p:panelGrid>
+				<p:panelGrid rendered="#{empty articleController.showArticle(param['article']).tags}" >
+	    			<div style="width:10px;height:10px;margin-bottom:10px;"/>
+				</p:panelGrid>
+    		</h:form>
      	</ui:define>
 	</ui:composition>
 </h:body>
