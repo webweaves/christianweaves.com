@@ -46,21 +46,12 @@
 				<div class="section-container article-content-box">
 					<h:outputText value="#{articleController.showFilteredArticle(param['article']).body}" escape="false"/>
 	    		</div>
-	    		
-	    		<p:panelGrid rendered="#{auth.loggedIn}" >
-	  		  		<div class="section-container" style="background-image:url('')">
-	    				<p:commandButton action="#{articleController.editArticle}" 
-	    					value="Edit Article »" class="btn btn-primary" >
-	    					<f:param name="articleId" value="#{param['article']}" />
-		   		 		</p:commandButton>
-		    		</div>
-	    		</p:panelGrid>
     		</h:form>
     		
     		<h:form>
 	    		<p:panelGrid rendered="#{not empty articleController.showArticle(param['article']).tags}" >
 	    			<div class="tags-container">
-	    				<h:outputText value="Tags:" style="float:left;margin-top:10px;"/>
+	    				<h:outputText value="Tags:" style="float:left;margin-top:12px;margin-right:10px;"/>
 						<ui:repeat id="tags" var="tag"
 							value="#{articleController.showArticle(param['article']).tags}">
 							<div class="tag" onclick="location.href='#{request.contextPath}/showTag.faces'">#{tag.tag}</div>
@@ -72,6 +63,18 @@
 	    			<div style="width:10px;height:10px;margin-bottom:10px;"/>
 				</p:panelGrid>
     		</h:form>
+
+    		<h:form>
+	    		<p:panelGrid rendered="#{auth.loggedIn}" >
+	  		  		<div class="section-container" style="background-image:url('')">
+	    				<p:commandButton action="#{articleController.editArticle}" 
+	    					value="Edit Article »" class="btn btn-primary" >
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		    		</div>
+	    		</p:panelGrid>
+    		</h:form>
+
      	</ui:define>
 	</ui:composition>
 </h:body>
