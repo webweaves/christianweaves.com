@@ -80,7 +80,11 @@ public class ArticleController {
 		return articleDao.getFeaturedArticle();
 	}
 
-	public String editArticle() {
+	/**
+	 * called from the edit button at the bottom of the showArticle page 
+	 * @return
+	 */
+	public String editArticleButtonClick() {
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String articleId = params.get("articleId");
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
@@ -89,12 +93,12 @@ public class ArticleController {
 		return "/admin/editArticle.xhtml?faces-redirect=true";
 	}
 	
-	public String save() {
-		Article article = saveCurrentArticle();
-		return "/showArticle.xhtml?article=" + article.getId() + "&faces-redirect=true";
-	}
-	
-	public Article saveCurrentArticle() {
+	/**
+	 * called when the user saves edits made on the edit article page
+	 * 
+	 * @return
+	 */
+	public String editArticle() {
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = (Article) sessionMapObj.get("editArticleObject");
 
@@ -106,6 +110,7 @@ public class ArticleController {
 		// do some formatting? //article.getBody().replaceAll("\\r|\\n", "");
 
 		Article dbArticle = getArticleById(article.getId());
+		dbArticle.setIcon(applicationController.getNewArticle().getIcon());
 		dbArticle.setTitle(article.getTitle());
 		dbArticle.setBody(article.getBody());
 		dbArticle.setFeatured(article.getFeatured());
@@ -116,7 +121,7 @@ public class ArticleController {
 
 		dbArticle = articleDao.merge(dbArticle);
 		
-		return dbArticle;
+		return "/showArticle.xhtml?article=" + article.getId() + "&faces-redirect=true";
 	}
 	
 	private void archiveExistingArticle(Article article) {

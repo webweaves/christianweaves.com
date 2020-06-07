@@ -17,14 +17,26 @@
 		</ui:define>
 		<ui:define name="content">
 			<b:container>
-				<h:form id="editform">
-			        
+			
+				<h:form enctype="multipart/form-data">
+   					<p:panelGrid columns="3" styleClass="articleContent" style="margin-top:40px;margin-left:15px">
+				        <h:outputText value="Icon"/>
+				        <h:graphicImage id="theicon" value="data:image/png;base64,#{editArticleObject.icon}" width="75"
+				        	rendered="#{applicationController.newArticle.icon == null}"
+				        />
+				        
+				        
+				        <h:graphicImage id="theicon2" value="data:image/png;base64,#{applicationController.newArticle.icon}" width="75"
+				        	rendered="#{applicationController.newArticle.icon != null}"
+				        />
+				        
+				        
+				        <p:fileUpload update="theicon,theicon2" label="Replace current icon" fileUploadListener="#{articleController.handleFileUpload}" auto="true" />
+					</p:panelGrid>
+				</h:form>	
+			
+				<h:form id="editform">			        
 			        <p:panelGrid columns="2">
-			        	<h:outputText value="Icon"/>
-				        <h:graphicImage value="data:image/jpg;base64,#{editArticleObject.icon}"
-										width="75"
-										style="margin-left: 10px; margin-top: 10px;" />
-			        
 			        	<h:outputText value="Title"/>
 			       		<h:inputText id="title" value="#{editArticleObject.title}" style="width:700px"/>
 			        
@@ -57,7 +69,7 @@
 			    			CKEDITOR.config.filebrowserUploadUrl = '#{request.contextPath}/fileUpload.xhtml';
 						</script>
 					
-					<p:commandButton type="submit" ajax="false" action="#{articleController.save}" value="Save it"/>
+					<p:commandButton type="submit" ajax="false" action="#{articleController.editArticle}" value="Save it"/>
                 </h:form>	
                 
                 <br/>

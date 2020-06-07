@@ -67,7 +67,7 @@
     		<h:form>
 	    		<p:panelGrid rendered="#{auth.loggedIn}" >
 	  		  		<div class="section-container" style="background-image:url('')">
-	    				<p:commandButton action="#{articleController.editArticle}" 
+	    				<p:commandButton action="#{articleController.editArticleButtonClick}" 
 	    					value="Edit Article »" class="btn btn-primary" >
 	    					<f:param name="articleId" value="#{param['article']}" />
 		   		 		</p:commandButton>
