@@ -24,4 +24,11 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet author="csw" id="change icon column type">
+    	<sql endDelimiter=";">
+		 	<![CDATA[
+				ALTER TABLE tb_articles MODIFY icon MEDIUMTEXT;
+		 	]]>
+		 </sql>
+	</changeSet>
 </databaseChangeLog>
