@@ -11,8 +11,10 @@
 	           	<h:form>
 	            	<h:commandLink class="navbarText" action="/index" value="Home" />
 	            	<h:commandLink class="navbarText" action="admin/newArticle" value="New Article" rendered="#{auth.loggedIn}"/>
-	            	<h:commandLink class="navbarText" action="login" value="Login" rendered="#{not auth.loggedIn}"/>
 	            	
+	            	<div style="float:right;">	
+	            		<h:commandLink class="navbarText" action="login" value="Login" rendered="#{not auth.loggedIn}"/>
+	            	</div>
 				</h:form>
 				</div>
 			</div>
