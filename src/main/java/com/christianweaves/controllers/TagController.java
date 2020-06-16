@@ -16,10 +16,6 @@ public class TagController {
 
 	@Inject
 	TagDao tagDao;
-
-	public void buttonClick() {
-		System.out.println("tag:" + tagDao.getTag("5415"));
-	}
 	
 	public Boolean tagExists(String tag) {
 		tagDao.getTag(tag);
@@ -28,6 +24,10 @@ public class TagController {
 
 	public List<Tag> persistTags(List<String> tags) {
 		List<Tag> returnTags = new ArrayList<>();
+		if (tags == null || tags.isEmpty()) {
+			return returnTags;
+		}
+		
 		for (String tag: tags) {
 			Tag t = tagDao.getTag(tag);
 			if (t == null) {
