@@ -28,7 +28,7 @@ public class Auth {
         originalURL = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI);
 
         if (originalURL == null) {
-            originalURL = externalContext.getRequestContextPath() + "/index.xhtml";
+            originalURL = externalContext.getRequestContextPath() + "/index.faces";
         } else {
             String originalQuery = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_QUERY_STRING);
 
