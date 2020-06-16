@@ -65,6 +65,9 @@ public class ArticleController {
 	 * ckeditor adds (ignore) all sorts of unwanted markup, remove all unwanted markup in this filter
 	 */
 	public Article showFilteredArticle(Long id) {
+		if (id == null) {
+			return new Article();
+		}
 		Article article = showArticle(id);
 		for (String filter: filters) {
 			article.setBody(article.getBody().replaceAll(filter, ""));	
@@ -143,7 +146,7 @@ public class ArticleController {
 		//return "/editArticle.xhtml?faces-redirect=true"; 
 	}
 
-	public void addNewArticle() {
+	public String addNewArticle() {
 		if (applicationController.getNewArticle().getFeatured()) {
 			articleDao.resetFeatured();
 		}
@@ -156,12 +159,15 @@ public class ArticleController {
 		applicationController.getNewArticle().setArchived(false);
 		applicationController.getNewArticle().setDateAdded(new Date());
 		articleDao.persist(applicationController.getNewArticle());
+		Long articleId = applicationController.getNewArticle().getId();
 		applicationController.setNewArticle(new Article());
 		
 		formTags = new ArrayList<>();
 		
         FacesMessage message = new FacesMessage("Succesful", "New article created!");
         FacesContext.getCurrentInstance().addMessage(null, message);
+        
+        return "/showArticle.xhtml?article=" + articleId + "&faces-redirect=true";
 	}
 	
 	public void handleFileUpload(FileUploadEvent event) {
