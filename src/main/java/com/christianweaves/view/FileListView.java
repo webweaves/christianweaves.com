@@ -16,26 +16,20 @@ import javax.inject.Named;
 public class FileListView {
  
 	ResourceBundle bundle = ResourceBundle.getBundle("Messages");
-	
 	private String fileLocation = bundle.getString("uploadResourceFolder");
-	
 	private Collection<File> files = new ArrayList<>();
 
 	public FileListView() {
 		File folder = new File(fileLocation);
-		
 		File[] listOfFiles = folder.listFiles();
-
 		if (listOfFiles == null) {
 			return;
 		}
-		
 		Arrays.sort(listOfFiles, new Comparator<File>() {
 		    public int compare(File f1, File f2) {
 		        return Long.compare(f1.lastModified(), f2.lastModified());
 		    }
 		});
-		
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
 				files.add(listOfFiles[i]);

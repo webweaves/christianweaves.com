@@ -51,7 +51,6 @@
 				        <h:outputText value="Body"/>
 				        
 				        <p:panelGrid columns="1" styleClass="articleContent">
-					        <h:commandLink action="uploadImage" target="_blank" ajax="false" value="Upload Image"/>
 					    	<h:inputTextarea id="editor1" name="editor1" value="#{articleController.newArticle.body}">
 		                    </h:inputTextarea>
 		                </p:panelGrid>
@@ -65,12 +64,16 @@
 					      width: 1000,
 					    });
    
-						CKEDITOR.config.filebrowserBrowseUrl = '#{request.contextPath}/listFiles.xhtml';
-		    			CKEDITOR.config.filebrowserUploadUrl = '#{request.contextPath}/fileUpload.xhtml';
+						CKEDITOR.config.filebrowserBrowseUrl = '#{request.contextPath}/listFiles.faces';
+		    			CKEDITOR.config.filebrowserUploadUrl = '#{request.contextPath}/fileUpload.faces';
 					</script>
 					
 					<h:commandButton style="margin:10px;" type="submit" action="#{articleController.addNewArticle}" value="Add new article"/>
-                </h:form>	                
+                </h:form>	
+                
+                <h:form>
+                	<h:commandButton action="uploadImage" target="_blank" ajax="false" value="Upload Image"/>
+                </h:form>                
     		</b:container>
     	</ui:define>
 	</ui:composition>

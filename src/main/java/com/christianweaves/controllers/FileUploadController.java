@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ResourceBundle;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -24,8 +25,11 @@ public class FileUploadController {
     private UploadedFile file;
     private UploadedFile icon;
  
-	private String uploadFileLocation = "/home/blog/uploads";
-    
+    ResourceBundle bundle = ResourceBundle.getBundle("Messages");
+	
+	//private String uploadFileLocation = "/home/blog/uploads";
+	private String fileLocation = bundle.getString("uploadResourceFolder");
+	
 	@Inject
 	private ArticleController articleController;
 	
@@ -39,7 +43,7 @@ public class FileUploadController {
      
     public void upload() {
         if(file != null) {
-    		File folder = new File(uploadFileLocation);
+    		File folder = new File(fileLocation);
     		if (!folder.exists()) {
     			folder.mkdirs();
     		}
@@ -51,7 +55,7 @@ public class FileUploadController {
 				byte[] buffer = new byte[initialStream.available()];
             	initialStream.read(buffer);
             	
-				File targetFile = new File(uploadFileLocation +"/"+ file.getFileName());
+				File targetFile = new File(fileLocation +"/"+ file.getFileName());
             	outStream = new FileOutputStream(targetFile);
             	outStream.write(buffer);
 			} catch (FileNotFoundException e) {

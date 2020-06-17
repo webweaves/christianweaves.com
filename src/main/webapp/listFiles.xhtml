@@ -18,7 +18,7 @@
     function returnFileUrl(thefile) {
 
         var funcNum = getUrlParam( 'CKEditorFuncNum' );
-        var fileUrl = 'http://localhost:8080/ChristianWeaves.com/getResource?file='+thefile;
+        var fileUrl = 'http://localhost:8080/getResource?file='+thefile;
         window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl, function() {
             // Get the reference to a dialog window.
             var dialog = this.getDialog();
