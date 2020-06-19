@@ -16,9 +16,33 @@
 	        td.hljs-ln-numbers {
 			    padding-right: 20px;
 			}
+			html {
+  				scroll-behavior: smooth;
+			}
+			#pagecontents, #pagecontents-inner {
+			    height: 100px;
+			    width: 300px;
+			}
+			.scrolling {
+			    position: fixed;
+			    top: 60px;
+			}
 			</style>
+
+			<script>
+				$(window).scroll(function(){
+					//$('#pagecontents-inner').toggleClass('scrolling', $(window).scrollTop() > $('#pagecontents').offset().top);
+					var scrollPosition, headerOffset, isScrolling;
+					scrollPosition = $(window).scrollTop();
+					headerOffset = $('#pagecontents').offset().top;
+					isScrolling = scrollPosition+60 > headerOffset;
+					$('#pagecontents-inner').toggleClass('scrolling', isScrolling);
+				});
+			</script>
 	    </ui:define>
-		<ui:define name="header">
+	    <ui:define name="header">
+    	</ui:define>
+	    <ui:define name="content">
 			<div class="header-spacer"></div>
 			<div class="bannerImageSlice">
 				<div class="container"/>
@@ -30,7 +54,7 @@
 				<div class="article-header-box">
 				  	<div style="width:100px; float:right;">
 				  		<h:graphicImage value="data:image/png;base64,#{articleController.showArticle(param['article']).icon}"
-										width="75"
+										width="75px"
 										style="margin-left: 10px; margin-top: 10px;" />
 				  	</div>
 					<h2 class="h2-padding" style="color:white">#{articleController.showArticle(param['article']).title}</h2>				
@@ -40,28 +64,48 @@
 					</p>
 				</div>
 			</div>
-    	</ui:define>
-		<ui:define name="content">
+		
 			<h:form>
 				<div class="section-container article-content-box">
-					<h:outputText value="#{articleController.showFilteredArticle(param['article']).body}" escape="false"/>
-	    		</div>
+					<div id="pagecontents" style="width:20%;float:left;">
+        				<div id="pagecontents-inner"> 
+							<div style="width:100%" class="section-container article-content-box">
+								<span class="bigtext">Contents</span>
+								<br/><a href="#section1">Section 1</a>
+								<br/><a href="#section2">Section 2</a>
+								<br/><a href="#section3">Section 3</a>
+								<br/><a href="#section4">Section 4</a>
+								<br/><a href="#section5">Section 5</a>
+								
+								<br/><br/>
+								
+								<p:panelGrid rendered="#{not empty articleController.showArticle(param['article']).tags}" >
+					    			<div class="tags-container">
+					    				<ui:repeat id="tags" var="tag"
+											value="#{articleController.showArticle(param['article']).tags}">
+											<div class="tag" onclick="location.href='#{request.contextPath}/showTag.faces'">#{tag.tag}</div>
+										</ui:repeat>
+										<div style="clear:both;margin-bottom:20px;"/>
+									</div>
+								</p:panelGrid>
+								<p:panelGrid rendered="#{empty articleController.showArticle(param['article']).tags}" >
+					    			<div style="width:10px;height:10px;margin-bottom:10px;"/>
+								</p:panelGrid>
+							</div>
+						</div>
+					</div>
+				
+					<div style="width:80%;float:right" class="section-container article-content-box">
+						<h:outputText value="#{articleController.showFilteredArticle(param['article']).body}" escape="false"/>
+		    		</div>
+		    		
+		    		<div style="clear:both"></div>
+	    		
+				</div>
     		</h:form>
     		
     		<h:form>
-	    		<p:panelGrid rendered="#{not empty articleController.showArticle(param['article']).tags}" >
-	    			<div class="tags-container">
-	    				<h:outputText value="Tags:" style="float:left;margin-top:12px;margin-right:10px;"/>
-						<ui:repeat id="tags" var="tag"
-							value="#{articleController.showArticle(param['article']).tags}">
-							<div class="tag" onclick="location.href='#{request.contextPath}/showTag.faces'">#{tag.tag}</div>
-						</ui:repeat>
-						<div style="clear:both;margin-bottom:20px;"/>
-					</div>
-				</p:panelGrid>
-				<p:panelGrid rendered="#{empty articleController.showArticle(param['article']).tags}" >
-	    			<div style="width:10px;height:10px;margin-bottom:10px;"/>
-				</p:panelGrid>
+
     		</h:form>
 
     		<h:form>
