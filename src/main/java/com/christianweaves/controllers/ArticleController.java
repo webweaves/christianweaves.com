@@ -4,6 +4,7 @@ import com.christianweaves.entities.Article;
 import com.christianweaves.entities.ArticleArchive;
 import com.christianweaves.entities.ArticleDao;
 import com.christianweaves.entities.GenericDao;
+import com.christianweaves.entities.PageContents;
 import com.christianweaves.entities.Tag;
 
 import java.util.ArrayList;
@@ -82,7 +83,27 @@ public class ArticleController {
 	public Article getFeaturedArticle() {
 		return articleDao.getFeaturedArticle();
 	}
+	
+	public void addStuff() {
+		Article a = articleDao.getArticleById(69L);
 
+		PageContents p1 = new PageContents();
+		PageContents p2 = new PageContents();
+
+		p1.setContentText("Some Text 1");
+		p2.setContentText("Some Text 2");
+		p1.setArticle(a);
+		p2.setArticle(a);
+		
+		genericDao.persist(p1);
+		genericDao.persist(p2);		
+	}
+	
+	public void addStuff2() {
+		Article a = articleDao.getArticleById(69L);
+		System.out.println("size="+a.getPageContents().size());
+	}
+		
 	/**
 	 * called from the edit button at the bottom of the showArticle page 
 	 * @return

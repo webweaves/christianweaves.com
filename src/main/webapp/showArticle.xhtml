@@ -79,8 +79,12 @@
 								
 								<br/><br/>
 								
+								<p:commandButton action="#{articleController.addStuff}" value="add stuff"></p:commandButton>
+								<p:commandButton action="#{articleController.addStuff2}" value="add stuff 2"></p:commandButton>
+								
 								<p:panelGrid rendered="#{not empty articleController.showArticle(param['article']).tags}" >
-					    			<div class="tags-container">
+					    			<span class="bigtext">Tags</span>
+									<div class="tags-container">
 					    				<ui:repeat id="tags" var="tag"
 											value="#{articleController.showArticle(param['article']).tags}">
 											<div class="tag" onclick="location.href='#{request.contextPath}/showTag.faces'">#{tag.tag}</div>
