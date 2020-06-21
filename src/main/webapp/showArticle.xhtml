@@ -65,22 +65,24 @@
 				</div>
 			</div>
 		
-			<h:form>
+			<h:form id="contentsForm">
 				<div class="section-container article-content-box">
 					<div id="pagecontents" style="width:20%;float:left;">
         				<div id="pagecontents-inner"> 
 							<div style="width:100%" class="section-container article-content-box">
 								<span class="bigtext">Contents</span>
-								<br/><a href="#section1">Section 1</a>
-								<br/><a href="#section2">Section 2</a>
-								<br/><a href="#section3">Section 3</a>
-								<br/><a href="#section4">Section 4</a>
-								<br/><a href="#section5">Section 5</a>
+								
+								<ui:repeat id="showArticles" var="pageContents"
+									value="#{articleController.showArticle(param['article']).pageContents}">
+									<div style="width:100%;"><a href="#section1"><h:outputText value="#{pageContents.contentText}"/></a></div>
+								</ui:repeat>
 								
 								<br/><br/>
 								
-								<p:commandButton action="#{articleController.addStuff}" value="add stuff"></p:commandButton>
+								<p:commandButton action="#{articleController.addStuff}" update="contentsForm" value="add stuff"></p:commandButton>
 								<p:commandButton action="#{articleController.addStuff2}" value="add stuff 2"></p:commandButton>
+								
+								<br/><br/>
 								
 								<p:panelGrid rendered="#{not empty articleController.showArticle(param['article']).tags}" >
 					    			<span class="bigtext">Tags</span>

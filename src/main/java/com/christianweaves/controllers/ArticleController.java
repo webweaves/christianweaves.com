@@ -45,6 +45,8 @@ public class ArticleController {
 
 	private List<String> formTags;
 	
+	private String addPageContentItem;
+	
 	@SuppressWarnings("unused")
 	private Article newArticle = new Article();
 	
@@ -199,6 +201,10 @@ public class ArticleController {
         FacesMessage msg = new FacesMessage("Succesful", fileName + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+	
+	public void addPageContentIndex() {
+		System.out.println("Adding "+ addPageContentItem);
+	}
     
 	public Article getNewArticle() {
 		return applicationController.getNewArticle();
@@ -222,5 +228,13 @@ public class ArticleController {
 
 	public void setFormTags(List<String> formTags) {
 		this.formTags = formTags;
+	}
+
+	public String getAddPageContentItem() {
+		return addPageContentItem;
+	}
+
+	public void setAddPageContentItem(String addPageContentItem) {
+		this.addPageContentItem = addPageContentItem;
 	}
 }

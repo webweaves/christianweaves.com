@@ -48,6 +48,13 @@
 						<h:outputText value="Tags"/>
 				        <p:chips value="#{articleController.formTags}" />
 
+						<h:outputText value="Page contents"/>					
+					    <p:accordionPanel activeIndex="null">
+					        <p:tab title="Click to show page contents index">
+    							<p:commandButton value="New index entry" type="button" onclick="PF('dlg').show();"/>
+					        </p:tab>
+					    </p:accordionPanel>
+
 				        <h:outputText value="Body"/>
 				        
 				        <p:panelGrid columns="1" styleClass="articleContent">
@@ -70,6 +77,14 @@
 					
 					<h:commandButton style="margin:10px;" type="submit" action="#{articleController.addNewArticle}" value="Add new article"/>
                 </h:form>	
+                
+                <h:form>
+      				<p:dialog header="Page Contents Index Add" widgetVar="dlg" modal="true">
+						<h:outputText value="New index entry:"/>
+					    <p:inputText value="#{articleController.addPageContentItem}"/>
+					    <p:commandButton action="#{articleController.addPageContentIndex}"/>
+      				</p:dialog>
+      			</h:form>
                 
                 <h:form>
                 	<h:commandButton action="uploadImage" target="_blank" ajax="false" value="Upload Image"/>
