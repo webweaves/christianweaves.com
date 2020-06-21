@@ -27,6 +27,12 @@ public class PageContents {
 	@Column
 	private String contentReference;
 
+	public PageContents() {}
+	
+	public PageContents(String addPageContentItem) {
+		contentText = addPageContentItem;
+	}
+
 	public String getContentReference() {
 		return contentReference;
 	}

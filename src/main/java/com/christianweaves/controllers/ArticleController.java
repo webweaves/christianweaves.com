@@ -45,8 +45,6 @@ public class ArticleController {
 
 	private List<String> formTags;
 	
-	private String addPageContentItem;
-	
 	@SuppressWarnings("unused")
 	private Article newArticle = new Article();
 	
@@ -181,11 +179,21 @@ public class ArticleController {
 		
 		applicationController.getNewArticle().setArchived(false);
 		applicationController.getNewArticle().setDateAdded(new Date());
+		
+		for (PageContents p : applicationController.getNewArticle().getPageContents()) {
+			p.setArticle(applicationController.getNewArticle());
+		//	genericDao.persist(p);
+		}
+		
 		articleDao.persist(applicationController.getNewArticle());
 		Long articleId = applicationController.getNewArticle().getId();
+
+		
 		applicationController.setNewArticle(new Article());
 		
 		formTags = new ArrayList<>();
+		
+		
 		
         FacesMessage message = new FacesMessage("Succesful", "New article created!");
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -201,10 +209,7 @@ public class ArticleController {
         FacesMessage msg = new FacesMessage("Succesful", fileName + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-	
-	public void addPageContentIndex() {
-		System.out.println("Adding "+ addPageContentItem);
-	}
+
     
 	public Article getNewArticle() {
 		return applicationController.getNewArticle();
@@ -228,13 +233,5 @@ public class ArticleController {
 
 	public void setFormTags(List<String> formTags) {
 		this.formTags = formTags;
-	}
-
-	public String getAddPageContentItem() {
-		return addPageContentItem;
-	}
-
-	public void setAddPageContentItem(String addPageContentItem) {
-		this.addPageContentItem = addPageContentItem;
 	}
 }
