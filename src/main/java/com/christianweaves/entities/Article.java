@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class Article implements Serializable {
 	private List<Tag> tags;
 	
 	@OneToMany(mappedBy="article", cascade=CascadeType.ALL)
-	private List<PageContents> pageContents;
+	private List<PageContents> pageContents = new ArrayList<>();
 	
 	public Boolean getArchived() {
 		return archived;

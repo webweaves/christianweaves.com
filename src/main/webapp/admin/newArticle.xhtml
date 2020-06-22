@@ -30,7 +30,7 @@
 				</h:form>	
 
 				<h:form id="addform">
-			        <p:panelGrid columns="2" styleClass="articleContent" style="margin:15px">
+			        <p:panelGrid columns="2" styleClass="articleContent" style="margin:15px;width:70%">
 			        
 	                    <h:outputText value="Featured"/>
 				    	<p:selectBooleanCheckbox value="#{articleController.newArticle.featured}"/>
@@ -49,7 +49,16 @@
 				        <p:chips value="#{articleController.formTags}" />
 
 						<h:outputText value="Page contents"/>					
-					    <p:commandButton value="New index entry" type="button" onclick="PF('dlg').show();"/>
+						
+						<p:panelGrid columns="1" styleClass="articleContent" style="margin:15px">
+			    		    <p:commandButton value="New index entry" type="button" onclick="PF('dlg').show();"/>
+				        	<p:dataTable value="#{applicationController.newArticle.pageContents}" id="pageContentsTable" var="pc"
+				        		draggableRows="true">>
+			            		<p:column>
+			            			<h:outputText value="#{pc.contentText}"/>
+			            		</p:column>
+			            	</p:dataTable>
+			            </p:panelGrid>
 					    
 				        <h:outputText value="Body"/>
 				        
@@ -79,7 +88,7 @@
       				<p:dialog header="Page Contents Index Add" widgetVar="dlg" modal="true">
 						<h:outputText value="New index entry:"/>
 					    <p:inputText value="#{pageContentsIndexController.addPageContentItem}" id="contentItem"/>
-					    <p:commandButton action="#{pageContentsIndexController.addPageContentIndex}" value="Add" update="contentItem"/>
+					    <p:commandButton action="#{pageContentsIndexController.addPageContentIndex}" value="Add" update="contentItem,:addform:pageContentsTable	"/>
       				</p:dialog>
       			</h:form>
                 

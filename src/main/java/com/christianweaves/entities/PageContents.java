@@ -56,4 +56,9 @@ public class PageContents {
 	public void setArticle(Article article) {
 		this.article = article;
 	}
+	
+	@Override
+	public String toString() {
+		return contentText;
+	}
 }
