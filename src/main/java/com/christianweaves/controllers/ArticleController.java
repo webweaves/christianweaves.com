@@ -126,7 +126,6 @@ public class ArticleController {
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = (Article) sessionMapObj.get("editArticleObject");
 
-		archiveExistingArticle(article);
 		if (article.getFeatured()) {
 			articleDao.resetFeatured();
 		}
@@ -134,6 +133,10 @@ public class ArticleController {
 		// do some formatting? //article.getBody().replaceAll("\\r|\\n", "");
 
 		Article dbArticle = getArticleById(article.getId());
+		archiveExistingArticle(dbArticle);
+		
+		article.orderPageContentItems();
+		
 		dbArticle.setIcon(applicationController.getNewArticle().getIcon());
 		dbArticle.setTitle(article.getTitle());
 		dbArticle.setBody(article.getBody());
@@ -142,6 +145,7 @@ public class ArticleController {
 		dbArticle.setArchived(article.getArchived());
 		dbArticle.setSubtitle(article.getSubtitle());
 		dbArticle.setDateAdded(article.getDateAdded());
+		dbArticle.setPageContents(article.getPageContents());
 
 		dbArticle = articleDao.merge(dbArticle);
 		
@@ -179,16 +183,17 @@ public class ArticleController {
 		
 		applicationController.getNewArticle().setArchived(false);
 		applicationController.getNewArticle().setDateAdded(new Date());
+
+		applicationController.getNewArticle().orderPageContentItems();
+		
 		
 		for (PageContents p : applicationController.getNewArticle().getPageContents()) {
 			p.setArticle(applicationController.getNewArticle());
-		//	genericDao.persist(p);
 		}
 		
 		articleDao.persist(applicationController.getNewArticle());
 		Long articleId = applicationController.getNewArticle().getId();
 
-		
 		applicationController.setNewArticle(new Article());
 		
 		formTags = new ArrayList<>();

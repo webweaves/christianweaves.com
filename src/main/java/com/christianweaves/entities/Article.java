@@ -22,6 +22,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 @Table(name = "tb_articles")
@@ -72,6 +73,7 @@ public class Article implements Serializable {
 	private List<Tag> tags;
 	
 	@OneToMany(mappedBy="article", cascade=CascadeType.ALL)
+	@OrderBy("theIndex")
 	private List<PageContents> pageContents = new ArrayList<>();
 	
 	public Boolean getArchived() {
@@ -201,4 +203,10 @@ public class Article implements Serializable {
 		this.pageContents = pageContents;
 	}
 
+	public void orderPageContentItems() {
+		int index = 0;
+		for (PageContents p: getPageContents()) {
+			p.setTheIndex(index++);
+		}	
+	}
 }

@@ -20,6 +20,9 @@ public class PageContents {
     @ManyToOne
     @JoinColumn(name="articleId")
     private Article article;
+
+    @Column
+    private Integer theIndex;
     
 	@Column
 	private String contentText;
@@ -60,5 +63,13 @@ public class PageContents {
 	@Override
 	public String toString() {
 		return contentText;
+	}
+
+	public Integer getTheIndex() {
+		return theIndex;
+	}
+
+	public void setTheIndex(Integer theIndex) {
+		this.theIndex = theIndex;
 	}
 }

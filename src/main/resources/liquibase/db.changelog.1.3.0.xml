@@ -19,4 +19,10 @@
         </createTable>
 	</changeSet>
 	
+	<changeSet author="csw" id="add index to store order">
+		<sql endDelimiter=";">
+			ALTER TABLE tb_pagecontents ADD COLUMN theindex INT;
+		</sql>
+    </changeSet>
+	
 </databaseChangeLog>

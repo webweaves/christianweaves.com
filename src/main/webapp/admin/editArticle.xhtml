@@ -32,12 +32,20 @@
 				</h:form>	
 			
 				<h:form id="editform">			        
-			        <p:panelGrid columns="2">
+			        <p:panelGrid columns="2" style="margin:15px;width:70%">
 			        	<h:outputText value="Title"/>
 			       		<h:inputText id="title" value="#{editArticleObject.title}" style="width:700px"/>
 			        
 			        	<h:outputText value="Subtitle"/>
 			        	<h:inputText id="subTitle" value="#{editArticleObject.subtitle}" style="width:700px"/>
+			    						
+			        	<h:outputText value="Page index"/>
+			        	<p:dataTable value="#{editArticleObject.pageContents}" id="pageContentsTable" var="pc"
+			        		draggableRows="true" style="width:400px">
+		            		<p:column>
+		            			<h:outputText value="#{pc.contentText}"/>
+		            		</p:column>
+		            	</p:dataTable>
 			        
 			        	<h:outputText value=""/>
 				    	<h:inputTextarea id="editor1" name="editor1" value="#{editArticleObject.body}">
