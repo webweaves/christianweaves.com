@@ -86,7 +86,7 @@ body {
 	background-image: url("#{resource['images/bgtrans.png']}");
 	border-radius: 40px;
 	padding:15px;
-	margin-top:30px;
+	margin-top:45px;
 	opacity: 1.6;	
 }
 
@@ -139,7 +139,7 @@ h2,.h2 {
 	background-image: radial-gradient(ellipse at bottom, #73aad6, #003962, #000);
 	background-color:#20507E;	
 	box-shadow: 0 10px 10px -5px;
-	height:50px;
+	height:70px;
 	width:100%;
 	border:0px;
 	position:fixed;
