@@ -120,29 +120,21 @@
 						<p:panelGrid rendered="#{empty articleController.showArticle(param['article']).tags}" >
 			    			<div style="width:10px;height:10px;margin-bottom:10px;"/>
 						</p:panelGrid>
-		
 		    		</h:panelGroup>
-		    		
 		    		<div style="clear:both"></div>
-	    		
-				</div>
+	    		</div>
     		</h:form>
     		
-    		<h:form>
-
-    		</h:form>
-
+    		<br/>
+    		
     		<h:form>
 	    		<p:panelGrid rendered="#{auth.loggedIn}" >
-	  		  		<div class="section-container" style="background-image:url('')">
-	    				<p:commandButton action="#{articleController.editArticleButtonClick}" 
-	    					value="Edit Article »" class="btn btn-primary" >
-	    					<f:param name="articleId" value="#{param['article']}" />
-		   		 		</p:commandButton>
-		    		</div>
+  		  			<p:commandButton action="#{articleController.editArticleButtonClick}" 
+    					value="Edit Article »" class="btn btn-primary" >
+    					<f:param name="articleId" value="#{param['article']}" />
+	   		 		</p:commandButton>
 	    		</p:panelGrid>
     		</h:form>
-
      	</ui:define>
 	</ui:composition>
 </h:body>
