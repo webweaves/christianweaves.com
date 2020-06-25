@@ -101,7 +101,7 @@ public class ArticleController {
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String articleId = params.get("articleId");
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		Article article = getArticleById(new Long(articleId));
+		Article article = showArticle(articleId);
 		sessionMapObj.put("editArticleObject", article);
 		return "/admin/editArticle.xhtml?faces-redirect=true";
 	}
