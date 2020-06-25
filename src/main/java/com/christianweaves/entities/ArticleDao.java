@@ -44,7 +44,6 @@ public class ArticleDao extends AbstractDao<Article> {
 	public List<Article> getLatestArticles() {
 		return getArticles(51);
 	}
-	
 
 	/**
 	 * return the featured article from the database, featured article indicated by featured attribute
@@ -64,6 +63,16 @@ public class ArticleDao extends AbstractDao<Article> {
 		List<Article> list = query.getResultList();
 		for (Article a: list) {
 			a.setFeatured(false);
+		}
+	}
+
+	public Article getArticleByTitle(String title) {
+		TypedQuery<Article> query = getEm().createNamedQuery("Article.findByTitle", Article.class);
+		query.setParameter("title", title);	
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
 		}
 	}
 }

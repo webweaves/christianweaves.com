@@ -63,13 +63,18 @@ public class ArticleController {
 	}
 	
 	public Article showArticle(String id) {
-		return null;
+		try {
+			new Long(id);
+			return showArticle(new Long(id));
+		} catch (java.lang.NumberFormatException e) {
+			return articleDao.getArticleByTitle(id);
+		}
 	}
 
 	/*
 	 * ckeditor adds (ignore) all sorts of unwanted markup, remove all unwanted markup in this filter
 	 */
-	public Article showFilteredArticle(Long id) {
+	public Article showFilteredArticle(String id) {
 		if (id == null) {
 			return new Article();
 		}
@@ -86,26 +91,6 @@ public class ArticleController {
 
 	public Article getFeaturedArticle() {
 		return articleDao.getFeaturedArticle();
-	}
-	
-	public void addStuff() {
-		Article a = articleDao.getArticleById(69L);
-
-		PageContents p1 = new PageContents();
-		PageContents p2 = new PageContents();
-
-		p1.setContentText("Some Text 1");
-		p2.setContentText("Some Text 2");
-		p1.setArticle(a);
-		p2.setArticle(a);
-		
-		genericDao.persist(p1);
-		genericDao.persist(p2);		
-	}
-	
-	public void addStuff2() {
-		Article a = articleDao.getArticleById(69L);
-		System.out.println("size="+a.getPageContents().size());
 	}
 		
 	/**
@@ -203,9 +188,7 @@ public class ArticleController {
 		
 		formTags = new ArrayList<>();
 		
-		
-		
-        FacesMessage message = new FacesMessage("Succesful", "New article created!");
+		FacesMessage message = new FacesMessage("Succesful", "New article created!");
         FacesContext.getCurrentInstance().addMessage(null, message);
         
         return "/showArticle.xhtml?article=" + articleId + "&faces-redirect=true";
