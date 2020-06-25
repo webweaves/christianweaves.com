@@ -35,6 +35,9 @@
 	                    <h:outputText value="Featured"/>
 				    	<p:selectBooleanCheckbox value="#{articleController.newArticle.featured}"/>
  	        
+	                    <h:outputText value="Hidden"/>
+				    	<p:selectBooleanCheckbox value="#{articleController.newArticle.hidden}"/>
+ 	        
 						<h:outputText value="Title"/>
 				        <h:inputText id="title" style="width:600px" 
 				        	required="true" requiredMessage="Supply a title"

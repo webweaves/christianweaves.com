@@ -59,6 +59,9 @@ public class Article implements Serializable {
 	private Boolean deleted = false;
 
 	@Column
+	private Boolean hidden = false;
+
+	@Column
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean archived = false;
 	
@@ -208,5 +211,13 @@ public class Article implements Serializable {
 		for (PageContents p: getPageContents()) {
 			p.setTheIndex(index++);
 		}	
+	}
+
+	public Boolean getHidden() {
+		return hidden;
+	}
+
+	public void setHidden(Boolean hidden) {
+		this.hidden = hidden;
 	}
 }

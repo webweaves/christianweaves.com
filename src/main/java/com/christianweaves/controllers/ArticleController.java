@@ -61,6 +61,10 @@ public class ArticleController {
 	public Article showArticle(Long id) {
 		return getArticleById(id);
 	}
+	
+	public Article showArticle(String id) {
+		return null;
+	}
 
 	/*
 	 * ckeditor adds (ignore) all sorts of unwanted markup, remove all unwanted markup in this filter
@@ -142,6 +146,7 @@ public class ArticleController {
 		dbArticle.setBody(article.getBody());
 		dbArticle.setFeatured(article.getFeatured());
 		dbArticle.setDeleted(article.getDeleted());
+		dbArticle.setHidden(article.getHidden());
 		dbArticle.setArchived(article.getArchived());
 		dbArticle.setSubtitle(article.getSubtitle());
 		dbArticle.setDateAdded(article.getDateAdded());

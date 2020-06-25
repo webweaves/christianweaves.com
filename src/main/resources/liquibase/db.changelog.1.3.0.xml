@@ -24,5 +24,12 @@
 			ALTER TABLE tb_pagecontents ADD COLUMN theindex INT;
 		</sql>
     </changeSet>
-	
+    
+	<changeSet author="csw" id="flag to hide articles from frontpage">
+		<sql endDelimiter=";">
+			ALTER TABLE tb_articles ADD COLUMN hidden TINYINT default 0;
+			UPDATE tb_articles SET hidden=0;
+		</sql>
+    </changeSet>
+    
 </databaseChangeLog>
