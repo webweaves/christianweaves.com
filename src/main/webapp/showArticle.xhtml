@@ -76,7 +76,7 @@
 									
 									<ui:repeat id="showArticles" var="pageContents"
 										value="#{articleController.showArticle(param['article']).pageContents}">
-										<div style="width:100%;"><a href="#section1"><h:outputText value="#{pageContents.contentText}"/></a></div>
+										<div style="width:100%;"><a href="##{pageContents.contentText}"><h:outputText value="#{pageContents.contentText}"/></a></div>
 									</ui:repeat>
 									
 									<p:panelGrid rendered="#{not empty articleController.showArticle(param['article']).tags}" >

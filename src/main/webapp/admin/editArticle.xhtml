@@ -38,14 +38,21 @@
 			        
 			        	<h:outputText value="Subtitle"/>
 			        	<h:inputText id="subTitle" value="#{editArticleObject.subtitle}" style="width:700px"/>
+			
+						<h:outputText value="Tags"/>
+				        <p:chips value="#{formTags}" />
 			    						
 			        	<h:outputText value="Page index"/>
-			        	<p:dataTable value="#{editArticleObject.pageContents}" id="pageContentsTable" var="pc"
-			        		draggableRows="true" style="width:400px">
-		            		<p:column>
-		            			<h:outputText value="#{pc.contentText}"/>
-		            		</p:column>
-		            	</p:dataTable>
+			        	
+			        	<p:panelGrid columns="1" styleClass="articleContent" style="margin:15px">
+			    			<p:commandButton value="New index entry" type="button" onclick="PF('dlg').show();"/>
+				        	<p:dataTable value="#{applicationController.newArticle.pageContents}" id="pageContentsTable" var="pc"
+				        		draggableRows="true" style="width:400px">
+			            		<p:column>
+			            			<h:outputText value="#{pc.contentText}"/>
+			            		</p:column>
+			            	</p:dataTable>
+						</p:panelGrid>
 			        
 			        	<h:outputText value=""/>
 				    	<h:inputTextarea id="editor1" name="editor1" value="#{editArticleObject.body}">
@@ -78,7 +85,15 @@
 					
 					<p:commandButton type="submit" ajax="false" action="#{articleController.editArticle}" value="Save it"/>
                 </h:form>	
-                
+                                
+                <h:form>
+      				<p:dialog header="Page Contents Index Add" widgetVar="dlg" modal="true">
+						<h:outputText value="New index entry:"/>
+					    <p:inputText value="#{pageContentsIndexController.addPageContentItem}" id="contentItem"/>
+					    <p:commandButton action="#{pageContentsIndexController.addPageContentIndex}" value="Add" update="contentItem,:editform:pageContentsTable"/>
+      				</p:dialog>
+      			</h:form>
+      			
                 <br/>
                 
                 <h:form enctype="multipart/form-data">

@@ -16,12 +16,6 @@ import com.christianweaves.entities.PageContents;
 @RequestScoped
 public class PageContentsIndexController {
 
-	@Inject
-	GenericDao genericDao;
-	
-	@Inject
-	ArticleDao articleDao;
-	
 	@Inject 
 	private ApplicationController applicationController;
 	
@@ -35,18 +29,8 @@ public class PageContentsIndexController {
 			getApplicationController().getNewArticle().setPageContents(new ArrayList<>());
 		}
 		
+		//add to the session scoped storage
 		getApplicationController().getNewArticle().getPageContents().add(p1);
-		addPageContentItem = "";
-	}
-	
-	public void saveaddPageContentIndex(Long articleId) {
-		System.out.println("Adding "+ addPageContentItem);
-		Article a = articleDao.getArticleById(69L);
-		PageContents p1 = new PageContents(addPageContentItem);
-		p1.setContentReference(addPageContentItem.toLowerCase().replaceAll(" ", ""));
-		p1.setArticle(a);
-		genericDao.persist(p1);
-		
 		addPageContentItem = "";
 	}
 	

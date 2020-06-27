@@ -79,6 +79,9 @@ public class ArticleController {
 			return new Article();
 		}
 		Article article = showArticle(id);
+		if (article == null) {
+			return new Article();
+		}
 		for (String filter: filters) {
 			article.setBody(article.getBody().replaceAll(filter, ""));	
 		}
@@ -102,7 +105,16 @@ public class ArticleController {
 		String articleId = params.get("articleId");
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = showArticle(articleId);
+		
+		formTags = new ArrayList<>();
+		for (Tag t: article.getTags()) {
+			formTags.add(t.getTag());
+		}
+		
+		applicationController.getNewArticle().setPageContents(article.getPageContents());
+		
 		sessionMapObj.put("editArticleObject", article);
+		sessionMapObj.put("formTags", formTags);
 		return "/admin/editArticle.xhtml?faces-redirect=true";
 	}
 	
@@ -114,7 +126,8 @@ public class ArticleController {
 	public String editArticle() {
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = (Article) sessionMapObj.get("editArticleObject");
-
+		List<String> frmTags = (List<String>) sessionMapObj.get("formTags");
+		
 		if (article.getFeatured()) {
 			articleDao.resetFeatured();
 		}
@@ -136,6 +149,14 @@ public class ArticleController {
 		dbArticle.setSubtitle(article.getSubtitle());
 		dbArticle.setDateAdded(article.getDateAdded());
 		dbArticle.setPageContents(article.getPageContents());
+
+		for (PageContents p : applicationController.getNewArticle().getPageContents()) {
+			p.setArticle(dbArticle);
+		}
+		dbArticle.setPageContents(applicationController.getNewArticle().getPageContents());
+		
+		List<Tag> tags = tagController.persistTags(frmTags);
+		dbArticle.setTags(tags);
 
 		dbArticle = articleDao.merge(dbArticle);
 		
