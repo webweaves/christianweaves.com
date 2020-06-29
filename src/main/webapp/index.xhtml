@@ -40,12 +40,11 @@
 			<div class="card active" style="valign:top">
 			</div>
 
-			<script>
+			<script type="text/javascript">
 			function handleMouseover(e) {
 			    document.querySelector(".active").classList.remove("active");
 			    e.target.closest(".card").classList.add("active");
 			}
-
 			document.querySelectorAll(".card").forEach(card => card.addEventListener("mouseover", handleMouseover) );
 			</script>
 		</ui:define>

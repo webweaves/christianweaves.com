@@ -18,6 +18,7 @@
     	<title>ScottFreeIT.com</title>
 		<meta name="author" content="ScottFree"></meta>
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/default.min.css"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 		<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
 		<script type="text/javascript" src="#{request.contextPath}/resources/ckeditor/ckeditor.js" />
     	<h:outputStylesheet name="stylesheet/bootfaces.css" />
@@ -33,17 +34,38 @@
 		<ui:insert name="head"></ui:insert>
 	</h:head>
     <h:body>
-		<ui:insert name="navigation">
-			<ui:include src="/templates/navigation.xhtml"></ui:include>
-		</ui:insert>
-		<ui:insert name="header">
-			<ui:include src="/templates/header.xhtml"></ui:include>
-		</ui:insert>
-		<ui:insert name="content">
-			<ui:include src="/templates/content.xhtml"></ui:include>
-		</ui:insert>
-       	<ui:insert name="footer">
-			<ui:include src="/templates/footer.xhtml"></ui:include>
-		</ui:insert>
+    	<div class="wrapper">
+ 			<div class="sidebar-wrapper">
+        		<ul class="sidebar-nav" >
+	                <li class="sidebar-brand">
+	                    <a href="#">
+	                        Demo
+	                    </a>
+	                </li>
+				</ul>
+        	</div>
+   			<div>
+	  			<div class="page-content-wrapper">
+					<ui:insert name="navigation">
+						<ui:include src="/templates/navigation.xhtml"></ui:include>
+					</ui:insert>
+					<ui:insert name="header">
+						<ui:include src="/templates/header.xhtml"></ui:include>
+					</ui:insert>
+					<ui:insert name="content">
+						<ui:include src="/templates/content.xhtml"></ui:include>
+					</ui:insert>
+			       	<ui:insert name="footer">
+						<ui:include src="/templates/footer.xhtml"></ui:include>
+					</ui:insert>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		$(".ham").click(function(){
+	        $(".wrapper").toggleClass("toggled"); 
+			$(this).toggleClass("active");
+		});
+	 	</script>
 	</h:body>
 </html>

@@ -7,20 +7,13 @@
 	<body>
 		<ui:composition>
 			<div class="customNavbar">
-				<div class="container" style="margin-top:15px">
-	           	<h:form>
-	            	<h:commandLink class="navbarText" action="/index" value="Home" />
-	            	<h:commandLink class="navbarText" action="admin/newArticle" value="New Article" rendered="#{auth.loggedIn}"/>
-	            	
-	            	<div style="float:right;">	
-	            		<h:commandLink class="navbarText" action="login" value="Login" rendered="#{not auth.loggedIn}"/>
-	            	</div>
-
-					<div style="clear:both;width:680px;height:30px;margin:auto;margin-top:8px;">
-						<h:graphicImage value="#{resource['images/sfit.png']}"/>
-					</div>
-				
-				</h:form>
+				<div class="ham">
+				  <span class="bar1"></span>
+				  <span class="bar2"></span>
+				  <span class="bar3"></span>
+				</div>
+				<div style="width:680px;height:30px;margin:auto;margin-top:8px;">
+					<h:graphicImage value="#{resource['images/sfit.png']}"/>
 				</div>
 			</div>
 		</ui:composition>
