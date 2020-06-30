@@ -1,0 +1,45 @@
+
+.ham {
+	width: 60px;
+	height: 55px;
+	padding: 5px;
+	padding-top: 7px;
+	cursor: pointer;
+	float: left;
+	/*   background: rgba(255,255,255,0.3); */
+}
+
+.ham span {
+	display: block;
+	background: #fff;
+	width: 26px;
+	height: 4px;
+	transition: margin 0.25s 0.25s, transform 0.25s;
+}
+
+.ham .bar1 {
+	margin-bottom: 4px;
+}
+
+.ham .bar3 {
+	margin-top: 4px;
+}
+
+.ham.active span {
+	transition: margin 0.25s, transform 0.25s 0.25s;
+}
+
+.ham.active .bar1 {
+	margin-top: 8px;
+	margin-bottom: -4px;
+	transform: rotate(45deg);
+}
+
+.ham.active .bar2 {
+	transform: rotate(45deg);
+}
+
+.ham.active .bar3 {
+	margin-top: -4px;
+	transform: rotate(135deg);
+}

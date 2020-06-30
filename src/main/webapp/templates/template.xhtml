@@ -23,6 +23,8 @@
 		<script type="text/javascript" src="#{request.contextPath}/resources/ckeditor/ckeditor.js" />
     	<h:outputStylesheet name="stylesheet/bootfaces.css" />
 		<h:outputStylesheet name="stylesheet/ui_theme.css" />
+		<h:outputStylesheet name="stylesheet/sidebar.css" />
+		<h:outputStylesheet name="stylesheet/hamberger.css" />
 		<h:outputStylesheet name="stylesheet/googlefont.css" />
 	
 		<link rel="apple-touch-icon" sizes="180x180" href="#{request.contextPath}/resources/images/fav/apple-touch-icon.png"/>
@@ -35,19 +37,13 @@
 	</h:head>
     <h:body>
     	<div class="wrapper">
- 			<div class="sidebar-wrapper">
-        		<ul class="sidebar-nav" >
-	                <li class="sidebar-brand">
-	                    <a href="#">
-	                        Demo
-	                    </a>
-	                </li>
-				</ul>
-        	</div>
+			<ui:insert name="sidebar">
+				<ui:include src="/templates/sidebar.xhtml"></ui:include>
+			</ui:insert>
    			<div>
 	  			<div class="page-content-wrapper">
 					<ui:insert name="navigation">
-						<ui:include src="/templates/navigation.xhtml"></ui:include>
+						<ui:include src="/templates/topbar.xhtml"></ui:include>
 					</ui:insert>
 					<ui:insert name="header">
 						<ui:include src="/templates/header.xhtml"></ui:include>
