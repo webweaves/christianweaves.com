@@ -113,34 +113,6 @@
 	}
 }
 
-.profile-pic {
-	position: absolute;
-	margin: 15px 0;
-	right: 15px;
-	cursor: pointer;
-}
-
-.content {
-	margin-bottom: 25px;
-	padding: 0 16px;
-}
-
-.page-title {
-	font-size: 18px;
-	margin: 0 auto;
-	margin-top: 20px;
-	margin-bottom: 25px;
-	text-align: center;
-}
-
-@media ( max-width :360px) {
-	.wrapper.toggled .profile-pic {
-		display: none;
-	}
-	.wrapper.toggled .page-title {
-		visibility: hidden;
-	}
-	.header {
-		height: 72px;
-	}
+.page-content-wrapper.blur {
+	-webkit-filter: blur(3px);
 }

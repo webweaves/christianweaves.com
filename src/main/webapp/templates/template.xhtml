@@ -23,6 +23,7 @@
 		<script type="text/javascript" src="#{request.contextPath}/resources/ckeditor/ckeditor.js" />
     	<h:outputStylesheet name="stylesheet/bootfaces.css" />
 		<h:outputStylesheet name="stylesheet/ui_theme.css" />
+		<h:outputStylesheet name="stylesheet/card.css" />
 		<h:outputStylesheet name="stylesheet/sidebar.css" />
 		<h:outputStylesheet name="stylesheet/hamberger.css" />
 		<h:outputStylesheet name="stylesheet/googlefont.css" />
@@ -41,10 +42,12 @@
 				<ui:include src="/templates/sidebar.xhtml"></ui:include>
 			</ui:insert>
    			<div>
-	  			<div class="page-content-wrapper">
+	  			<div style="width:100%;">
 					<ui:insert name="navigation">
 						<ui:include src="/templates/topbar.xhtml"></ui:include>
 					</ui:insert>
+				</div>
+				<div class="page-content-wrapper">
 					<ui:insert name="header">
 						<ui:include src="/templates/header.xhtml"></ui:include>
 					</ui:insert>
@@ -58,9 +61,11 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+		//apply hamberger animation, sidebar slide and main content blur
 		$(".ham").click(function(){
 	        $(".wrapper").toggleClass("toggled"); 
 			$(this).toggleClass("active");
+			$(".page-content-wrapper").toggleClass("blur"); 
 		});
 	 	</script>
 	</h:body>
