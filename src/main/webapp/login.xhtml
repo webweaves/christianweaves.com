@@ -20,22 +20,25 @@
 				}			
 			</style>
 	    </ui:define>
-		
+		<ui:define name="header">
+	    </ui:define>
+	    
 		<ui:define name="content">
-
-			<div class="container" style="margin-left:auto;margin-right:auto;margin-top:100px; margin-bottom:200px;">		
+			<div class="container" style="text-align:auto;margin-bottom:200px;">		
 				<h:form>
-					<p:panelGrid columns="2">
-					    <h:outputLabel for="username" value="Username" />
-					    <h:inputText id="username" value="#{auth.username}" required="true" />
-					    
-					    <h:outputLabel for="password" value="Password" />
-					    <h:inputSecret id="password" value="#{auth.password}" required="true" />
-					    
-					    <h:outputText value=""/>
-					    <h:commandButton style="float:right;" value="Login" action="#{auth.login}" />
-						<!-- <h:commandButton action="#{auth.logout}" value="Logout"></h:commandButton> -->
-					</p:panelGrid>
+					<div style="margin:auto;width:400px;margin-top:200px">
+						<p:panelGrid columns="2">
+						    <h:outputLabel for="username" value="Username" />
+						    <h:inputText id="username" value="#{auth.username}" required="true" />
+						    
+						    <h:outputLabel for="password" value="Password" />
+						    <h:inputSecret id="password" value="#{auth.password}" required="true" />
+						    
+						    <h:outputText value=""/>
+						    <h:commandButton style="float:right;" value="Login" action="#{auth.login}" />
+							<!-- <h:commandButton action="#{auth.logout}" value="Logout"></h:commandButton> -->
+						</p:panelGrid>
+					</div>
 				    <h:messages globalOnly="true" />
 				</h:form>
 			</div>
