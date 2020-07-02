@@ -83,6 +83,9 @@ public class ArticleController {
 			return new Article();
 		}
 		for (String filter: filters) {
+			if (article.getBody() == null) {
+				continue;
+			}
 			article.setBody(article.getBody().replaceAll(filter, ""));	
 		}
 		return article;
