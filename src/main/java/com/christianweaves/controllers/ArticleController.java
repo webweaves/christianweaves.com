@@ -49,6 +49,15 @@ public class ArticleController {
 	private Article newArticle = new Article();
 	
 	private List<String> filters = Arrays.asList(new String[] {"^<p>&nbsp;</p>", "\\r\\n\\r\\n"});
+	
+	/**
+	 * get all articles
+	 * @return
+	 */
+	public List<Article> getAllArticles() {
+		return articleDao.getAllArticles();
+	}
+	
 	/**
 	 * return the article based on id
 	 * 

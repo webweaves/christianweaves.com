@@ -19,6 +19,22 @@ public class ArticleDao extends AbstractDao<Article> {
 		super(Article.class);
 	}
 
+	/**
+	 * grab all the articles 
+	 * 
+	 * @return
+	 */
+	public List<Article> getAllArticles() {
+		TypedQuery<Article> query = getEm().createNamedQuery("allArticles", Article.class);
+		return query.getResultList();
+	}
+
+	/**
+	 * grab an article based on its id
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public Article getArticleById(Long id) {
 		TypedQuery<Article> query = getEm().createNamedQuery("Article.findById", Article.class);
 		query.setParameter("id", id);	
@@ -57,6 +73,9 @@ public class ArticleDao extends AbstractDao<Article> {
 		return list.size() == 0 ? null : list.get(0);
 	}
 
+	/**
+	 * grab all the featured articles and reset them to false (not featured)
+	 */
 	public void resetFeatured() {
 		Query query = getEm().createQuery("from Article where featured = :boolType");
 		query.setParameter("boolType", Boolean.TRUE);
@@ -66,6 +85,12 @@ public class ArticleDao extends AbstractDao<Article> {
 		}
 	}
 
+	/**
+	 * grab an article based on its title
+	 * 
+	 * @param title
+	 * @return
+	 */
 	public Article getArticleByTitle(String title) {
 		TypedQuery<Article> query = getEm().createNamedQuery("Article.findByTitle", Article.class);
 		query.setParameter("title", title);	
