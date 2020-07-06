@@ -25,7 +25,7 @@
 			}
 			.scrolling {
 			    position: fixed;
-			    top: 80px;
+			    top: 50px;
 			}
 			</style>
 
@@ -35,7 +35,7 @@
 					var scrollPosition, headerOffset, isScrolling;
 					scrollPosition = $(window).scrollTop();
 					headerOffset = $('#pagecontents').offset().top;
-					isScrolling = scrollPosition+70 > headerOffset;
+					isScrolling = scrollPosition+40 > headerOffset;
 					$('#pagecontents-inner').toggleClass('scrolling', isScrolling);
 				});
 			</script>
@@ -49,6 +49,33 @@
 			</div>
 
 			<div class="header-spacer" style="height:0px;"/>
+			
+    		<h:form>
+   			  	<div style="margin-left:590px;position:fixed;margin-top:-87px;margin-left:">
+		    		<p:panelGrid rendered="#{auth.loggedIn}" >
+	  		  			<p:commandButton action="#{articleController.editArticleButtonClick}" 
+	    					value="Edit Article »" class="btn btn-primary" update=":growlform:growl">
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		   		 		<p:commandButton action="#{articleController.deleteArticleButtonClick}" 
+	    					value="Delete Article »" class="btn btn-primary" update=":growlform:growl">
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		   		 		<p:commandButton action="#{articleController.hideArticleButtonClick}" 
+	    					value="Hide Article »" class="btn btn-primary" update=":growlform:growl">
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		   		 		<p:commandButton action="#{articleController.draftArticleButtonClick}" 
+	    					value="Make Article Draft »" class="btn btn-primary" update=":growlform:growl">
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		    	 		<p:commandButton action="#{articleController.archiveArticleButtonClick}" 
+	    					value="Archive Article »" class="btn btn-primary" update=":growlform:growl">
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		    		</p:panelGrid>
+	    	    </div>
+    		</h:form>
 			
 			<div class="article-header-box-container">
 				<div class="article-header-box">
@@ -125,17 +152,6 @@
 	    		</div>
     		</h:form>
     		
-    		<br/>
-    		
-    		<h:form>
-	    		<p:panelGrid rendered="#{auth.loggedIn}" >
-  		  			<p:commandButton action="#{articleController.editArticleButtonClick}" 
-    					value="Edit Article »" class="btn btn-primary" >
-    					<f:param name="articleId" value="#{param['article']}" />
-	   		 		</p:commandButton>
-	   		 		<br/>
-	    		</p:panelGrid>
-    		</h:form>
      	</ui:define>
 	</ui:composition>
 </h:body>

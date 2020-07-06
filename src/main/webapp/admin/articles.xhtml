@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1
+/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>ScottFreeIT</title>
+</head>
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="head">
+	        <link href="stylesheet/ui_theme.css" rel="stylesheet"/>
+	        <style>
+		        .ui-panelgrid>*>tr,
+				.ui-panelgrid .ui-panelgrid-cell {
+				    border: none;
+				}
+			</style>
+	    </ui:define>
+		<ui:define name="header">
+	    </ui:define>
+	    
+		<ui:define name="content">	
+
+			<br/><br/>
+
+			<h:form>
+			<p:dataTable value="#{articleController.allArticles}" var="article">
+			    <p:column headerText="Title" sortBy="#{article.title}">
+			        <a href="#{request.contextPath}/showArticle.faces?article=#{article.id}">#{article.title}</a>
+			    </p:column>
+			    <p:column headerText="Subtitle" sortBy="#{article.subtitle}">
+			        <h:outputText value="#{article.subtitle}" />
+			    </p:column>
+			    <p:column headerText="Date added" sortBy="#{article.dateAdded}">
+			        <h:outputText value="#{article.dateAdded}" />
+			    </p:column>
+			    <p:column headerText="Featured" sortBy="#{article.featured}">
+			        <h:selectBooleanCheckbox value="#{article.featured}" />
+			    </p:column>
+			    <p:column headerText="Deleted" sortBy="#{article.deleted}">
+			        <h:selectBooleanCheckbox value="#{article.deleted}" />
+			    </p:column>
+			    <p:column headerText="Hidden" sortBy="#{article.hidden}">
+			        <h:selectBooleanCheckbox value="#{article.hidden}" />
+			    </p:column>
+			    <p:column headerText="Archived" sortBy="#{article.archived}">
+			        <h:selectBooleanCheckbox value="#{article.archived}"/>
+			    </p:column>
+			    <p:column headerText="Draft" sortBy="#{article.draft}">
+			        <h:selectBooleanCheckbox value="#{article.draft}" />
+			    </p:column>
+			</p:dataTable>		
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -63,6 +63,9 @@ public class Article implements Serializable {
 	private Boolean hidden = false;
 
 	@Column
+	private Boolean draft = false;
+
+	@Column
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean archived = false;
 	
@@ -220,5 +223,13 @@ public class Article implements Serializable {
 
 	public void setHidden(Boolean hidden) {
 		this.hidden = hidden;
+	}
+
+	public Boolean getDraft() {
+		return draft;
+	}
+
+	public void setDraft(Boolean draft) {
+		this.draft = draft;
 	}
 }

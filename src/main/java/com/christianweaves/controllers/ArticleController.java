@@ -55,7 +55,7 @@ public class ArticleController {
 	 * @return
 	 */
 	public List<Article> getAllArticles() {
-		return articleDao.getAllArticles();
+		return applicationController.getAllArticles();
 	}
 	
 	/**
@@ -113,8 +113,7 @@ public class ArticleController {
 	 * @return
 	 */
 	public String editArticleButtonClick() {
-		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		String articleId = params.get("articleId");
+		String articleId = extractArticleId();
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Article article = showArticle(articleId);
 		
@@ -129,7 +128,75 @@ public class ArticleController {
 		sessionMapObj.put("formTags", formTags);
 		return "/admin/editArticle.xhtml?faces-redirect=true";
 	}
+
+	/**
+	 * extract the article from the parameter passed in
+	 * @return
+	 */
+	private String extractArticleId() {
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String articleId = params.get("articleId");
+		return articleId;
+	}
+
 	
+	/**
+	 * mark the incoming article as deleted
+	 */
+	public String deleteArticleButtonClick() {
+		String articleId = extractArticleId();
+		if (articleId == null) return "";
+		Article article = articleDao.getArticleById(Long.parseLong(articleId));
+		article.setDeleted(true);
+		articleDao.merge(article);
+		growlMessage("Article deleted");
+        return "";
+	}
+	
+	/**
+	 * mark the incoming article as deleted
+	 */
+	public String hideArticleButtonClick() {
+		String articleId = extractArticleId();
+		if (articleId == null) return "";
+		Article article = articleDao.getArticleById(Long.parseLong(articleId));
+		article.setHidden(true);
+		articleDao.merge(article);
+		growlMessage("Article hidden");
+        return "";
+	}
+	
+	/**
+	 * mark the incoming article as a draft
+	 */
+	public String draftArticleButtonClick() {
+		String articleId = extractArticleId();
+		if (articleId == null) return "";
+		Article article = articleDao.getArticleById(Long.parseLong(articleId));
+		article.setDraft(true);
+		articleDao.merge(article);
+		growlMessage("Article drafted");
+        return "";
+	}
+	
+	/**
+	 * mark the incoming article as a draft
+	 */
+	public String archiveArticleButtonClick() {
+		String articleId = extractArticleId();
+		if (articleId == null) return "";
+		Article article = articleDao.getArticleById(Long.parseLong(articleId));
+		article.setArchived(true);
+		articleDao.merge(article);
+		growlMessage("Article archived");
+        return "";
+	}
+
+	private void growlMessage(String msg) {
+		FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Successful",  msg));
+	}
+
 	/**
 	 * called when the user saves edits made on the edit article page
 	 * 
@@ -157,6 +224,7 @@ public class ArticleController {
 		dbArticle.setFeatured(article.getFeatured());
 		dbArticle.setDeleted(article.getDeleted());
 		dbArticle.setHidden(article.getHidden());
+		dbArticle.setDraft(article.getDraft());
 		dbArticle.setArchived(article.getArchived());
 		dbArticle.setSubtitle(article.getSubtitle());
 		dbArticle.setDateAdded(article.getDateAdded());
@@ -188,8 +256,7 @@ public class ArticleController {
 	}
 	
 	public void archiveArticle() { 
-		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap(); 
-		String articleId = params.get("articleId"); 
+		String articleId = extractArticleId(); 
 		archiveExistingArticle(getArticleById(new Long(articleId))); 
 		//return "/editArticle.xhtml?faces-redirect=true"; 
 	}

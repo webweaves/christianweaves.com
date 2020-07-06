@@ -17,12 +17,22 @@
 				                <a href="#{request.contextPath}/login.faces"><i class="fa fa-user sidebar-icon"></i> Login</a>
 		        	        </p:panelGrid>
 	                	</li>
-						<li>
-							<p:panelGrid rendered="#{auth.loggedIn}">
-								<a href="#{request.contextPath}/admin/newArticle.faces"><i class="fa fa-plus sidebar-icon"></i> New Article</a>
-				            </p:panelGrid>
-	            	    </li>	                
 					</ul>
+					
+					
+					<h:panelGrid rendered="#{auth.loggedIn}">
+		    			<ul class="sidebar-nav" >
+		                	<li class="sidebar-brand">
+								Admin
+							</li>				
+							<li>
+								<a href="#{request.contextPath}/admin/newArticle.faces"><i class="fa fa-plus sidebar-icon"></i> New Article</a>
+		            	    </li>
+							<li>
+								<a href="#{request.contextPath}/admin/articles.faces"><i class="fa fa-plus sidebar-icon"></i> List Articles</a>
+		            	    </li>
+		            	</ul>
+	            	</h:panelGrid>
 				</h:form>
         	</div>
         </ui:composition>

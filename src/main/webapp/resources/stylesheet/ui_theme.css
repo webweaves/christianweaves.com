@@ -99,7 +99,7 @@ body {
 	margin-left: auto;
 	padding: 5px 15px 5px;
 	width: 90%;
-	min-height: 200px;
+	min-height: 300px;
 }
 
 .container {
@@ -143,12 +143,11 @@ h2, .h2 {
 	width: 100%;
 	border: 0px;
 	position: fixed;
-	background-color: #20507E; box-shadow : 0 10px 10px -5px; height : 35px;
-	width : 100%; border : 0px; position : fixed;
+	background-color: #20507E; 
+	box-shadow : 0 10px 10px -5px; 
 	z-index: 1999;
 }
 
-}
 .footerBg {
 	background-color: #20507E;
 	width: 100%;

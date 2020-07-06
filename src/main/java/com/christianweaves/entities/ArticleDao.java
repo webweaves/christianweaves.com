@@ -47,10 +47,15 @@ public class ArticleDao extends AbstractDao<Article> {
 	
 	/**
 	 * retrieve the latest count of articles from the database
+	 * that are not hidden, delete or draft
 	 * @return
 	 */
 	public List<Article> getArticles(int count) {
-		Query query = getEm().createQuery("from Article article where article.archived = :boolType and article.hidden = :boolType and article.deleted = :boolType ORDER BY article.id DESC");
+		Query query = getEm().createQuery("from Article article where article.archived = :boolType "
+				+ "and article.hidden = :boolType "
+				+ "and article.deleted = :boolType "
+				+ "and article.draft = :boolType "
+				+ "ORDER BY article.id DESC");
 		query.setParameter("boolType", Boolean.FALSE);
 		query.setFirstResult(0);
 		query.setMaxResults(count);
