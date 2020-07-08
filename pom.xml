@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.christianweaves</groupId>
 	<artifactId>ChristianWeaves.com</artifactId>
-	<version>1.5.0</version>
+	<version>1.6.0</version>
 	<packaging>war</packaging>
 	<build>
 		<finalName>ChristianWeaves.com</finalName>
@@ -108,6 +108,11 @@
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>all-themes</artifactId>
 			<version>1.0.10</version>
+		</dependency>
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.17</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.liquibase</groupId>

@@ -16,6 +16,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.event.Event;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -38,7 +39,8 @@ public class ArticleController {
 	@Inject 
 	private ApplicationController applicationController;
 	
-	@Inject TagController tagController;
+	@Inject 
+	private TagController tagController;
 	
 	@Resource 
 	private UserTransaction userTransaction; 
@@ -49,6 +51,9 @@ public class ArticleController {
 	private Article newArticle = new Article();
 	
 	private List<String> filters = Arrays.asList(new String[] {"^<p>&nbsp;</p>", "\\r\\n\\r\\n"});
+	
+	@Inject
+    private Event<String> articlesEvent;
 	
 	/**
 	 * get all articles
@@ -240,6 +245,8 @@ public class ArticleController {
 
 		dbArticle = articleDao.merge(dbArticle);
 		
+		articlesEvent.fire("Reload list (edit article)");
+		
 		return "/showArticle.xhtml?article=" + article.getId() + "&faces-redirect=true";
 	}
 	
@@ -291,6 +298,8 @@ public class ArticleController {
 		FacesMessage message = new FacesMessage("Succesful", "New article created!");
         FacesContext.getCurrentInstance().addMessage(null, message);
         
+        articlesEvent.fire("Reload list (new article)");
+		
         return "/showArticle.xhtml?article=" + articleId + "&faces-redirect=true";
 	}
 	
