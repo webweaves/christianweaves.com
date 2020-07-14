@@ -37,7 +37,7 @@ public class ApplicationController implements Serializable {
 	}
 
 	public void resetArticles(@Observes String type) {
-		LOGGER.debug("Recieved event " + type);
+		LOGGER.debug("Observer event recieved: " + type);
 		if (articles != null) {
 			articles.clear();
 			articles = null;
