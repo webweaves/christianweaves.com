@@ -1,0 +1,114 @@
+<div id="v1.6.0"><strong>Release Notes - ScottFreeIT.com - Version v1.6.0</strong></div>
+
+<p>** Task<br />
+&nbsp; &nbsp; * [CWDOTCOM-115] - Add CDI event observer to clear session list of articles<br />
+&nbsp; &nbsp; * [CWDOTCOM-116] - Add log4j for logging</p>
+
+<div>&nbsp;</div>
+
+<div id="v1.5.0"><strong>Release Notes - ScottFreeIT.com - Version v1.5.0</strong></div>
+
+<p>** Bug<br />
+&nbsp; &nbsp; * [CWDOTCOM-111] - File upload has stopped working due to duplicate import of jquery</p>
+
+<p>** Task<br />
+&nbsp; &nbsp; * [CWDOTCOM-40] - Add ability to archive currently published articles<br />
+&nbsp; &nbsp; * [CWDOTCOM-88] - Add delete/draft/archive/hide article buttons to top of show article page<br />
+&nbsp; &nbsp; * [CWDOTCOM-112] - Need a page to list all articles in tabular form<br />
+&nbsp; &nbsp; * [CWDOTCOM-113] - Add a draft flag so articles are not published<br />
+&nbsp; &nbsp; * [CWDOTCOM-114] - Add growl markup for front end messaging</p>
+
+<p>&nbsp;</p>
+
+<div id="v1.4.0"><p><strong>Release Notes - ScottFreeIT.com - Version v1.4.0</strong></p></div>
+<p>** Task<br />
+&nbsp; &nbsp; * [CWDOTCOM-90] - Look into SSL&nbsp;<br />
+&nbsp; &nbsp; * [CWDOTCOM-107] - Add hamberger and side menu<br />
+&nbsp; &nbsp; * [CWDOTCOM-108] - Add jquery for div manipulation<br />
+&nbsp; &nbsp; * [CWDOTCOM-110] - Split out css and organise properly<br />
+&nbsp;</p>
+
+<div id="v1.3.1"><p><strong>Release Notes - ScottFreeIT.com - Version v1.3.1</strong></p></div>
+<p>** Task<br />
+&nbsp; &nbsp; * [CWDOTCOM-97] - Add ability to edit tags when editing an article<br />
+&nbsp; &nbsp; * [CWDOTCOM-105] - Ability to edit page index contents<br /></p>
+
+<div id="v1.3.0"><p><strong>Release Notes - ScottFreeIT.com - Version v1.3.0</strong></p></div>
+
+<p>** Task<br />
+&nbsp; &nbsp; * [CWDOTCOM-40] - Add ability to archive currently published articles<br />
+&nbsp; &nbsp; * [CWDOTCOM-82] - Add ability to deploy application live using maven<br />
+&nbsp; &nbsp; * [CWDOTCOM-87] - Add ScottFree logo to banner of front page<br />
+&nbsp; &nbsp; * [CWDOTCOM-89] - Add favicon to site<br />
+&nbsp; &nbsp; * [CWDOTCOM-92] - Add Google analytics<br />
+&nbsp; &nbsp; * [CWDOTCOM-96] - Add version number to the frontpage<br />
+&nbsp; &nbsp; * [CWDOTCOM-97] - Add ability to edit tags when editing an article<br />
+&nbsp; &nbsp; * [CWDOTCOM-98] - Add ability to add a sections column with smooth scrolling navigation<br />
+&nbsp; &nbsp; * [CWDOTCOM-99] - App falls over when database connection drops<br />
+&nbsp; &nbsp; * [CWDOTCOM-100] - Add index to article page index content items as order is being lost when editing<br />
+&nbsp; &nbsp; * [CWDOTCOM-101] - Remove contents index panel and tags to bottom if no indexes are defined &nbsp;<br />
+&nbsp; &nbsp; * [CWDOTCOM-102] - Make the version number hyperlinked to a report of version history<br />
+&nbsp; &nbsp; * [CWDOTCOM-103] - Add a flag to an article to stop the article being displayed on the frontpage<br />
+&nbsp; &nbsp; * [CWDOTCOM-104] - Add string parameter to showArticle.faces page to display a page by string</p>
+
+<p>&nbsp;</p>
+
+<div id="v1.2.0"><p><strong>Release Notes - ScottFreeIT.com - Version v1.2.0</strong></p></div>
+<p>** Bug<br />
+&nbsp; &nbsp; * [CWDOTCOM-83] - Icon database column not big enough&nbsp;<br />
+&nbsp; &nbsp; * [CWDOTCOM-84] - After editing an icon for article A and moving onto article B the icon for artcile A still appears<br />
+&nbsp; &nbsp; * [CWDOTCOM-85] - Change footer from scot to scott<br />
+&nbsp; &nbsp; * [CWDOTCOM-91] - Trying to select an image when adding content doesnt work<br />
+&nbsp; &nbsp; * [CWDOTCOM-94] - After logging in an exception is thrown and forbidden error message displayed<br />
+&nbsp; &nbsp; * [CWDOTCOM-95] - Move image list xhtml page to secure area and also remove hardcoded url</p>
+
+<p><br />
+** Task<br />
+&nbsp; &nbsp; * [CWDOTCOM-71] - Add tags section to articles<br />
+&nbsp; &nbsp; * [CWDOTCOM-73] - Revamp all banner to improve theme throughout<br />
+&nbsp; &nbsp; * [CWDOTCOM-74] - Add default deleted value when uploading new article<br />
+&nbsp; &nbsp; * [CWDOTCOM-76] - Can add articles without title and subtitle this shouldnt be possible<br />
+&nbsp; &nbsp; * [CWDOTCOM-77] - Add ability to edit icon when editing a document<br />
+&nbsp; &nbsp; * [CWDOTCOM-78] - When setting the featured flag for an article check current featured article<br />
+&nbsp; &nbsp; * [CWDOTCOM-79] - Configure DNS settings for scottfreeit.com<br />
+&nbsp; &nbsp; * [CWDOTCOM-80] - Create script to update DNS if IP changes<br />
+&nbsp; &nbsp; * [CWDOTCOM-81] - Create a tag controller to coordinate tag functionality<br />
+&nbsp; &nbsp; * [CWDOTCOM-86] - Move login link over to right hand side<br />
+&nbsp; &nbsp; * [CWDOTCOM-93] - After creating a new article forward browser on to the new article</p>
+
+<p>&nbsp;</p>
+
+<div id="v1.1.0"><p><strong>Release Notes -ScottFreeIT.com - Version v1.1.0</strong></p></div>
+<p>** Task<br />
+&nbsp; &nbsp; * [CWDOTCOM-17] - Implement search functionality<br />
+&nbsp; &nbsp; * [CWDOTCOM-18] - Admin section<br />
+&nbsp; &nbsp; * [CWDOTCOM-19] - Add article functionality<br />
+&nbsp; &nbsp; * [CWDOTCOM-21] - Delete article functionality<br />
+&nbsp; &nbsp; * [CWDOTCOM-45] - Add authentication and security constraints<br />
+&nbsp; &nbsp; * [CWDOTCOM-48] - Add basic login functionality to enable admin features<br />
+&nbsp; &nbsp; * [CWDOTCOM-55] - Tests tests tests<br />
+&nbsp; &nbsp; * [CWDOTCOM-63] - Add ability to upload article icon when creating an article<br />
+&nbsp; &nbsp; * [CWDOTCOM-64] - Fix application context name<br />
+&nbsp; &nbsp; * [CWDOTCOM-65] - If no article icon then return a default icon<br />
+&nbsp; &nbsp; * [CWDOTCOM-66] - Reference all images, css and resources correctly to eliminate relative path problems<br />
+&nbsp; &nbsp; * [CWDOTCOM-67] - Fix top bar navigation to include login link and admin links<br />
+&nbsp; &nbsp; * [CWDOTCOM-68] - Increase number of articles retrieved for frontpage<br />
+&nbsp; &nbsp; * [CWDOTCOM-69] - Order articles on the frontpage by id and in descending order<br />
+&nbsp; &nbsp; * [CWDOTCOM-75] - Uploading images to new articles loses the text</p>
+
+<div id="v1.0.0"><p><strong>Release Notes - ScottFreeIT.com - Version v1.0.0</strong></p></div>
+<p>** Task<br />
+&nbsp; &nbsp; * [CWDOTCOM-5] - Add method to extract featured article from the database<br />
+&nbsp; &nbsp; * [CWDOTCOM-6] - Install mysql database and create application database<br />
+&nbsp; &nbsp; * [CWDOTCOM-41] - Replace default forge error page with custom page<br />
+&nbsp; &nbsp; * [CWDOTCOM-43] - Configure site navigation bars at top of site<br />
+&nbsp; &nbsp; * [CWDOTCOM-44] - Ability to add a new article<br />
+&nbsp; &nbsp; * [CWDOTCOM-46] - Source graphics for website<br />
+&nbsp; &nbsp; * [CWDOTCOM-47] - Apply some styling to the site to add a professional look<br />
+&nbsp; &nbsp; * [CWDOTCOM-50] - Register domain name!!<br />
+&nbsp; &nbsp; * [CWDOTCOM-51] - Create some random blobs<br />
+&nbsp; &nbsp; * [CWDOTCOM-52] - Move all admin issues out of sprint ready for deployment<br />
+&nbsp; &nbsp; * [CWDOTCOM-53] - Create a favicon for website<br />
+&nbsp; &nbsp; * [CWDOTCOM-54] - Sort out footer layout<br />
+&nbsp; &nbsp; * [CWDOTCOM-61] - Create script to update dns ip resolution for domain name</p>
+
