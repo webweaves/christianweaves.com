@@ -13,6 +13,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "tb_tags")
 @NamedQueries({
@@ -29,6 +32,7 @@ public class Tag implements Serializable {
     @Column
     private String tag;
     
+    @JsonBackReference
     @ManyToMany (mappedBy = "tags")
 	private List<Article> articles;
 

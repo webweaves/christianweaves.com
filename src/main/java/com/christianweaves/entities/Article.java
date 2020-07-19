@@ -18,6 +18,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.NamedQuery;
@@ -72,6 +75,7 @@ public class Article implements Serializable {
 	@Column
 	private String icon;
 	
+	@JsonManagedReference
 	@ManyToMany
 	@JoinTable(
 		name = "tb_article_tags", 
