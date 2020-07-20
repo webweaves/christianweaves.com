@@ -1,5 +1,7 @@
 package com.christianweaves.rest;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -29,16 +31,23 @@ public class Articles {
 	@Path("/getFeatured")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response featuredArticles() {
-	    
-	    ObjectMapper mapper = new ObjectMapper();
-		try {
-			Article article = dao.getFeaturedArticle();
-			String json = mapper.writeValueAsString(article);
-			return Response.status(Response.Status.OK).entity(article).build();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
+	    Article article = dao.getFeaturedArticle();
+		return Response.status(Response.Status.OK)
+			.type(MediaType.APPLICATION_JSON)
+			.entity(article)
+			.build();
 	}
 
+	@GET
+	@Path("/getArticles")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response allArticles() {
+	    List<Article> articles = dao.getArticles(10000);
+		return Response.status(Response.Status.OK)
+			.type(MediaType.APPLICATION_JSON)
+			.entity(articles)
+			.build();
+	}
+
+	
 }
