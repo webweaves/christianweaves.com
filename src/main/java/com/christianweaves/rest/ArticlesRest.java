@@ -15,7 +15,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("/articles")
-public class Articles {
+public class ArticlesRest {
 
 	@Inject
 	private ArticleDao dao;
@@ -39,7 +39,7 @@ public class Articles {
 	}
 
 	@GET
-	@Path("/getArticles")
+	@Path("/getAllArticles")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response allArticles() {
 	    List<Article> articles = dao.getArticles(10000);
