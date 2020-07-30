@@ -21,7 +21,8 @@
 			}
 			#pagecontents, #pagecontents-inner {
 			    height: 100px;
-			    width: 250px;
+			    width: 95%;
+			    min-width: 125px;
 			}
 			.scrolling {
 			    position: fixed;
@@ -100,7 +101,7 @@
 	        				<div id="pagecontents-inner"> 
 								<div style="width:100%" class="section-container article-content-box">
 									<span class="bigtext">Contents</span>
-									
+										
 									<ui:repeat id="showArticles" var="pageContents"
 										value="#{articleController.showArticle(param['article']).pageContents}">
 										<div style="width:100%;"><a href="##{pageContents.contentText}"><h:outputText value="#{pageContents.contentText}"/></a></div>
@@ -125,7 +126,7 @@
 						</div>
 					</h:panelGroup>
 				
-					<h:panelGroup layout="block" style="width:80%;float:right" class="section-container article-content-box"
+					<h:panelGroup layout="block" style="width:80%;float:right;min-width:510px;" class="section-container article-content-box"
 						rendered="#{not empty articleController.showArticle(param['article']).pageContents}">
 						<h:outputText value="#{articleController.showFilteredArticle(param['article']).body}" escape="false"/>
 		    		</h:panelGroup>
