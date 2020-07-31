@@ -127,6 +127,7 @@ public class ArticleController {
 			formTags.add(t.getTag());
 		}
 		
+		applicationController.getNewArticle().setIcon(article.getIcon());
 		applicationController.getNewArticle().setPageContents(article.getPageContents());
 		
 		sessionMapObj.put("editArticleObject", article);
