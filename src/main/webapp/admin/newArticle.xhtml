@@ -54,17 +54,21 @@
 						<h:outputText value="Tags"/>
 				        <p:chips value="#{articleController.formTags}" />
 
-						<h:outputText value="Page contents"/>					
+						<h:outputText value="Page contents"/>
 						
-						<p:panelGrid columns="1" styleClass="articleContent" style="margin:15px">
-			    		    <p:commandButton value="New index entry" type="button" onclick="PF('dlg').show();"/>
-				        	<p:dataTable value="#{applicationController.newArticle.pageContents}" id="pageContentsTable" var="pc"
-				        		draggableRows="true">
-			            		<p:column>
-			            			<h:outputText value="#{pc.contentText}"/>
-			            		</p:column>
-			            	</p:dataTable>
-			            </p:panelGrid>
+						<p:panel id="toggleable" header="Page contents" 
+							toggleable="true" collapsed="true" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+							<p:panelGrid columns="1" styleClass="articleContent" style="margin:15px">
+	 			    		    <p:commandButton value="New index entry" type="button" onclick="PF('dlg').show();"/>
+					        	<p:dataTable
+					        		value="#{applicationController.newArticle.pageContents}" id="pageContentsTable" var="pc"
+					        		draggableRows="true">
+				            		<p:column>
+				            			<h:outputText value="#{pc.contentText}"/>
+				            		</p:column>
+				            	</p:dataTable>
+				            </p:panelGrid>
+					    </p:panel>
 					    
 				        <h:outputText value="Body"/>
 				        
@@ -98,8 +102,8 @@
       				</p:dialog>
       			</h:form>
                 
-                <h:form>
-                	<h:commandButton action="uploadImage" target="_blank" ajax="false" value="Upload Image"/>
+                <h:form target="_blank">
+                	<h:commandButton action="uploadImage" ajax="false" value="Upload Image"/>
                 </h:form>                
     		</b:container>
     	</ui:define>
