@@ -57,10 +57,10 @@
 						<h:outputText value="Page contents"/>
 						
 						<p:panel id="toggleable" header="Page contents" 
-							toggleable="true" collapsed="true" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+							toggleable="true" collapsed="true" closable="false" 
+							toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
 							<p:panelGrid columns="1" styleClass="articleContent" style="margin:15px">
-	 			    		    <p:commandButton value="New index entry" type="button" onclick="PF('dlg').show();"/>
-					        	<p:dataTable
+	 			    		    <p:dataTable
 					        		value="#{applicationController.newArticle.pageContents}" id="pageContentsTable" var="pc"
 					        		draggableRows="true">
 				            		<p:column>
@@ -68,6 +68,9 @@
 				            		</p:column>
 				            	</p:dataTable>
 				            </p:panelGrid>
+				            <f:facet name="actions">
+					            <p:commandButton value="Add Entry" type="button" onclick="PF('dlg').show();"/>
+					        </f:facet>
 					    </p:panel>
 					    
 				        <h:outputText value="Body"/>
