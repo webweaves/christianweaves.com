@@ -1,7 +1,7 @@
 body {
 	margin: 0;
 	font-family: 'open sans', helvetica, arial, sans-serif;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 400;
 	color: #000;
 	text-rendering: optimizeLegibility;
@@ -29,6 +29,10 @@ body {
 	height: 62px;
 	width: 100%;
 	box-shadow: 0 10px 10px -10px;
+}
+
+code.language-java.hljs {
+    font-size: 16px;
 }
 
 .article-header-box-container {
