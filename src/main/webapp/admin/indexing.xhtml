@@ -22,6 +22,7 @@
 				<p:growl id="messages" showDetail="true" />
 				
 				<h:form>
+					Query: <h:inputText value="#{indexer.query}"></h:inputText>
 					<p:commandButton action="#{indexer.createIndex}" value="Create index"></p:commandButton>
 				</h:form>
 				
