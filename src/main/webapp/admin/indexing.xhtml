@@ -23,7 +23,24 @@
 				
 				<h:form>
 					Query: <h:inputText value="#{indexer.query}"></h:inputText>
-					<p:commandButton action="#{indexer.createIndex}" value="Create index"></p:commandButton>
+					<p:commandButton action="#{indexer.createIndex}" value="Search" update="results"></p:commandButton>
+				
+					<br/> 
+					
+					<p:dataTable id="results" value="#{indexer.results}" var="article">
+		 				<p:column headerText="Title" sortBy="#{article.title}">
+					        <a href="#{request.contextPath}/showArticle.faces?article=#{article.id}">#{article.title}</a>
+					    </p:column>
+					    <p:column headerText="Subtitle" sortBy="#{article.subtitle}">
+					        <h:outputText value="#{article.subtitle}" />
+					    </p:column>
+					    <p:column headerText="Date added" sortBy="#{article.dateAdded}">
+					        <h:outputText value="#{article.dateAdded}" />
+					    </p:column>
+					</p:dataTable>
+					
+					<br/><br/><br/><br/><br/>	
+				
 				</h:form>
 				
     		</b:container>

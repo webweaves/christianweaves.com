@@ -11,6 +11,7 @@ import javax.inject.Named;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -41,11 +42,13 @@ public class Indexer {
 	
 	private String query;
 	
+	private List<Article> results;
+	
 	public void createIndex() {
 		Directory dir=new RAMDirectory();
 		IndexWriter writer = null;
 		try {
-			writer = new IndexWriter(dir, new IndexWriterConfig(new EnglishAnalyzer()));
+			writer = new IndexWriter(dir, new IndexWriterConfig(new StandardAnalyzer()));
 			for (Article article: dao.getAllArticles()) {
 			    Document doc = new Document();
 			    String id = article.getId().toString();
@@ -62,9 +65,7 @@ public class Indexer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		List<String> r = new ArrayList<>();
-		
 		int n = 5;
 		
 		try {
@@ -72,9 +73,6 @@ public class Indexer {
 		    Term term = new Term("description", getQuery());
 		    //create the term query object
 		    Query query = new FuzzyQuery(term, 2);
-		      
-		      
-		    QueryParser qp = new QueryParser("description", new EnglishAnalyzer());
 		    IndexSearcher indexSearcher = new IndexSearcher(DirectoryReader.open(dir));
 		    TopDocs topDocs = indexSearcher.search(query, n);
 			for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
@@ -83,14 +81,14 @@ public class Indexer {
 			
 			ScoreDoc[] hits = topDocs.scoreDocs;
 			System.out.println("Found " + hits.length + " hits.");
+			results = new ArrayList<>();
 			for (int i=0; i<hits.length; ++i) {
 			    int docId = hits[i].doc;
 			    Document d = indexSearcher.doc(docId);
-			    System.out.println((i + 1) + ". " + d.get("articleId") + "\t" + d.get("description").substring(0,200));
+			    results.add(dao.getArticleById(Long.getLong(d.get("articleId"))));
 			}
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 	    
 	}
@@ -106,5 +104,13 @@ public class Indexer {
 
 	public void setQuery(String query) {
 		this.query = query;
+	}
+
+	public List<Article> getResults() {
+		return results;
+	}
+
+	public void setResults(List<Article> results) {
+		this.results = results;
 	}
 }
