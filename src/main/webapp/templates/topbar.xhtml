@@ -19,18 +19,21 @@
 				$("#searchIcon").click(function(){
 					if (searchBoxVisible) {
 						searchBoxVisible = false;
-						$("#searchBox").slideUp("fast");
+						$("#searchBox").slideDown("fast");
 					} else {
 						searchBoxVisible = true;
-						$("#searchBox").slideDown("fast");
+						$("#searchBox").slideUp("fast");
 					}
 			  	});
 			});
 			</script>
 		
 			<h:form>
+			
+			<p:remoteCommand name="bean_searchSubmit" action="#{inMemorySearch.search}" />
+			
 			<div class="customNavbar">
-				<div class="ham">
+				<div class="ham">	
 				  <span class="bar1"></span>
 				  <span class="bar2"></span>
 				  <span class="bar3"></span>
@@ -39,10 +42,11 @@
 					<a href="/index.faces"><h:graphicImage value="#{resource['images/sfit.png']}"/></a>
 				</div>
 				<div id="searchBox" style="display: none;height:25px;width:350px;float:right;margin-top:-30px">
-					<p:inputText value="#{inMemorySearch.query}" style="width:315px"/>
+					<p:inputText value="#{inMemorySearch.query}" style="width:315px"
+						onkeypress="if (event.keyCode == 13) { bean_searchSubmit(); return false;}"/>
 				</div>
 				<div style="height: 25px;width: 25px;float:right;margin-top:-30px">
-					<span id="searchIcon" class="fa fa-search" style="color:#DDDDDD;"></span>
+					<span id="searchIcon" class="fa fa-search" style="color:#ddd;"></span>
 				</div>
 			</div>
 			</h:form>

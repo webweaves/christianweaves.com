@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1
+/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+<h:body>	
+	<ui:composition template="templates/template.xhtml">
+		<ui:define name="head">
+	     
+	    </ui:define>
+	    <ui:define name="header">
+    	</ui:define>
+	    <ui:define name="content">
+			<div class="header-spacer"></div>
+			<div class="bannerImageSlice">
+				<div class="container"/>
+			</div>
+
+			<div class="header-spacer" style="height:0px;"/>
+			
+    		
+			<div class="article-header-box-container">
+				<div class="article-header-box">
+
+					<h2 class="h2-padding" style="color:white">X</h2>				
+				</div>
+				<div class="article-header-box-subtitle">
+					<p class="h2-padding">X
+					</p>
+				</div>
+			</div>
+		
+			<h:form id="contentsForm">
+				<div class="section-container article-content-box">
+							
+					<p:dataTable id="results" value="#{results}" var="article">
+		 				<p:column headerText="Title" sortBy="#{article.title}">
+					        <a href="#{request.contextPath}/showArticle.faces?article=#{article.id}">#{article.title}</a>
+					    </p:column>
+					    <p:column headerText="Subtitle" sortBy="#{article.subtitle}">
+					        <h:outputText value="#{article.subtitle}" />
+					    </p:column>
+					    <p:column headerText="Date added" sortBy="#{article.dateAdded}">
+					        <h:outputText value="#{article.dateAdded}" />
+					    </p:column>
+					</p:dataTable>
+					
+			
+	    		</div>
+    		</h:form>
+    		
+     	</ui:define>
+	</ui:composition>
+</h:body>
+</html>

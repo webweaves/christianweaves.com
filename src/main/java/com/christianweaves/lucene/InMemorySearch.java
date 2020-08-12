@@ -3,8 +3,11 @@ package com.christianweaves.lucene;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -41,7 +44,7 @@ public class InMemorySearch {
 	
 	private List<Article> results;
 	
-	public void createIndex() {
+	public String search() {
 		Directory dir=new RAMDirectory();
 		IndexWriter writer = null;
 		try {
@@ -65,10 +68,10 @@ public class InMemorySearch {
 		List<String> r = new ArrayList<>();
 		
 		try {
-			//create a term to search file name
+			//create a term to search 
 		    Term term = new Term("description", getQuery().toLowerCase());
 		    //create the term query object
-		    Query query = new FuzzyQuery(term, 2);
+		    Query query = new FuzzyQuery(term, 1);
 		    IndexSearcher indexSearcher = new IndexSearcher(DirectoryReader.open(dir));
 		    TopDocs topDocs = indexSearcher.search(query, resultCount);
 			for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
@@ -87,10 +90,20 @@ public class InMemorySearch {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 	    
+		
+		if (results.size() > 0) {
+			Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+			sessionMapObj.put("results", results);
+			return "/showResults.xhtml?faces-redirect=true";
+		} else {
+	        FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage("Search results",  "Nothing found!") );
+	        return null;
+		}
 	}
 	
 	public static void main(String[] args) {
-		new InMemorySearch().createIndex();
+		new InMemorySearch().search();
 		
 	}
 
