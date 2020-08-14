@@ -18,14 +18,17 @@
 			$(document).ready(function(){
 				$("#searchIcon").click(function(){
 					if ($("#navbarForm\\:searchtext").val() != "") {
+						//if textbox populated then submit the text
 						bean_searchSubmit();
 					} else {
 						if (searchBoxVisible) {
 							searchBoxVisible = false;
 							$("#searchBox").slideUp("fast");
 						} else {
+							//popup the search textbox and set focus
 							searchBoxVisible = true;
 							$("#searchBox").slideDown("fast");
+							$("#navbarForm\\:searchtext").focus();
 						}
 					}
 			  	});
