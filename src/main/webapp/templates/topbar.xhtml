@@ -17,18 +17,22 @@
 			var searchBoxVisible = false;
 			$(document).ready(function(){
 				$("#searchIcon").click(function(){
-					if (searchBoxVisible) {
-						searchBoxVisible = false;
-						$("#searchBox").slideDown("fast");
+					if ($("#navbarForm\\:searchtext").val() != "") {
+						bean_searchSubmit();
 					} else {
-						searchBoxVisible = true;
-						$("#searchBox").slideUp("fast");
+						if (searchBoxVisible) {
+							searchBoxVisible = false;
+							$("#searchBox").slideUp("fast");
+						} else {
+							searchBoxVisible = true;
+							$("#searchBox").slideDown("fast");
+						}
 					}
 			  	});
 			});
 			</script>
 		
-			<h:form>
+			<h:form id="navbarForm">
 			
 			<p:remoteCommand name="bean_searchSubmit" action="#{inMemorySearch.search}" />
 			
@@ -42,10 +46,11 @@
 					<a href="/index.faces"><h:graphicImage value="#{resource['images/sfit.png']}"/></a>
 				</div>
 				<div id="searchBox" style="display: none;height:25px;width:350px;float:right;margin-top:-30px">
-					<p:inputText value="#{inMemorySearch.query}" style="width:315px"
+					<p:inputText id="searchtext" value="#{inMemorySearch.query}" style="width:315px"
 						onkeypress="if (event.keyCode == 13) { bean_searchSubmit(); return false;}"/>
+					<p:watermark for="searchtext" value="Search..." id="watermark" />
 				</div>
-				<div style="height: 25px;width: 25px;float:right;margin-top:-30px">
+				<div style="cursor: pointer;height: 25px;width: 25px;float:right;margin-top:-30px">
 					<span id="searchIcon" class="fa fa-search" style="color:#ddd;"></span>
 				</div>
 			</div>

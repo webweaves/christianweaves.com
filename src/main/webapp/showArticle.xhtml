@@ -10,9 +10,6 @@
 	<ui:composition template="templates/template.xhtml">
 		<ui:define name="head">
 	        <style>
-	        body {
-	        	background: #dcdcdb;
-	        }
 	        td.hljs-ln-numbers {
 			    padding-right: 20px;
 			}
@@ -26,18 +23,26 @@
 			}
 			.scrolling {
 			    position: fixed;
+			    width: 20%;
 			    top: 50px;
+			}
+			
+			.notscrolling {
+			    width: 100%;
 			}
 			</style>
 
 			<script>
 				$(window).scroll(function(){
 					//$('#pagecontents-inner').toggleClass('scrolling', $(window).scrollTop() > $('#pagecontents').offset().top);
-					var scrollPosition, headerOffset, isScrolling;
-					scrollPosition = $(window).scrollTop();
-					headerOffset = $('#pagecontents').offset().top;
-					isScrolling = scrollPosition+40 > headerOffset;
-					$('#pagecontents-inner').toggleClass('scrolling', isScrolling);
+					if ($('#pagecontents') != undefined) {
+						var scrollPosition, headerOffset, isScrolling;
+						scrollPosition = $(window).scrollTop();
+						headerOffset = $('#pagecontents').offset().top;
+						isScrolling = scrollPosition+40 > headerOffset;
+						$('#pagecontents-inner').toggleClass('scrolling', isScrolling);
+						$('#pagecontents-inner').toggleClass('notscrolling', !isScrolling);
+					}
 				});
 			</script>
 	    </ui:define>
@@ -99,7 +104,7 @@
 					<h:panelGroup layout="block" rendered="#{not empty articleController.showArticle(param['article']).pageContents}">
 						<div id="pagecontents" style="width:20%;float:left;">
 	        				<div id="pagecontents-inner"> 
-								<div style="width:100%" class="section-container article-content-box">
+								<div class="section-container article-content-box notscrolling">
 									<span class="bigtext">Contents</span>
 										
 									<ui:repeat id="showArticles" var="pageContents"
