@@ -31,16 +31,19 @@
 
 				<h:form id="addform">
 			        <p:panelGrid columns="2" styleClass="articleContent" style="margin:15px;width:70%">
-			        
-	                    <h:outputText value="Featured"/>
-				    	<p:selectBooleanCheckbox value="#{articleController.newArticle.featured}"/>
- 	        
-	                    <h:outputText value="Hidden"/>
-				    	<p:selectBooleanCheckbox value="#{articleController.newArticle.hidden}"/>
- 	        
- 	                    <h:outputText value="Draft"/>
-				    	<p:selectBooleanCheckbox value="#{articleController.newArticle.draft}"/>
- 	        
+			        	
+			        	<p:panelGrid columns="6"> 
+		                    <h:outputText value="Featured"/>
+					    	<p:selectBooleanCheckbox value="#{articleController.newArticle.featured}"/>
+	 	        
+		                    <h:outputText value="Hidden"/>
+					    	<p:selectBooleanCheckbox value="#{articleController.newArticle.hidden}"/>
+	 	        
+	 	                    <h:outputText value="Draft"/>
+					    	<p:selectBooleanCheckbox value="#{articleController.newArticle.draft}"/>
+						</p:panelGrid>
+						<h:outputText value=""/>
+						 	        
 						<h:outputText value="Title"/>
 				        <h:inputText id="title" style="width:600px" 
 				        	required="true" requiredMessage="Supply a title"
