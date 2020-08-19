@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"
+	logicalFilePath="db.changelog.1.8.0.xml">
+ 
+ 	<changeSet author="csw" id="create logins table">
+        <createTable tableName="tb_logins">
+            <column autoIncrement="true" name="id" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+            	<constraints nullable="true"/>
+            </column>
+            <column name="ip" type="VARCHAR(100)">
+            	<constraints nullable="true"/>
+            </column>
+            <column name="date_added" type="timestamp">
+            	<constraints nullable="true"/>
+            </column>
+        </createTable>
+	</changeSet>
+	
+</databaseChangeLog>

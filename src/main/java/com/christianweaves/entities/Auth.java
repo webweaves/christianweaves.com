@@ -1,6 +1,8 @@
 package com.christianweaves.entities;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -9,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 @ViewScoped
 public class Auth {
 
+	@Inject
+	private GenericDao dao;
+	
 	private User user;
     private String username;
     private String password;
@@ -47,15 +53,34 @@ public class Auth {
         HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
         try {
-            request.login(getUsername(), getPassword());
+        	request.login(getUsername(), getPassword());
             setUser(userService.find(getUsername(), getPassword()));
+            persistLogin(request, "**password**");
             externalContext.getSessionMap().put("user", getUser());
             externalContext.redirect(originalURL);
         } catch (ServletException e) {
             // Handle unknown username/password in request.login().
             context.addMessage(null, new FacesMessage("Unknown login"));
+            persistLogin(request, getPassword());
         }
     }
+
+    /**
+     * write login attempt to audit table
+     * 
+     * @param request
+     * @param thePassword
+     */
+	private void persistLogin(HttpServletRequest request, String thePassword) {
+		Instant instant = Instant.now();
+		long timeStampMillis = instant.toEpochMilli();
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");  
+		if (ipAddress == null) {  
+		    ipAddress = request.getRemoteAddr();  
+		}
+		Login login = new Login(getUsername(), thePassword, ipAddress, timeStampMillis);
+		dao.persist(login);
+	}
 
     public void logout() throws IOException {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
