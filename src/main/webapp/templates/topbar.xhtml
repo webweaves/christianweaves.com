@@ -6,13 +6,6 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<ui:composition>
-		<style>
-		.ui-inputfield {
-			padding: 5px;
-			height: 20px;
-			font-size: 14px;
-		}
-		</style>
 		<script language="javascript">
 		var searchBoxVisible = false;
 		$(document).ready(function(){
@@ -49,7 +42,7 @@
 				<a href="/index.faces"><h:graphicImage value="#{resource['images/sfit.png']}"/></a>
 			</div>
 			<div id="searchBox" style="display: none;height:25px;width:350px;float:right;margin-top:-30px">
-				<p:inputText id="searchtext" value="#{inMemorySearch.query}" style="width:315px"
+				<p:inputText id="searchtext" value="#{inMemorySearch.query}" style="width:315px;padding:5px;height: 20px;font-size: 14px;"
 					onkeypress="if (event.keyCode == 13) { bean_searchSubmit(); return false;}"/>
 				<p:watermark for="searchtext" value="Search..." id="watermark" />
 			</div>
