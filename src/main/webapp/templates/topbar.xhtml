@@ -4,60 +4,60 @@
 	xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	<body>
-		<ui:composition>
-			<style>
-			.ui-inputfield {
-				padding: 5px;
-				height: 20px;
-				font-size: 14px;
-			}
-			</style>
-			<script language="javascript">
-			var searchBoxVisible = false;
-			$(document).ready(function(){
-				$("#searchIcon").click(function(){
-					if ($("#navbarForm\\:searchtext").val() != "") {
-						//if textbox populated then submit the text
-						bean_searchSubmit();
+
+	<ui:composition>
+		<style>
+		.ui-inputfield {
+			padding: 5px;
+			height: 20px;
+			font-size: 14px;
+		}
+		</style>
+		<script language="javascript">
+		var searchBoxVisible = false;
+		$(document).ready(function(){
+			$("#searchIcon").click(function(){
+				if ($("#navbarForm\\:searchtext").val() != "") {
+					//if textbox populated then submit the text
+					bean_searchSubmit();
+				} else {
+					if (searchBoxVisible) {
+						searchBoxVisible = false;
+						$("#searchBox").slideUp("fast");
 					} else {
-						if (searchBoxVisible) {
-							searchBoxVisible = false;
-							$("#searchBox").slideUp("fast");
-						} else {
-							//popup the search textbox and set focus
-							searchBoxVisible = true;
-							$("#searchBox").slideDown("fast");
-							$("#navbarForm\\:searchtext").focus();
-						}
+						//popup the search textbox and set focus
+						searchBoxVisible = true;
+						$("#searchBox").slideDown("fast");
+						$("#navbarForm\\:searchtext").focus();
 					}
-			  	});
-			});
-			</script>
+				}
+		  	});
+		});
+		</script>
+	
+		<h:form id="navbarForm">
 		
-			<h:form id="navbarForm">
-			
-			<p:remoteCommand name="bean_searchSubmit" action="#{inMemorySearch.search}" />
-			
-			<div class="customNavbar">
-				<div class="ham">	
-				  <span class="bar1"></span>
-				  <span class="bar2"></span>
-				  <span class="bar3"></span>
-				</div>
-				<div style="width:680px;height:30px;margin:auto;margin-top:8px;">
-					<a href="/index.faces"><h:graphicImage value="#{resource['images/sfit.png']}"/></a>
-				</div>
-				<div id="searchBox" style="display: none;height:25px;width:350px;float:right;margin-top:-30px">
-					<p:inputText id="searchtext" value="#{inMemorySearch.query}" style="width:315px"
-						onkeypress="if (event.keyCode == 13) { bean_searchSubmit(); return false;}"/>
-					<p:watermark for="searchtext" value="Search..." id="watermark" />
-				</div>
-				<div style="cursor: pointer;height: 25px;width: 25px;float:right;margin-top:-30px">
-					<span id="searchIcon" class="fa fa-search" style="color:#ddd;"></span>
-				</div>
+		<p:remoteCommand name="bean_searchSubmit" action="#{inMemorySearch.search}" />
+		
+		<div class="customNavbar">
+			<div class="ham">	
+			  <span class="bar1"></span>
+			  <span class="bar2"></span>
+			  <span class="bar3"></span>
 			</div>
-			</h:form>
-		</ui:composition>
-	</body>
+			<div style="width:680px;height:30px;margin:auto;margin-top:8px;">
+				<a href="/index.faces"><h:graphicImage value="#{resource['images/sfit.png']}"/></a>
+			</div>
+			<div id="searchBox" style="display: none;height:25px;width:350px;float:right;margin-top:-30px">
+				<p:inputText id="searchtext" value="#{inMemorySearch.query}" style="width:315px"
+					onkeypress="if (event.keyCode == 13) { bean_searchSubmit(); return false;}"/>
+				<p:watermark for="searchtext" value="Search..." id="watermark" />
+			</div>
+			<div style="cursor: pointer;height: 25px;width: 25px;float:right;margin-top:-30px">
+				<span id="searchIcon" class="fa fa-search" style="color:#ddd;"></span>
+			</div>
+		</div>
+		</h:form>
+	</ui:composition>
+
 </html>

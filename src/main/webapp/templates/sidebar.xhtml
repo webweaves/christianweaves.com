@@ -4,40 +4,40 @@
 	xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui"    
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	<body>
-		<ui:composition>
- 			<div class="sidebar-wrapper">
- 			  	<h:form>
-        			<ul class="sidebar-nav" >
+	
+	<ui:composition>
+		<div class="sidebar-wrapper">
+		  	<h:form>
+       			<ul class="sidebar-nav" >
+                	<li class="sidebar-brand">
+                    	<h:commandLink class="navbarText" action="/index" value="${msg.site_title}" />
+	                </li>
+	                <li>
+    	            	<p:panelGrid rendered="#{not auth.loggedIn}">
+			                <a href="#{request.contextPath}/login.faces"><i class="fa fa-user sidebar-icon"></i> Login</a>
+	        	        </p:panelGrid>
+                	</li>
+				</ul>
+				
+				
+				<h:panelGrid rendered="#{auth.loggedIn}">
+	    			<ul class="sidebar-nav" >
 	                	<li class="sidebar-brand">
-	                    	<h:commandLink class="navbarText" action="/index" value="ScottFreeIT" />
-		                </li>
-		                <li>
-	    	            	<p:panelGrid rendered="#{not auth.loggedIn}">
-				                <a href="#{request.contextPath}/login.faces"><i class="fa fa-user sidebar-icon"></i> Login</a>
-		        	        </p:panelGrid>
-	                	</li>
-					</ul>
-					
-					
-					<h:panelGrid rendered="#{auth.loggedIn}">
-		    			<ul class="sidebar-nav" >
-		                	<li class="sidebar-brand">
-								Admin
-							</li>				
-							<li>
-								<a href="#{request.contextPath}/admin/newArticle.faces"><i class="fa fa-plus sidebar-icon"></i> New Article</a>
-		            	    </li>
-							<li>
-								<a href="#{request.contextPath}/admin/articles.faces"><i class="fa fa-plus sidebar-icon"></i> List Articles</a>
-		            	    </li>
-							<li>
-								<a href="#{request.contextPath}/admin/indexing.faces"><i class="fa fa-plus sidebar-icon"></i> Indexing</a>
-		            	    </li>
-		            	</ul>
-	            	</h:panelGrid>
-				</h:form>
-        	</div>
-        </ui:composition>
-	</body>
+							Admin
+						</li>				
+						<li>
+							<a href="#{request.contextPath}/admin/newArticle.faces"><i class="fa fa-plus sidebar-icon"></i> New Article</a>
+	            	    </li>
+						<li>
+							<a href="#{request.contextPath}/admin/articles.faces"><i class="fa fa-plus sidebar-icon"></i> List Articles</a>
+	            	    </li>
+						<li>
+							<a href="#{request.contextPath}/admin/indexing.faces"><i class="fa fa-plus sidebar-icon"></i> Indexing</a>
+	            	    </li>
+	            	</ul>
+            	</h:panelGrid>
+			</h:form>
+       	</div>
+       </ui:composition>
+	
 </html>
