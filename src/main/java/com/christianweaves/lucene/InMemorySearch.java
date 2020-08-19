@@ -11,7 +11,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -28,7 +27,6 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
-import org.primefaces.context.RequestContext;
 
 import com.christianweaves.entities.Article;
 import com.christianweaves.entities.ArticleDao;
@@ -37,8 +35,6 @@ import com.christianweaves.entities.ArticleDao;
 @RequestScoped
 public class InMemorySearch {
 
-	Logger logger = Logger.getLogger(InMemorySearch.class);
-	
 	private int resultCount = 10;
 	
 	@Inject
@@ -53,7 +49,7 @@ public class InMemorySearch {
 		IndexWriter writer = null;
 		try {
 			writer = new IndexWriter(dir, new IndexWriterConfig(new StandardAnalyzer()));
-			for (Article article: dao.getArticles(100000)) {
+			for (Article article: dao.getAllArticles()) {
 			    Document doc = new Document();
 			    String id = article.getId().toString();
 		        String description = article.getTitle()
@@ -83,7 +79,7 @@ public class InMemorySearch {
 		    }
 			
 			ScoreDoc[] hits = topDocs.scoreDocs;
-			logger.debug("Found " + hits.length + " hits");
+			System.out.println("Found " + hits.length + " hits.");
 			results = new ArrayList<>();
 			for (int i=0; i<hits.length; ++i) {
 			    int docId = hits[i].doc;
@@ -102,7 +98,6 @@ public class InMemorySearch {
 		} else {
 	        FacesContext context = FacesContext.getCurrentInstance();
 	        context.addMessage(null, new FacesMessage("Search results",  "Nothing found!") );
-	        RequestContext.getCurrentInstance().update("growlform:growl");
 	        return null;
 		}
 	}
