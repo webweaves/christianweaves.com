@@ -11,8 +11,10 @@ body {
 
 .ui-growl {
 	margin-top:50px;
+	background-color: #2196f3;
+	border-color :#2196f3;
 }
-
+    
 .bigtext {
 	font-weight: 500;
 	font-size: 18px;
