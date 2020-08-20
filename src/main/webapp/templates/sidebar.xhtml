@@ -8,6 +8,9 @@
 	<ui:composition>
 		<div class="sidebar-wrapper">
 		  	<h:form>
+		  	
+		  		<p:remoteCommand name="bean_logout" action="#{auth.logout}" />
+		
        			<ul class="sidebar-nav" >
                 	<li class="sidebar-brand">
                     	<h:commandLink class="navbarText" action="/index" value="${msg.site_title}" />
@@ -19,7 +22,6 @@
                 	</li>
 				</ul>
 				
-				
 				<h:panelGrid rendered="#{auth.loggedIn}">
 	    			<ul class="sidebar-nav" >
 	                	<li class="sidebar-brand">
@@ -29,10 +31,10 @@
 							<a href="#{request.contextPath}/admin/newArticle.faces"><i class="fa fa-plus sidebar-icon"></i> New Article</a>
 	            	    </li>
 						<li>
-							<a href="#{request.contextPath}/admin/articles.faces"><i class="fa fa-plus sidebar-icon"></i> List Articles</a>
+							<a href="#{request.contextPath}/admin/articles.faces"><i class="fa fa-list sidebar-icon"></i> List Articles</a>
 	            	    </li>
 						<li>
-							<a href="#{request.contextPath}/admin/indexing.faces"><i class="fa fa-plus sidebar-icon"></i> Indexing</a>
+							<a onclick="bean_logout();return false;"><i class="fa fa-sign-out sidebar-icon"></i> Logout</a>
 	            	    </li>
 	            	</ul>
             	</h:panelGrid>

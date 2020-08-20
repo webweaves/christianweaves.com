@@ -38,16 +38,19 @@
 			  <span class="bar2"></span>
 			  <span class="bar3"></span>
 			</div>
+			<div style="margin-left:-15px;height:28px;width:28px;float:left">
+				<h:link outcome="/index"><h:graphicImage height="25" width="25" style="margin-top:4px" value="#{resource['images/home.png']}"/></h:link>
+			</div>
 			<div style="width:680px;height:30px;margin:auto;margin-top:8px;">
 				<a href="/index.faces"><h:graphicImage value="#{resource['images/sfit.png']}"/></a>
 			</div>
-			<div id="searchBox" style="display: none;height:25px;width:350px;float:right;margin-top:-30px">
-				<p:inputText id="searchtext" value="#{inMemorySearch.query}" style="width:315px;padding:5px;height: 20px;font-size: 14px;"
+			<div id="searchBox" style="display: none;height:25px;width:350px;float:right;margin-top:-35px">
+				<p:inputText id="searchtext" value="#{inMemorySearch.query}" style="width:315px;padding:5px;height:25px;margin-top:3px;font-size:14px;"
 					onkeypress="if (event.keyCode == 13) { bean_searchSubmit(); return false;}"/>
 				<p:watermark for="searchtext" value="Search..." id="watermark" />
 			</div>
-			<div style="cursor: pointer;height: 25px;width: 25px;float:right;margin-top:-30px">
-				<span id="searchIcon" class="fa fa-search" style="color:#ddd;"></span>
+			<div style="cursor: pointer;height:28px;width:28px;float:right;margin-top:-30px">
+				<span id="searchIcon" class="fa fa-search" style="font-size:1.33em;color:#fff;"></span>
 			</div>
 		</div>
 		</h:form>
