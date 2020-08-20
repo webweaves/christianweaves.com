@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.christianweaves</groupId>
 	<artifactId>ChristianWeaves.com</artifactId>
-	<version>1.7.0</version>
+	<version>1.8.0</version>
 	<packaging>war</packaging>
 	<build>
 		<finalName>ChristianWeaves.com</finalName>
@@ -23,9 +23,8 @@
 				<configuration>
 					<driver>com.mysql.jdbc.Driver</driver>
 					<url>${dburl}</url>
-					<username>${username}</username>
-					<password>${password}</password>
-					<!-- <propertyFile>${liquibase-properties}</propertyFile> -->
+					<username>${dbusername}</username>
+					<password>${dbpassword}</password>
 					<changeLogFile>src/main/resources/liquibase/db.changelog.master.xml</changeLogFile>
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
 				</configuration>
