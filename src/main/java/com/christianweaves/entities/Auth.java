@@ -16,6 +16,8 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 @ManagedBean
 @ViewScoped
 public class Auth {
@@ -28,6 +30,8 @@ public class Auth {
     private String password;
     private String originalURL;
 
+    private Logger LOGGER = Logger.getLogger(GenericDao.class);
+    
     @PostConstruct
     public void init() {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -60,6 +64,8 @@ public class Auth {
             externalContext.redirect(originalURL);
         } catch (ServletException e) {
             // Handle unknown username/password in request.login().
+        	LOGGER.debug("Error logging in "+e.getMessage()+", stack: " + e.getStackTrace().toString());
+        	System.out.println("Error logging in "+e.getMessage()+", stack: " + e.getStackTrace().toString());
             context.addMessage(null, new FacesMessage("Unknown login"));
             persistLogin(request, getPassword());
         }
