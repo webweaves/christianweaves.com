@@ -95,9 +95,10 @@ code.language-java.hljs {
 
 .featuredArticleBackground {
 	background-image: url("#{resource['images/bgtrans.png']}");
+	height: 215px;
 	border-radius: 40px;
 	padding: 15px;
-	margin-top: 45px;
+	margin-top: 15px;
 	opacity: 1.6;
 }
 

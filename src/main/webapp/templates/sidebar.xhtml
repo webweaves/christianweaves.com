@@ -38,6 +38,15 @@
 	            	    </li>
 	            	</ul>
             	</h:panelGrid>
+            	
+       			<ul class="sidebar-nav" >
+	                <li>
+    	            	<p:panelGrid rendered="#{not auth.loggedIn}">
+			                <a href="#{request.contextPath}/privacyPolicy.faces"><i class="fa fa-users sidebar-icon"></i> Privacy Policy</a>
+	        	        </p:panelGrid>
+                	</li>
+   	            </ul>
+            	
 			</h:form>
        	</div>
        </ui:composition>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1
+/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+	
+	<ui:composition template="templates/template.xhtml">
+		<ui:define name="head">
+	        <style>
+	        body {
+	        	background: #dcdcdb;
+	        }
+			</style>
+	    </ui:define>
+	    <ui:define name="header">
+    	</ui:define>
+	    <ui:define name="content">
+			<div class="header-spacer"></div>
+			<div class="bannerImageSlice">
+				<div class="container"/>
+			</div>
+
+			<div class="header-spacer" style="height:0px;"/>
+			
+			<div class="article-header-box-container">
+				<div class="article-header-box">
+					<h2 class="h2-padding" style="color:white">Privacy Policy</h2>				
+				</div>
+				<div class="article-header-box-subtitle">
+					<p class="h2-padding">Your privacy is important to me!</p>
+				</div>
+			</div>
+		
+			<h:form id="contentsForm">
+				<div class="section-container article-content-box">
+				
+					<h:panelGroup layout="block" style="width:100%;min-width:510px;" class="section-container article-content-box">
+						<h2>Privacy Policy</h2>
+						<p>This policy describes how and when I collect, use and share data in relation to the ScottFreeIT application.</p>
+						<p>The ScottFreeIT mobile application is to be used purely to convey educational material and no personal information is captured and stored on my servers.</p>
+						<!-- <p>You can opt out of this data collection and use at anytime by un-installing the application from your device.</p> -->
+						<p>If you have any questions regarding privacy while using the ScottFreeIT application please contact us via email at info@scottfreeit.com</p>
+		    		</h:panelGroup>
+		    		
+		    		<div style="clear:both"></div>
+	    		</div>
+    		</h:form>
+     	</ui:define>
+	</ui:composition>
+
+</html>
