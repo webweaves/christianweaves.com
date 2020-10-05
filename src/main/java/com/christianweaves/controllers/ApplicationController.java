@@ -44,9 +44,13 @@ public class ApplicationController implements Serializable {
 		}
 	}
 	
+	/**
+	 * return all the articles 
+	 * @return
+	 */
 	public List<Article> getAllArticles() {
 		if (articles == null) {
-			articles = articleDao.getAllArticles();
+			articles = articleDao.getLatestArticles();
 		}
 		return articles;
 	}

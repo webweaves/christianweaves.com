@@ -24,7 +24,7 @@ public class ArticleDao extends AbstractDao<Article> {
 	 * 
 	 * @return
 	 */
-	public List<Article> getAllArticles() {
+	public List<Article> getAllUnfilteredArticles() {
 		TypedQuery<Article> query = getEm().createNamedQuery("allArticles", Article.class);
 		return query.getResultList();
 	}
@@ -55,7 +55,7 @@ public class ArticleDao extends AbstractDao<Article> {
 				+ "and article.hidden = :boolType "
 				+ "and article.deleted = :boolType "
 				+ "and article.draft = :boolType "
-				+ "ORDER BY article.id DESC");
+				+ "ORDER BY article.dateAdded DESC");
 		query.setParameter("boolType", Boolean.FALSE);
 		query.setFirstResult(0);
 		query.setMaxResults(count);
@@ -63,7 +63,7 @@ public class ArticleDao extends AbstractDao<Article> {
 	}
 	
 	public List<Article> getLatestArticles() {
-		return getArticles(51);
+		return getArticles(10000);
 	}
 
 	/**

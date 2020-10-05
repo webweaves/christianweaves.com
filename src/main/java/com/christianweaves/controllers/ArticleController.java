@@ -13,6 +13,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
@@ -56,11 +57,25 @@ public class ArticleController {
     private Event<String> articlesEvent;
 	
 	/**
-	 * get all articles
+	 * get all articles, 
 	 * @return
 	 */
 	public List<Article> getAllArticles() {
 		return applicationController.getAllArticles();
+	}
+	
+	/**
+	 * get all articles and filter and return just the snippets
+	 * @return
+	 */
+	public List<Article> getAllSnippets() {
+		List<Article> allArticles = getAllArticles();
+		
+		//filter all articles and return just snippets
+		return allArticles
+				  .stream()
+				  .filter(s -> s.getSnippet())
+				  .collect(Collectors.toList());
 	}
 	
 	/**
@@ -231,6 +246,7 @@ public class ArticleController {
 		dbArticle.setDeleted(article.getDeleted());
 		dbArticle.setHidden(article.getHidden());
 		dbArticle.setDraft(article.getDraft());
+		dbArticle.setSnippet(article.getSnippet());
 		dbArticle.setArchived(article.getArchived());
 		dbArticle.setSubtitle(article.getSubtitle());
 		dbArticle.setDateAdded(article.getDateAdded());

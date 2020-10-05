@@ -69,6 +69,17 @@ public class Article implements Serializable {
 	private Boolean draft = false;
 
 	@Column
+	private Boolean snippet = false;
+
+	public Boolean getSnippet() {
+		return snippet;
+	}
+
+	public void setSnippet(Boolean snippet) {
+		this.snippet = snippet;
+	}
+
+	@Column
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean archived = false;
 	
