@@ -26,7 +26,8 @@
 				<h:form id="addform">
 			        <p:panelGrid columns="2" styleClass="articleContent" style="margin:15px;width:70%">
 			        	
-			        	<p:panelGrid columns="6"> 
+			        	<h:outputText value=""/>
+			        	<p:panelGrid columns="10"> 
 		                    <h:outputText value="Featured"/>
 					    	<p:selectBooleanCheckbox value="#{articleController.newArticle.featured}"/>
 	 	        
@@ -35,8 +36,14 @@
 	 	        
 	 	                    <h:outputText value="Draft"/>
 					    	<p:selectBooleanCheckbox value="#{articleController.newArticle.draft}"/>
+
+				        	<h:outputText value=""/>
+				        	<h:outputText value=""/>
+				
+	 	                    <h:outputText value="Snippet"/>
+					    	<p:selectBooleanCheckbox value="#{articleController.newArticle.snippet}"/>
 						</p:panelGrid>
-						<h:outputText value=""/>
+						
 						 	        
 						<h:outputText value="Title"/>
 				        <h:inputText id="title" style="width:600px" 

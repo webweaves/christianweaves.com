@@ -49,6 +49,9 @@
 			    <p:column headerText="Draft" sortBy="#{article.draft}">
 			        <h:selectBooleanCheckbox value="#{article.draft}" />
 			    </p:column>
+			    <p:column headerText="Draft" sortBy="#{article.snippet}">
+			        <h:selectBooleanCheckbox value="#{article.snippet}" />
+			    </p:column>
 			</p:dataTable>		
 			</h:form>
 		</ui:define>
