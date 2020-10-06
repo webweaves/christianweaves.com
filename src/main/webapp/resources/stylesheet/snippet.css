@@ -9,6 +9,7 @@
 	text-align: left;
 	height: 50px;
 	margin-bottom: 5px;
+	border: 1px solid darkcyan;
 }
 
 .snippet-svg-background {
@@ -21,14 +22,14 @@
 }
 
 .snippet-blob {
-	transform: translate(23%, 3%) scale(0.65);
+	transform: translate(23%, 0%) scale(0.65);
 	fill: #fff;
 	transition: 0.8s;
 }
 
 .snippet-card.active .blob {
 	fill: rgb(70, 150, 230);
-	transform: translate(23%, 3%) scale(5);
+	transform: translate(23%, 0%) scale(10);
 }
 
 .snippet-card.active .bg-overlay {

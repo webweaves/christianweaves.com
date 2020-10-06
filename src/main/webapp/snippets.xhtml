@@ -19,13 +19,13 @@
 								<div class="snippet-circular-border">
 									<h:graphicImage value="data:image/png;base64,#{article.icon}"
 										width="25"
-										style="margin-left: 10px; margin-top: 10px;" />
+										style="margin-left: 5px; margin-top: 5px;" />
 								</div>
+								<h:outputText value="#{article.title}"/>
 							</div>
-							<svg class="snippet-svg-background" viewBox="0 0 600 600"> 
+							<svg class="snippet-svg-background" viewBox="0 0 1600 600"> 
 								<path class="blob" d="#{blobController.randomBlob}"/>
 							</svg>
-							<h2>#{article.title}</h2>
 						</div>
 					</ui:repeat>
 				</div>
