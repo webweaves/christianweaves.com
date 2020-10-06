@@ -1,0 +1,53 @@
+.snippet-card {
+	position: relative;
+	display: inline-block;
+	border-radius: 5px 10px 15px 15px;
+	width: 285px;
+	padding: 5px;
+	overflow: hidden;
+	cursor: pointer;
+	text-align: left;
+	height: 50px;
+	margin-bottom: 5px;
+}
+
+.snippet-svg-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120%;
+	height: 120%;
+	z-index: -1;
+}
+
+.snippet-blob {
+	transform: translate(23%, 3%) scale(0.65);
+	fill: #fff;
+	transition: 0.8s;
+}
+
+.snippet-card.active .blob {
+	fill: rgb(70, 150, 230);
+	transform: translate(23%, 3%) scale(5);
+}
+
+.snippet-card.active .bg-overlay {
+	opacity: 0;
+}
+
+.snippet-circular-border {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: rgb(255, 255, 255);
+	position: relative;
+}
+
+.snippet-card>p {
+	opacity: 0.5;
+	transition: 0.8s;
+}
+
+.snippet-card.active p {
+	opacity: 1;
+}

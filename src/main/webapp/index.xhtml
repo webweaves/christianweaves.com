@@ -7,6 +7,25 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="header">
+			<div class="header-spacer"></div>
+			<div class="bannerImage">
+				<div class="container">						
+					<div class="featuredArticleBackground">
+					  	<div style="width:100px; float:right;">
+					  		<h:graphicImage value="data:image/png;base64,#{articleController.featuredArticle.icon}"
+											width="75"
+											style="margin-left: 10px; margin-top: 10px;" />										
+					  	</div>
+						<h1>#{articleController.featuredArticle.title}</h1>
+						<p>#{articleController.featuredArticle.subtitle}</p>
+						<a href="showArticle.faces?article=#{articleController.featuredArticle.id}" 
+							class="btn-grad btn-style">Read more »</a>
+					</div>
+				</div>	
+			</div>
+    	</ui:define>
+	
 		<ui:define name="content">
 			<div class="container" style="text-align: center">
 				<div class="article-container">
