@@ -8,20 +8,31 @@
 
 	<ui:composition template="/templates/template.xhtml">
 		<ui:define name="content">
+		
+			<script type="text/javascript">
+			function showSnippet(content) {
+				$('#snippet-pop').html(content);
+				$('#snippet-pop').fadeIn('slow');
+			}
+			</script>
+		
+		
+			<div id="snippet-pop" class="snippet-popup" style="display:none">
+			</div>
+		
 			<div class="snippet-container" style="text-align: center">
 				<div class="article-container">
 					<br/>
 					<ui:repeat id="showArticles" var="article"
 						value="#{articleController.allSnippets}">
-						<div class="snippet-card" style="vertical-align: top;" 
-							onclick="location.href='#{request.contextPath}/showArticle.faces?article=#{article.id}'">
+						<div class="snippet-card"  
+							onclick="showSnippet('#{article.body}');">
 							<div class="top-section">
 								<div class="snippet-circular-border">
 									<h:graphicImage value="data:image/png;base64,#{article.icon}"
-										width="25"
-										style="margin-left: 5px; margin-top: 5px;" />
+										class="snippet-graphic" />
 								</div>
-								<h:outputText value="#{article.title}"/>
+								<div class="snippet-text"><h:outputText value="#{article.title}"/></div>
 							</div>
 							<svg class="snippet-svg-background" viewBox="0 0 1600 600"> 
 								<path class="blob" d="#{blobController.randomBlob}"/>
@@ -31,11 +42,11 @@
 				</div>
 			</div>
 				
-			<div class="snippet-card active" style="valign:top"/>
+			<div class="snippet-card active" style="valign:top;display:none"/>
 
 			<script type="text/javascript">
 			function handleMouseover(e) {
-			    document.querySelector(".active").classList.remove("active");
+				document.querySelector(".active").classList.remove("active");
 			    e.target.closest(".snippet-card").classList.add("active");
 			}
 			document.querySelectorAll(".snippet-card").forEach(card => card.addEventListener("mouseover", handleMouseover) );

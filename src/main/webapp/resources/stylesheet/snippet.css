@@ -1,3 +1,14 @@
+.snippet-popup {
+	background-color: #eee;
+	position: fixed;
+	width: 40%;
+	text-align: center;
+	top: 45%;
+	left: 50%;
+	padding: 20px;
+	transform: translate(-50%, 0);
+}
+
 .snippet-card {
 	position: relative;
 	display: inline-block;
@@ -9,7 +20,8 @@
 	text-align: left;
 	height: 50px;
 	margin-bottom: 5px;
-	border: 1px solid darkcyan;
+	vertical-align: top;
+	border: 1px solid #eee;
 }
 
 .snippet-svg-background {
@@ -37,8 +49,9 @@
 }
 
 .snippet-circular-border {
-	width: 30px;
-	height: 30px;
+	float: left;
+	width: 35px;
+	height: 35px;
 	border-radius: 50%;
 	background-color: rgb(255, 255, 255);
 	position: relative;
@@ -51,4 +64,16 @@
 
 .snippet-card.active p {
 	opacity: 1;
+}
+
+.snippet-text {
+	float:right;
+	width: 230px;
+	padding: 8px 5px 5px 5px;
+}
+
+.snippet-graphic {
+	margin-left: 2px; 
+	margin-top: 2px;
+	width: 30px;
 }

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1
+/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+	
+	<ui:composition template="templates/template.xhtml">
+		<ui:define name="head">
+	        <style>
+	        body {
+	        	background: #dcdcdb;
+	        }
+	        td.hljs-ln-numbers {
+			    padding-right: 20px;
+			}
+			html {
+  				scroll-behavior: smooth;
+			}
+			#pagecontents, #pagecontents-inner {
+			    height: 100px;
+			    width: 95%;
+			    min-width: 125px;
+			}
+			.scrolling {
+			    position: fixed;
+			    width: 20%;
+			    top: 50px;
+			}
+			
+			.notscrolling {
+				width: 250px;
+			    float: left;
+			}
+			</style>
+
+			<script>
+				$(window).scroll(function(){
+					//$('#pagecontents-inner').toggleClass('scrolling', $(window).scrollTop() > $('#pagecontents').offset().top);
+					if ($('#pagecontents') != undefined) {
+						var scrollPosition, headerOffset, isScrolling;
+						scrollPosition = $(window).scrollTop();
+						headerOffset = $('#pagecontents').offset().top;
+						isScrolling = scrollPosition+40 > headerOffset;
+						$('#pagecontents-inner').toggleClass('scrolling', isScrolling);
+						$('#pagecontents-inner').toggleClass('notscrolling', !isScrolling);
+					}
+				});
+			</script>
+	    </ui:define>
+	    <ui:define name="header">
+    	</ui:define>
+	    <ui:define name="content">
+			<div class="header-spacer"></div>
+			<div class="bannerImageSlice">
+				<div class="container"/>
+			</div>
+
+			<div class="header-spacer" style="height:0px;"/>
+			
+    		<h:form>
+   			  	<div style="margin-left:590px;position:fixed;margin-top:-87px;margin-left:">
+		    		<p:panelGrid rendered="#{auth.loggedIn}" >
+	  		  			<p:commandButton action="#{articleController.editArticleButtonClick}" 
+	    					value="Edit Article »" class="btn btn-primary" update=":growlform:growl">
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		   		 		<p:commandButton action="#{articleController.deleteArticleButtonClick}" 
+	    					value="Delete Article »" class="btn btn-primary" update=":growlform:growl">
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		   		 		<p:commandButton action="#{articleController.hideArticleButtonClick}" 
+	    					value="Hide Article »" class="btn btn-primary" update=":growlform:growl">
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		   		 		<p:commandButton action="#{articleController.draftArticleButtonClick}" 
+	    					value="Make Article Draft »" class="btn btn-primary" update=":growlform:growl">
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		    	 		<p:commandButton action="#{articleController.archiveArticleButtonClick}" 
+	    					value="Archive Article »" class="btn btn-primary" update=":growlform:growl">
+	    					<f:param name="articleId" value="#{param['article']}" />
+		   		 		</p:commandButton>
+		    		</p:panelGrid>
+	    	    </div>
+    		</h:form>
+			
+			<div class="article-header-box-container">
+				<div class="article-header-box">
+				  	<div style="width:100px; float:right;">
+				  		<h:graphicImage value="data:image/png;base64,#{articleController.showArticle(param['article']).icon}"
+										width="75px"
+										style="margin-left: 10px; margin-top: 10px;" />
+				  	</div>
+					<h2 class="h2-padding" style="color:white">#{articleController.showArticle(param['article']).title}</h2>				
+				</div>
+				<div class="article-header-box-subtitle">
+					<p class="h2-padding">#{articleController.showArticle(param['article']).subtitle}
+					</p>
+				</div>
+			</div>
+		
+			<h:form id="contentsForm">
+				<div class="section-container article-content-box">
+				
+					<h:panelGroup layout="block" rendered="#{not empty articleController.showArticle(param['article']).pageContents}">
+						<div id="pagecontents" style="width:20%;float:left;">
+	        				<div id="pagecontents-inner"> 
+								<div class="section-container article-content-box notscrolling">
+									<span class="bigtext">Contents</span>
+										
+									<ui:repeat id="showArticles" var="pageContents"
+										value="#{articleController.showArticle(param['article']).pageContents}">
+										<div style="width:100%;"><a href="##{pageContents.contentText}"><h:outputText value="#{pageContents.contentText}"/></a></div>
+									</ui:repeat>
+									
+									<p:panelGrid rendered="#{not empty articleController.showArticle(param['article']).tags}" >
+						    			<br/>
+						    			<span class="bigtext">Tags</span>
+										<div class="tags-container">
+						    				<ui:repeat id="tags" var="tag"
+												value="#{articleController.showArticle(param['article']).tags}">
+												<div class="tag" onclick="location.href='#{request.contextPath}/showTag.faces'">#{tag.tag}</div>
+											</ui:repeat>
+											<div style="clear:both;margin-bottom:20px;"/>
+										</div>
+									</p:panelGrid>
+									<p:panelGrid rendered="#{empty articleController.showArticle(param['article']).tags}" >
+						    			<div style="width:10px;height:10px;margin-bottom:10px;"/>
+									</p:panelGrid>
+								</div>
+							</div>
+						</div>
+					</h:panelGroup>
+				
+					<h:panelGroup layout="block" style="width:80%;float:right;min-width:510px;" class="section-container article-content-box"
+						rendered="#{not empty articleController.showArticle(param['article']).pageContents}">
+						<h:outputText value="#{articleController.showFilteredArticle(param['article']).body}" escape="false"/>
+		    		</h:panelGroup>
+		    		
+		    		<h:panelGroup layout="block" style="width:100%;float:right" class="section-container article-content-box"
+						rendered="#{empty articleController.showArticle(param['article']).pageContents}">
+						<h:outputText value="#{articleController.showFilteredArticle(param['article']).body}" escape="false"/>
+
+			    		<p:panelGrid rendered="#{not empty articleController.showArticle(param['article']).tags}" >
+			    			<div class="tags-container">
+			    				<h:outputText value="Tags:" style="float:left;margin-top:12px;margin-right:10px;"/>
+								<ui:repeat id="tags2" var="tag"
+									value="#{articleController.showArticle(param['article']).tags}">
+									<div class="tag" onclick="location.href='#{request.contextPath}/showTag.faces'">#{tag.tag}</div>
+								</ui:repeat>
+								<div style="clear:both;margin-bottom:20px;"/>
+							</div>
+						</p:panelGrid>
+						<p:panelGrid rendered="#{empty articleController.showArticle(param['article']).tags}" >
+			    			<div style="width:10px;height:10px;margin-bottom:10px;"/>
+						</p:panelGrid>
+		    		</h:panelGroup>
+		    		<div style="clear:both"></div>
+	    		</div>
+    		</h:form>
+     	</ui:define>
+	</ui:composition>
+
+</html>
