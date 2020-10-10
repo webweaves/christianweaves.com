@@ -10,16 +10,30 @@
 		<ui:define name="content">
 		
 			<script type="text/javascript">
-			function showSnippet(title, body, icon) {
-				$('#snippet-title').html(title);
-				$('#snippet-body').html(body);
-				$('#snippet-image').attr("src", "data:image/png;base64," + icon);
-				$('#snippet-pop').fadeIn('slow');
+			function decode(data) {
+				//var find = '|newline|';
+				//var re = new RegExp(find, 'g');
+				//data = data.replace(re, '\n');
+				return data;
+			}
+			
+			function showSnippet(id, title, icon) {
+				const userAction = async () => {
+					  const response = await fetch('http://localhost:8080/rest/articles/getArticle?articleId=' + id);
+					  const myJson = await response.json(); //extract JSON from the http response
+					  $('#snippet-body').html(myJson.body);
+					  $('#snippet-title').html(title);
+					  $('#snippet-image').attr("src", "data:image/png;base64," + icon);
+					  $('#snippet-pop').fadeIn('slow');
+					 
+				}
+
+				userAction();
 			}
 			</script>
 		
 			<div id="snippet-pop" class="snippet-popup" style="display:none">
-				<div id="snippet-title" style="height:200px; width:600px;background-color: #eee;"/>
+				<div id="snippet-title" style="height:30px; width:600px;background-color: #eee;"/>
 				<div id="snippet-body" style="height:200px; width:600px;background-color: #ddd;"/>
 				<div style="height:200px; width:600px;background-color: #ccc;">
 					<img id="snippet-image" src=""/>
@@ -32,7 +46,7 @@
 					<ui:repeat id="showArticles" var="article"
 						value="#{articleController.allSnippets}">
 						<div class="snippet-card"  
-							onclick="showSnippet('#{article.title}', '#{article.body}', '#{article.icon}');">
+							onclick="showSnippet('#{article.id}', '#{article.title}', '#{article.icon}');">
 							<div class="top-section">
 								<div class="snippet-circular-border">
 									<h:graphicImage value="data:image/png;base64,#{article.icon}"
