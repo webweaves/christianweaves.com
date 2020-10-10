@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -46,6 +47,17 @@ public class ArticlesRest {
 		return Response.status(Response.Status.OK)
 			.type(MediaType.APPLICATION_JSON)
 			.entity(articles)
+			.build();
+	}
+
+	@GET
+	@Path("/getArticle/{articleId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response article(@QueryParam("articleId") Long articleId) {
+	    Article article = dao.getArticleById(articleId);
+		return Response.status(Response.Status.OK)
+			.type(MediaType.APPLICATION_JSON)
+			.entity(article)
 			.build();
 	}
 
