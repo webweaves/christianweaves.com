@@ -51,7 +51,7 @@ public class ArticlesRest {
 	}
 
 	@GET
-	@Path("/getArticle/{articleId}")
+	@Path("/getArticle")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response article(@QueryParam("articleId") Long articleId) {
 	    Article article = dao.getArticleById(articleId);
