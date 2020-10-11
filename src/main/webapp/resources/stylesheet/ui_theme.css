@@ -111,7 +111,7 @@ code.language-java.hljs {
 	margin-left: auto;
 	padding: 5px 15px 5px;
 	width: 90%;
-	min-height: 300px;
+	min-height: 410px;
 }
 
 .container {
@@ -225,10 +225,14 @@ a {
 	margin-top: 10px;
 }
 
-
-
-
-
 .snippet-container {
     width: 100%;
+}
+
+.watermark-image {
+	width:400px;
+	height:400px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }
