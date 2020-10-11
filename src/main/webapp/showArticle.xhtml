@@ -60,9 +60,9 @@
 
 			<div class="header-spacer" style="height:0px;"/>
 			
-    		<h:form>
-   			  	<div style="margin-left:590px;position:fixed;margin-top:-87px;margin-left:">
-		    		<p:panelGrid rendered="#{auth.loggedIn}" >
+			<p:panelGrid rendered="#{auth.loggedIn}" >
+	    		<h:form>
+	   			  	<div style="margin-left:590px;position:fixed;margin-top:-87px;margin-left:">
 	  		  			<p:commandButton action="#{articleController.editArticleButtonClick}" 
 	    					value="Edit Article »" class="btn btn-primary" update=":growlform:growl">
 	    					<f:param name="articleId" value="#{param['article']}" />
@@ -83,9 +83,9 @@
 	    					value="Archive Article »" class="btn btn-primary" update=":growlform:growl">
 	    					<f:param name="articleId" value="#{param['article']}" />
 		   		 		</p:commandButton>
-		    		</p:panelGrid>
-	    	    </div>
-    		</h:form>
+		    	    </div>
+    			</h:form>
+			</p:panelGrid>
 			
 			<div class="article-header-box-container">
 				<div class="article-header-box">
