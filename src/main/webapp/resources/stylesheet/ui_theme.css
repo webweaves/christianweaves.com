@@ -214,15 +214,17 @@ a {
 }
 
 .tag {
-	background-color: #73aad6;
+	background-color: #eee;
 	display: inline-block;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding: 5px 10px 5px 5px;
 	margin-right: 10px;
 	float: left;
-	border-radius: 20px;
-	box-shadow: 0 10px 10px -5px;
 	margin-top: 10px;
+	border-left: 4px solid #2e6e9e;
+}
+
+.tag:hover {
+	background-color: #ccc;
 }
 
 .snippet-container {

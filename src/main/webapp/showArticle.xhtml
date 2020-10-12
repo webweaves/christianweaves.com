@@ -148,7 +148,7 @@
 
 			    		<p:panelGrid rendered="#{not empty articleController.showArticle(param['article']).tags}" >
 			    			<div class="tags-container">
-			    				<h:outputText value="Tags:" style="float:left;margin-top:12px;margin-right:10px;"/>
+			    				<h:outputText value="Tags:" style="float:left;margin-top:16px;margin-right:10px;"/>
 								<ui:repeat id="tags2" var="tag"
 									value="#{articleController.showArticle(param['article']).tags}">
 									<div class="tag" onclick="location.href='#{request.contextPath}/showTag.faces'">#{tag.tag}</div>
