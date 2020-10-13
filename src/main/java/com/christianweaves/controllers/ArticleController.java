@@ -71,13 +71,6 @@ public class ArticleController {
 	public List<Article> getAllSnippets() {
 		List<Article> allArticles = getAllArticles();
 		
-		for (Article a: allArticles) {
-			if (a.getBody() != null) {
-				a.setBody(a.getBody().replaceAll("\\r\\n", "|newline|"));
-				//allArticles2.add(showFilteredArticle(a.getId().toString()));
-			}
-		}
-		
 		//filter all articles and return just snippets
 		return allArticles
 				  .stream()
