@@ -18,22 +18,27 @@
 			}
 			
 			function showSnippet(id, title, icon) {
-				const userAction = async () => {
+				const hydrateElements = async () => {
 					  const response = await fetch('http://localhost:8080/rest/articles/getArticle?articleId=' + id);
 					  const myJson = await response.json(); //extract JSON from the http response
-					  $('#snippet-body').html(myJson.body);
+					  var bodyContent = myJson.body.replace(/&lt;code\ class=\"/g, '&lt;code class="codeblock ');
+					  $('#snippet-body').html(bodyContent);
 					  $('#snippet-title').html(title);
 					  $('#snippet-image').attr("src", "data:image/png;base64," + icon);
 					  $('#snippet-pop').fadeIn('slow');
-					 
-				}
 
-				userAction();
+					  Array.from(document.getElementsByClassName("codeblock")).forEach((el) => {
+					     hljs.highlightBlock(el);
+					  });
+				}
+				hydrateElements();
 			}
 			</script>
 		
 			<div id="snippet-pop" class="snippet-popup" style="display:none">
-				<div id="snippet-title" style="height:30px; width:600px;background-color: #eee;"/>
+				<span style="font-size: 18px;font-weight: bold;color:#06527b">
+					<div id="snippet-title" style="height:30px; width:600px;background-color: #eee;"/>
+				</span>
 				<div id="snippet-body" style="height:200px; width:600px;background-color: #ddd;"/>
 				<div class="watermark-image">
 					<img id="snippet-image" class="snippet-image" src=""/>

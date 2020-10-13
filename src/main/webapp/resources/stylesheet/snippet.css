@@ -8,6 +8,8 @@
 	padding: 20px;
 	transform: translate(-50%, 0);
 	min-height: 415px;
+	outline: 1px solid #06527b;
+    outline-offset: -8px;
 }
 
 .snippet-image {
