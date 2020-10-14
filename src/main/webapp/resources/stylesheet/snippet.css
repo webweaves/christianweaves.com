@@ -10,6 +10,23 @@
 	min-height: 415px;
 	outline: 1px solid #06527b;
     outline-offset: -8px;
+    max-height:400px;
+    display:none;
+}
+
+.snippet-title {
+	height:30px; 
+	width:100%;
+	background-color: #eee;
+}
+
+.snippet-close {
+	width:40px;
+	height:40px;
+	position: absolute;
+	top: 5px;
+	right: -5px;
+	color:#06527b;
 }
 
 .snippet-image {

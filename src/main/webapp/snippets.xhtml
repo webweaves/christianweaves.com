@@ -7,21 +7,16 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:composition template="/templates/template.xhtml">
-		<ui:define name="content">
-		
+		<ui:define name="head">
 			<script type="text/javascript">
-			function decode(data) {
-				//var find = '|newline|';
-				//var re = new RegExp(find, 'g');
-				//data = data.replace(re, '\n');
-				return data;
-			}
-			
 			function showSnippet(id, title, icon) {
 				const hydrateElements = async () => {
-					  const response = await fetch('http://localhost:8080/rest/articles/getArticle?articleId=' + id);
+					  const response = await fetch('#{request.contextPath}/rest/articles/getArticle?articleId=' + id);
 					  const myJson = await response.json(); //extract JSON from the http response
-					  var bodyContent = myJson.body.replace(/&lt;code\ class=\"/g, '&lt;code class="codeblock ');
+					  var bodyContent = 'Ah, an empty snippet!!';
+					  if (myJson.body != null) {
+						  bodyContent = myJson.body.replace(/&lt;code\ class=\"/g, '&lt;code class="codeblock ');
+					  }
 					  $('#snippet-body').html(bodyContent);
 					  $('#snippet-title').html(title);
 					  $('#snippet-image').attr("src", "data:image/png;base64," + icon);
@@ -33,15 +28,37 @@
 				}
 				hydrateElements();
 			}
+
+			function closeSnippet() {
+				$('#snippet-pop').fadeOut('slow');
+			}
+
+			$('.search-button').click(function(){
+				  $(this).parent().toggleClass('open');
+			});
 			</script>
+		</ui:define>
 		
-			<div id="snippet-pop" class="snippet-popup" style="display:none">
-				<span style="font-size: 18px;font-weight: bold;color:#06527b">
-					<div id="snippet-title" style="height:30px; width:600px;background-color: #eee;"/>
-				</span>
-				<div id="snippet-body" style="height:200px; width:600px;background-color: #ddd;"/>
-				<div class="watermark-image">
-					<img id="snippet-image" class="snippet-image" src=""/>
+		<ui:define name="content">
+		
+			<div class="section-container article-content-box" style="min-height:100px;background-color: #aaa;padding: 50px;">
+				<p style="font-size: 22px;color:#06527b">
+				Here's my snippets! A dumping ground for everything that doesn't qualify to be an article. Snippets may have an explanation, they may not.
+				They're simply useful little pieces of code that I've used to solve a specific problem and I feel will be useful in the future!</p>
+			</div>
+			
+			<div id="snippet-pop" class="snippet-popup">
+				<div class="snippet-close">
+					<i onclick="closeSnippet();" style="cursor: pointer;" class="fa fa-close fa-2x"/>
+				</div>
+				<div style="overflow:auto;max-height:380px">
+					<span style="font-size: 18px;font-weight: bold;color:#06527b">
+						<div id="snippet-title" class="snippet-title"/>
+					</span>
+					<div id="snippet-body" style="width:100%;background-color: #ddd;"/>
+					<div class="watermark-image">
+						<img id="snippet-image" class="snippet-image" src=""/>
+					</div>
 				</div>
 			</div>
 		
