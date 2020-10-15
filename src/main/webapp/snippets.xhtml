@@ -32,10 +32,6 @@
 			function closeSnippet() {
 				$('#snippet-pop').fadeOut('slow');
 			}
-
-			$('.search-button').click(function(){
-				  $(this).parent().toggleClass('open');
-			});
 			</script>
 		</ui:define>
 		
@@ -47,6 +43,14 @@
 				They're simply useful little pieces of code that I've used to solve a specific problem and I feel will be useful in the future!</p>
 			</div>
 			
+			<h:form>
+				<div style="width:40%; margin-right: auto; margin-left: auto; text-align: center;">
+					<p:inputText id="snippetsearchtext" value="#{inMemorySearch.query2}" style="font-size:34px;"
+						onkeypress="if (event.keyCode == 13) { bean_searchSnippetSubmit(); return false;}"/>
+					<p:watermark for="snippetsearchtext" value="Search..." id="watermark" />		
+				</div>
+			</h:form>
+		
 			<div id="snippet-pop" class="snippet-popup">
 				<div class="snippet-close">
 					<i onclick="closeSnippet();" style="cursor: pointer;" class="fa fa-close fa-2x"/>

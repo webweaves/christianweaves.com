@@ -30,6 +30,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 import org.primefaces.context.RequestContext;
 
+import com.christianweaves.controllers.ArticleController;
 import com.christianweaves.entities.Article;
 import com.christianweaves.entities.ArticleDao;
 
@@ -44,7 +45,11 @@ public class InMemorySearch {
 	@Inject
 	private ArticleDao dao;
 	
+	@Inject 
+	private ArticleController articleController;
+	
 	private String query;
+	private String query2;
 	
 	private List<Article> results;
 	
@@ -107,6 +112,60 @@ public class InMemorySearch {
 		}
 	}
 	
+	public String snippetSearch() {
+		here doing snip results storage
+	}
+	
+	public List<Article> snippetSearch() {
+		Directory dir=new RAMDirectory();
+		IndexWriter writer = null;
+		try {
+			writer = new IndexWriter(dir, new IndexWriterConfig(new StandardAnalyzer()));
+			for (Article article: articleController.getAllSnippets()) {
+			    Document doc = new Document();
+			    String id = article.getId().toString();
+		        String description = article.getTitle()
+		                             + " " + article.getSubtitle() 
+		                             + " " + article.getBody();
+		        
+		        doc.add(new StringField("articleId", id, Field.Store.YES));		
+		        doc.add(new TextField("description", description.toLowerCase(), Field.Store.YES));		
+				writer.addDocument(doc);
+			}
+	
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		List<String> r = new ArrayList<>();
+		
+		try {
+			//create a term to search 
+		    Term term = new Term("description", getQuery().toLowerCase());
+		    //create the term query object
+		    Query query = new FuzzyQuery(term, 1);
+		    IndexSearcher indexSearcher = new IndexSearcher(DirectoryReader.open(dir));
+		    TopDocs topDocs = indexSearcher.search(query, resultCount);
+			for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
+		        r.add(indexSearcher.doc(scoreDoc.doc).get("description"));
+		    }
+			
+			ScoreDoc[] hits = topDocs.scoreDocs;
+			logger.debug("Found " + hits.length + " hits");
+			results = new ArrayList<>();
+			for (int i=0; i<hits.length; ++i) {
+			    int docId = hits[i].doc;
+			    Document d = indexSearcher.doc(docId);
+			    results.add(dao.getArticleById(Long.valueOf(d.get("articleId"))));
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 	    
+		
+		return results;
+	}
+	
 	public static void main(String[] args) {
 		new InMemorySearch().search();
 		
@@ -126,5 +185,13 @@ public class InMemorySearch {
 
 	public void setResults(List<Article> results) {
 		this.results = results;
+	}
+
+	public String getQuery2() {
+		return query2;
+	}
+
+	public void setQuery2(String query2) {
+		this.query2 = query2;
 	}
 }

@@ -61,6 +61,19 @@ public class ArticleDao extends AbstractDao<Article> {
 		query.setMaxResults(count);
 		return query.getResultList();
 	}
+
+	public List<Article> getSnippets() {
+		Query query = getEm().createQuery("from Article article where article.archived = :boolType "
+				+ "and article.hidden = :boolType "
+				+ "and article.deleted = :boolType "
+				+ "and article.draft = :boolType "
+				+ "and article.snippet = :boolTypeTrue "
+				+ "ORDER BY article.dateAdded DESC");
+		query.setParameter("boolType", Boolean.FALSE);
+		query.setParameter("boolTypeTrue", Boolean.TRUE);
+		query.setFirstResult(0);
+		return query.getResultList();
+	}
 	
 	public List<Article> getLatestArticles() {
 		return getArticles(10000);
