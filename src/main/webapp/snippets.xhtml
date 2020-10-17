@@ -45,9 +45,9 @@
 			
 			<h:form>
 				<div style="width:40%; margin-right: auto; margin-left: auto; text-align: center;">
-					<p:inputText id="snippetsearchtext" value="#{inMemorySearch.query2}" style="font-size:34px;"
-						onkeypress="if (event.keyCode == 13) { bean_searchSnippetSubmit(); return false;}"/>
-					<p:watermark for="snippetsearchtext" value="Search..." id="watermark" />		
+					<p:inputText id="snippetsearchtext" value="#{inMemorySearch.snippetQuery}" style="font-size:30px;"/>
+					<p:watermark for="snippetsearchtext" value="Search..." id="watermark" />
+					<p:commandButton action="#{inMemorySearch.loadSnippets()}" value="search" update=":snippets:showSnippets"/>		
 				</div>
 			</h:form>
 		
@@ -66,27 +66,31 @@
 				</div>
 			</div>
 		
-			<div class="snippet-container" style="text-align: center">
-				<div class="article-container">
-					<br/>
-					<ui:repeat id="showArticles" var="article"
-						value="#{articleController.allSnippets}">
-						<div class="snippet-card"  
-							onclick="showSnippet('#{article.id}', '#{article.title}', '#{article.icon}');">
-							<div class="top-section">
-								<div class="snippet-circular-border">
-									<h:graphicImage value="data:image/png;base64,#{article.icon}"
-										class="snippet-graphic" />
+			<h:form id="snippets">
+				<div class="snippet-container">
+					<div class="article-container">
+						<br/>
+						<h:panelGrid id="showSnippets">
+							<ui:repeat var="article"
+								value="#{inMemorySearch.loadSnippets()}">
+								<div class="snippet-card"  
+									onclick="showSnippet('#{article.id}', '#{article.title}', '#{article.icon}');">
+									<div class="top-section">
+										<div class="snippet-circular-border">
+											<h:graphicImage value="data:image/png;base64,#{article.icon}"
+												class="snippet-graphic" />
+										</div>
+										<div class="snippet-text"><h:outputText value="#{article.title}"/></div>
+									</div>
+									<svg class="snippet-svg-background" viewBox="0 0 1600 600"> 
+										<path class="blob" d="#{blobController.randomBlob}"/>
+									</svg>
 								</div>
-								<div class="snippet-text"><h:outputText value="#{article.title}"/></div>
-							</div>
-							<svg class="snippet-svg-background" viewBox="0 0 1600 600"> 
-								<path class="blob" d="#{blobController.randomBlob}"/>
-							</svg>
-						</div>
-					</ui:repeat>
+							</ui:repeat>
+						</h:panelGrid>
+					</div>
 				</div>
-			</div>
+			</h:form>
 				
 			<div class="snippet-card active" style="valign:top;display:none"/>
 

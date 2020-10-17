@@ -49,7 +49,7 @@ public class InMemorySearch {
 	private ArticleController articleController;
 	
 	private String query;
-	private String query2;
+	private String snippetQuery;
 	
 	private List<Article> results;
 	
@@ -80,9 +80,9 @@ public class InMemorySearch {
 			//create a term to search 
 		    Term term = new Term("description", getQuery().toLowerCase());
 		    //create the term query object
-		    Query query = new FuzzyQuery(term, 1);
+		    Query queryObj = new FuzzyQuery(term, 1);
 		    IndexSearcher indexSearcher = new IndexSearcher(DirectoryReader.open(dir));
-		    TopDocs topDocs = indexSearcher.search(query, resultCount);
+		    TopDocs topDocs = indexSearcher.search(queryObj, resultCount);
 			for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
 		        r.add(indexSearcher.doc(scoreDoc.doc).get("description"));
 		    }
@@ -113,15 +113,21 @@ public class InMemorySearch {
 	}
 	
 	public String snippetSearch() {
-		here doing snip results storage
+		List<Article> articles = loadSnippets();
+		return null;
 	}
 	
-	public List<Article> snippetSearch() {
+	public List<Article> loadSnippets() {
+		List<Article> articles = articleController.getAllSnippets();
+		if (getSnippetQuery() == null) {
+			return articles;
+		}
+		
 		Directory dir=new RAMDirectory();
 		IndexWriter writer = null;
 		try {
 			writer = new IndexWriter(dir, new IndexWriterConfig(new StandardAnalyzer()));
-			for (Article article: articleController.getAllSnippets()) {
+			for (Article article: articles) {
 			    Document doc = new Document();
 			    String id = article.getId().toString();
 		        String description = article.getTitle()
@@ -141,11 +147,11 @@ public class InMemorySearch {
 		
 		try {
 			//create a term to search 
-		    Term term = new Term("description", getQuery().toLowerCase());
+		    Term term = new Term("description", getSnippetQuery().toLowerCase());
 		    //create the term query object
-		    Query query = new FuzzyQuery(term, 1);
+		    Query queryObj = new FuzzyQuery(term, 1);
 		    IndexSearcher indexSearcher = new IndexSearcher(DirectoryReader.open(dir));
-		    TopDocs topDocs = indexSearcher.search(query, resultCount);
+		    TopDocs topDocs = indexSearcher.search(queryObj, resultCount);
 			for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
 		        r.add(indexSearcher.doc(scoreDoc.doc).get("description"));
 		    }
@@ -171,14 +177,6 @@ public class InMemorySearch {
 		
 	}
 
-	public String getQuery() {
-		return query;
-	}
-
-	public void setQuery(String query) {
-		this.query = query;
-	}
-
 	public List<Article> getResults() {
 		return results;
 	}
@@ -187,11 +185,19 @@ public class InMemorySearch {
 		this.results = results;
 	}
 
-	public String getQuery2() {
-		return query2;
+	public String getQuery() {
+		return query;
 	}
 
-	public void setQuery2(String query2) {
-		this.query2 = query2;
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
+	public String getSnippetQuery() {
+		return snippetQuery;
+	}
+
+	public void setSnippetQuery(String snippetQuery) {
+		this.snippetQuery = snippetQuery;
 	}
 }

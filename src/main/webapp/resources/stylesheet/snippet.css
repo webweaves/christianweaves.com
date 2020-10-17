@@ -12,6 +12,13 @@
     outline-offset: -8px;
     max-height:400px;
     display:none;
+	z-index: 1000;
+}
+
+.snippet-container {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;	
 }
 
 .snippet-title {
