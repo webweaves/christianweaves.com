@@ -33,6 +33,7 @@ import org.primefaces.context.RequestContext;
 import com.christianweaves.controllers.ArticleController;
 import com.christianweaves.entities.Article;
 import com.christianweaves.entities.ArticleDao;
+import com.christianweaves.entities.Tag;
 
 @Named
 @RequestScoped
@@ -53,6 +54,17 @@ public class InMemorySearch {
 	
 	private List<Article> results;
 	
+	private String extractSearchStringFromArticle(Article article) {
+        String description = article.getTitle()
+                             + " " + article.getSubtitle() 
+                             + " " + article.getBody();
+        //add the tags
+        for (Tag tag: article.getTags()) {
+        	description += " " +tag.getTag();
+        }
+        return description;
+	}
+	
 	public String search() {
 		Directory dir=new RAMDirectory();
 		IndexWriter writer = null;
@@ -61,10 +73,7 @@ public class InMemorySearch {
 			for (Article article: dao.getArticles(100000)) {
 			    Document doc = new Document();
 			    String id = article.getId().toString();
-		        String description = article.getTitle()
-		                             + " " + article.getSubtitle() 
-		                             + " " + article.getBody();
-		        
+			    String description = extractSearchStringFromArticle(article);
 		        doc.add(new StringField("articleId", id, Field.Store.YES));		
 		        doc.add(new TextField("description", description.toLowerCase(), Field.Store.YES));		
 				writer.addDocument(doc);
@@ -130,10 +139,7 @@ public class InMemorySearch {
 			for (Article article: articles) {
 			    Document doc = new Document();
 			    String id = article.getId().toString();
-		        String description = article.getTitle()
-		                             + " " + article.getSubtitle() 
-		                             + " " + article.getBody();
-		        
+			    String description = extractSearchStringFromArticle(article);
 		        doc.add(new StringField("articleId", id, Field.Store.YES));		
 		        doc.add(new TextField("description", description.toLowerCase(), Field.Store.YES));		
 				writer.addDocument(doc);
