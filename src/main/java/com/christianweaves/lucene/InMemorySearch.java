@@ -56,7 +56,7 @@ public class InMemorySearch {
 	
 	private String extractSearchStringFromArticle(Article article) {
         String description = article.getTitle()
-                             + " " + article.getSubtitle() 
+                             + " " + article.getSubtitle()
                              + " " + article.getBody();
         //add the tags
         for (Tag tag: article.getTags()) {
