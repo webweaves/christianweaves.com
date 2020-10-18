@@ -37,17 +37,18 @@
 		
 		<ui:define name="content">
 		
-			<div class="section-container article-content-box" style="min-height:100px;background-color: #aaa;padding: 50px;">
+			<div class="section-container article-content-box snippet-content-box">
 				<p style="font-size: 22px;color:#06527b">
-				Here's my snippets! A dumping ground for everything that doesn't qualify to be an article. Snippets may have an explanation, they may not.
-				They're simply useful little pieces of code that I've used to solve a specific problem and I feel will be useful in the future!</p>
+				A dumping ground for everything that doesn't qualify to be an article. Snippets may have an explanation, they may not.
+				Simply useful little pieces of code I've used to solve a specific problem and I feel may be useful in the future!</p>
 			</div>
 			
 			<h:form>
-				<div style="width:40%; margin-right: auto; margin-left: auto; text-align: center;">
+				<div class="snippet-search-box">
 					<p:inputText id="snippetsearchtext" value="#{inMemorySearch.snippetQuery}" style="font-size:30px;"/>
 					<p:watermark for="snippetsearchtext" value="Search..." id="watermark" />
-					<p:commandButton action="#{inMemorySearch.loadSnippets()}" value="search" update=":snippets:showSnippets"/>		
+					<p:commandButton action="#{inMemorySearch.loadSnippets()}" value="search" 
+						oncomplete="animateCards();" update=":snippets:showSnippets"/>		
 				</div>
 			</h:form>
 		
@@ -59,7 +60,7 @@
 					<span style="font-size: 18px;font-weight: bold;color:#06527b">
 						<div id="snippet-title" class="snippet-title"/>
 					</span>
-					<div id="snippet-body" style="width:100%;background-color: #ddd;"/>
+					<div id="snippet-body" class="snippet-body"/>
 					<div class="watermark-image">
 						<img id="snippet-image" class="snippet-image" src=""/>
 					</div>
@@ -99,8 +100,13 @@
 				document.querySelector(".active").classList.remove("active");
 			    e.target.closest(".snippet-card").classList.add("active");
 			}
-			document.querySelectorAll(".snippet-card").forEach(card => card.addEventListener("mouseover", handleMouseover) );
-		 	</script>
+
+			animateCards();
+
+			function animateCards() {
+				document.querySelectorAll(".snippet-card").forEach(card => card.addEventListener("mouseover", handleMouseover) );
+			}
+			 </script>
 		</ui:define>
 	</ui:composition>
 

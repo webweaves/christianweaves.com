@@ -1,5 +1,5 @@
 .snippet-popup {
-	background-color: #eee;
+	background-color: #ddd;
 	position: fixed;
 	width: 80%;
 	text-align: left;
@@ -23,8 +23,26 @@
 
 .snippet-title {
 	height:30px; 
-	width:100%;
+	width:98%;
 	background-color: #eee;
+    display: inline-block;
+    padding: 5px 10px 5px 10px;
+    margin-right: 10px;
+    float: left;
+    margin-top: 10px;
+    border-left: 4px solid #2e6e9e;
+}
+
+.snippet-body {
+	background-color: #ddd;
+	width:98%;
+	background-color: #eee;
+    display: inline-block;
+    padding: 5px 10px 5px 10px;
+    margin-right: 10px;
+    float: left;
+    margin-top: 10px;
+    border-left: 4px solid #06527b;
 }
 
 .snippet-close {
@@ -251,4 +269,18 @@
     height: 5px;
     left: 0px;
     top: 10px;
+}
+
+.snippet-content-box {
+	min-height:100px;
+	background-color: #b5e0f0;
+	padding: 50px;
+}
+
+.snippet-search-box {
+	padding:20px; 
+	width:40%; 
+	margin-right: auto; 
+	margin-left: auto; 
+	text-align: center;
 }
