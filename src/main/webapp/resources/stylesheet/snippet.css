@@ -16,7 +16,6 @@
 }
 
 .snippet-container {
-	margin-top: 50px;
 	margin-bottom: 50px;
 	text-align: center;	
 }
@@ -278,8 +277,13 @@
 
 .snippet-search-box {
 	padding:20px; 
-	width:40%; 
+	width:30%; 
 	margin-right: auto; 
 	margin-left: auto; 
 	text-align: center;
+}
+
+.snippet-search-grid.ui-panelgrid>*>tr,
+.snippet-search-grid.ui-panelgrid .ui-panelgrid-cell {
+    border:none;
 }

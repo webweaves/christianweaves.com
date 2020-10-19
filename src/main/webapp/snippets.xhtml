@@ -45,16 +45,19 @@
 			
 			<h:form>
 				<div class="snippet-search-box">
+				  <p:panelGrid columns="3" styleClass="snippet-search-grid">
 					<p:inputText id="snippetsearchtext" value="#{inMemorySearch.snippetQuery}" style="font-size:30px;"/>
+					<p:commandButton action="#{inMemorySearch.loadSnippets()}" icon="fa fa-search"
+						style="height:50px;width:50px;"
+						oncomplete="animateCards();" update=":snippets:showSnippets"/>
 					<p:watermark for="snippetsearchtext" value="Search..." id="watermark" />
-					<p:commandButton action="#{inMemorySearch.loadSnippets()}" value="search" 
-						oncomplete="animateCards();" update=":snippets:showSnippets"/>		
+				  </p:panelGrid>
 				</div>
 			</h:form>
 		
 			<div id="snippet-pop" class="snippet-popup">
 				<div class="snippet-close">
-					<i onclick="closeSnippet();" style="cursor: pointer;" class="fa fa-close fa-2x"/>
+					<i onclick="closeSnippet();" style="cursor: pointer;" class="fa fa-close fa-lg"/>
 				</div>
 				<div style="overflow:auto;max-height:380px">
 					<span style="font-size: 18px;font-weight: bold;color:#06527b">
