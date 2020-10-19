@@ -1,4 +1,3 @@
-
 .card {
 	position: relative;
 	display: inline-block;
@@ -27,7 +26,7 @@
 }
 
 .card.active .blob {
-	fill: rgb(70, 150, 230);
+	fill: #2996dd;
 	transform: translate(23%, 3%) scale(10);
 }
 

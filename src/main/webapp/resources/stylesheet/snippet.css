@@ -129,9 +129,8 @@
 	width: 30px;
 }
 
-
 ::selection {
-   background: #daeff7;
+   	background: #daeff7;
 }
 
 .search-wrapper {
