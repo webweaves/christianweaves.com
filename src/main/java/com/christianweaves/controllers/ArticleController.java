@@ -61,7 +61,7 @@ public class ArticleController {
 	 * @return
 	 */
 	public List<Article> getAllArticles() {
-		return applicationController.getAllArticles();
+		return articleDao.getArticles();
 	}
 	
 	/**
@@ -69,13 +69,13 @@ public class ArticleController {
 	 * @return
 	 */
 	public List<Article> getAllSnippets() {
-		List<Article> allArticles = getAllArticles();
-		
-		//filter all articles and return just snippets
-		return allArticles
-				  .stream()
-				  .filter(s -> s.getSnippet())
-				  .collect(Collectors.toList());
+		return articleDao.getSnippets();
+	}
+	
+	public List<Article> getAllArticlesAndSnippets() {
+		List<Article> articles = getAllArticles();
+		articles.addAll(getAllSnippets());
+		return articles;
 	}
 	
 	/**
@@ -120,8 +120,8 @@ public class ArticleController {
 		return article;
 	}
 
-	public List<Article> getLatestArticles() {
-		return articleDao.getLatestArticles();
+	public List<Article> getArticles() {
+		return articleDao.getArticles();
 	}
 
 	public Article getFeaturedArticle() {

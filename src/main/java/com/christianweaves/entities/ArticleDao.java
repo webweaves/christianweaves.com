@@ -50,15 +50,16 @@ public class ArticleDao extends AbstractDao<Article> {
 	 * that are not hidden, delete or draft
 	 * @return
 	 */
-	public List<Article> getArticles(int count) {
+	public List<Article> getArticles() {
 		Query query = getEm().createQuery("from Article article where article.archived = :boolType "
 				+ "and article.hidden = :boolType "
 				+ "and article.deleted = :boolType "
 				+ "and article.draft = :boolType "
+				+ "and article.snippet = :boolType "
 				+ "ORDER BY article.dateAdded DESC");
 		query.setParameter("boolType", Boolean.FALSE);
 		query.setFirstResult(0);
-		query.setMaxResults(count);
+		query.setMaxResults(100000);
 		return query.getResultList();
 	}
 
@@ -73,10 +74,6 @@ public class ArticleDao extends AbstractDao<Article> {
 		query.setParameter("boolTypeTrue", Boolean.TRUE);
 		query.setFirstResult(0);
 		return query.getResultList();
-	}
-	
-	public List<Article> getLatestArticles() {
-		return getArticles(10000);
 	}
 
 	/**

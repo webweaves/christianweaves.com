@@ -40,7 +40,7 @@
 				<div class="article-container">
 					<br/>
 					<ui:repeat id="showArticles" var="article"
-						value="#{articleController.latestArticles}">
+						value="#{articleController.allArticles}">
 						<div class="card" style="vertical-align: top;" 
 							onclick="location.href='#{request.contextPath}/showArticle.faces?article=#{article.id}'">
 							<div class="top-section">

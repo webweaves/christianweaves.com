@@ -24,7 +24,7 @@
 			<br/><br/>
 
 			<h:form>
-			<p:dataTable value="#{articleController.allArticles}" var="article">
+			<p:dataTable value="#{articleController.allArticlesAndSnippets}" var="article">
 			    <p:column headerText="Title" sortBy="#{article.title}">
 			        <a href="#{request.contextPath}/showArticle.faces?article=#{article.id}">#{article.title}</a>
 			    </p:column>
@@ -49,7 +49,7 @@
 			    <p:column headerText="Draft" sortBy="#{article.draft}">
 			        <h:selectBooleanCheckbox value="#{article.draft}" />
 			    </p:column>
-			    <p:column headerText="Draft" sortBy="#{article.snippet}">
+			    <p:column headerText="Snippet" sortBy="#{article.snippet}">
 			        <h:selectBooleanCheckbox value="#{article.snippet}" />
 			    </p:column>
 			</p:dataTable>		

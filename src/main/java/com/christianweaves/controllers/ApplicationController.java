@@ -50,7 +50,7 @@ public class ApplicationController implements Serializable {
 	 */
 	public List<Article> getAllArticles() {
 		if (articles == null) {
-			articles = articleDao.getLatestArticles();
+			articles = articleDao.getArticles();
 		}
 		return articles;
 	}

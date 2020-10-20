@@ -70,7 +70,7 @@ public class InMemorySearch {
 		IndexWriter writer = null;
 		try {
 			writer = new IndexWriter(dir, new IndexWriterConfig(new StandardAnalyzer()));
-			for (Article article: dao.getArticles(100000)) {
+			for (Article article: dao.getArticles()) {
 			    Document doc = new Document();
 			    String id = article.getId().toString();
 			    String description = extractSearchStringFromArticle(article);
