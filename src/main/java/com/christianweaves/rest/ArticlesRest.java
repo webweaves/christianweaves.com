@@ -43,7 +43,7 @@ public class ArticlesRest {
 	@Path("/getAllArticles")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response allArticles() {
-	    List<Article> articles = dao.getArticles(10000);
+	    List<Article> articles = dao.getArticles();
 		return Response.status(Response.Status.OK)
 			.type(MediaType.APPLICATION_JSON)
 			.entity(articles)
