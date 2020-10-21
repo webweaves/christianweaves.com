@@ -270,9 +270,10 @@
 }
 
 .snippet-content-box {
-	min-height:100px;
+	padding: 20px;
+	min-height:50px;
 	background-color: #b5e0f0;
-	padding: 50px;
+	background-image: linear-gradient(to right, #cfe4eb 0%, #cfe4eb 70%, #2396db 100%);
 }
 
 .snippet-search-box {

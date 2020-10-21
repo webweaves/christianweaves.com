@@ -38,26 +38,27 @@
 		<ui:define name="content">
 		
 			<div class="section-container article-content-box snippet-content-box">
-				<p style="font-size: 22px;color:#06527b">
-				A dumping ground for everything that doesn't qualify to be an article. Snippets may have an explanation, they may not.
+				<p style="font-size: 22px;color:#06527b;text-align: center">
+				A dumping ground for everything that doesn't qualify for article status. Snippets may have an explanation, they may not.
 				Simply useful little pieces of code I've used to solve a specific problem and I feel may be useful in the future!</p>
 			</div>
 			
 			<h:form>
 				<div class="snippet-search-box">
-				  <p:panelGrid columns="3" styleClass="snippet-search-grid">
-					<p:inputText id="snippetsearchtext" value="#{inMemorySearch.snippetQuery}" style="font-size:30px;"/>
-					<p:commandButton action="#{inMemorySearch.loadSnippets()}" icon="fa fa-search"
-						style="height:50px;width:50px;"
-						oncomplete="animateCards();" update=":snippets:showSnippets"/>
-					<p:watermark for="snippetsearchtext" value="Search..." id="watermark" />
-				  </p:panelGrid>
+				  	<p:panelGrid id="panel" columns="3" styleClass="snippet-search-grid">
+				  		<p:focus context="panel"/>
+						<p:inputText  id="snippetsearchtext" value="#{inMemorySearch.snippetQuery}" style="font-size:30px;"/>
+						<p:commandButton action="#{inMemorySearch.loadSnippets()}" icon="fa fa-search" oncomplete="animateCards();" 
+							style="height:50px;width:50px;"
+							update=":snippets:showSnippets"/>
+						<p:watermark for="snippetsearchtext" value="Search..." id="watermark" />
+				  	</p:panelGrid>
 				</div>
 			</h:form>
 		
 			<div id="snippet-pop" class="snippet-popup">
 				<div class="snippet-close">
-					<i onclick="closeSnippet();" style="cursor: pointer;" class="fa fa-close fa-lg"/>
+					<i onclick="closeSnippet();" style="cursor: pointer;" class="fa fa-close fa-2x"/>
 				</div>
 				<div style="overflow:auto;max-height:380px">
 					<span style="font-size: 18px;font-weight: bold;color:#06527b">
@@ -75,16 +76,16 @@
 					<div class="article-container">
 						<br/>
 						<h:panelGrid id="showSnippets">
-							<ui:repeat var="article"
-								value="#{inMemorySearch.loadSnippets()}">
-								<div class="snippet-card"  
-									onclick="showSnippet('#{article.id}', '#{article.title}', '#{article.icon}');">
+							<ui:repeat var="article" value="#{inMemorySearch.loadSnippets()}">
+								<div class="snippet-card" onclick="showSnippet('#{article.id}', '#{article.title}', '#{article.icon}');">
 									<div class="top-section">
 										<div class="snippet-circular-border">
 											<h:graphicImage value="data:image/png;base64,#{article.icon}"
 												class="snippet-graphic" />
 										</div>
-										<div class="snippet-text"><h:outputText value="#{article.title}"/></div>
+										<div class="snippet-text"><h:outputText id="title" value="#{article.titleShort}"/></div>
+										<p:tooltip rendered="#{article.title != article.titleShort}" id="toolTipContent" 
+											for="title" position="top">#{article.title}</p:tooltip>
 									</div>
 									<svg class="snippet-svg-background" viewBox="0 0 1600 600"> 
 										<path class="blob" d="#{blobController.randomBlob}"/>

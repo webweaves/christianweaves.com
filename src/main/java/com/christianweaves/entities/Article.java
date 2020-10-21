@@ -139,6 +139,14 @@ public class Article implements Serializable {
 		return result;
 	}
 
+	public String getTitleShort() {
+		if (title.length() >= 30) {
+			return title.substring(0, 30) + "...";
+		} else {
+			return title;
+		}
+	}
+
 	public String getTitle() {
 		return title;
 	}
