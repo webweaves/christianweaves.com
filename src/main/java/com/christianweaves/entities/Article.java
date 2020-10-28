@@ -141,7 +141,7 @@ public class Article implements Serializable {
 
 	public String getTitleShort() {
 		if (title.length() >= 24) {
-			return title.substring(0, 24) + "...";
+			return title.substring(0, 24) + "....";
 		} else {
 			return title;
 		}
